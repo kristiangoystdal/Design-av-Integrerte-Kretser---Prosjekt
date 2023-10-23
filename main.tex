@@ -1,0 +1,69 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{svg} % Makes it possible to include svg-images
+\usepackage{cite}
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage{float}
+\usepackage{makecell}
+\usepackage{colortbl}
+\usepackage[colorlinks=true,allcolors=black]{hyperref}
+\usepackage[british]{babel}     % Defining UK English as language. This will among other things ensure that dates are displayed as 24/03/1997 rather than 03/24/1997 in the bibliography.
+\addto\extrasbritish{   % Change naming of different functions, e.g. figure references.
+    \renewcommand*\contentsname{Table of Contents}  % Rename table of contents
+    \renewcommand{\listfigurename}{List of Figures} % Rename list of figures
+    \renewcommand{\listtablename}{List of Tables}   % Rename list of tables
+    \def\equationautorefname{Equation}              % Autoref-name for equations
+    \def\figureautorefname{Figure}                  % Autoref-name for figures
+    \def\tableautorefname{Table}                    % Autoref-name for tables
+    \def\sectionautorefname{Section}                % Autoref-name for sections
+    \def\subsectionautorefname{Subsection} % Autoref-name for subsections
+    \def\subsubsectionautorefname{Subsection} % Autoref-name for subsubsections
+}
+
+\begin{document}
+
+\begin{titlepage}
+\vbox{ }
+\vbox{ }
+\begin{center}
+% Upper part of the page
+\includesvg[width=\textwidth]{Figures/logo.svg}\\[1cm]
+\textsc{\LARGE TFE4152 Design of Integrated Circuits}\\[1cm]
+\textsc{\Large Term project fall 2023}\\[0.5cm]
+\vbox{ }
+
+% Title
+\HRule \\[0.4cm]
+{ \huge \bfseries Design \& Test of a \\Multiply-Accumulate unit}\\[0.4cm] %TODO: replace "TITLE" with some project title, e.g. "Design of a Multiply Accumulate Unit"
+\HRule \\[1.5cm]
+
+% Author
+\large
+\emph{Authors:}\\
+Einar Bergslid \& Kristian Gøystdal %TODO: Replace this line with your names
+\vfill
+
+\end{center}
+\end{titlepage}
+
+
+\input{Text/Introduction}
+\input{Text/Theory}
+\input{Text/Method}
+\input{Text/Results}
+\input{Text/Discussion}
+\input{Text/Conclusion}
+
+\newpage
+\addcontentsline{toc}{section}{References}
+\bibliographystyle{unsrt}
+\bibliography{bibliography}
+
+\newpage
+\vspace*{7 cm}
+\begin{center}
+\textbf{\Huge Appendices}
+\end{center}
+\addcontentsline{toc}{section}{Appendices}
+\include{Text/appendix.tex}
+\end{document}

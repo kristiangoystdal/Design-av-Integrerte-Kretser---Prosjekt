@@ -1,0 +1,34 @@
+\section{Introduction}
+\label{sec:introduction}
+
+The Multiply-Accumulate (MAC) unit plays a crucial role in digital signal processing and various computational tasks, especially in artificial intelligence. In this project, we aim to design an efficient and reliable MAC unit using the gpdk 90nm technology. This technology ensures compatibility with real-world electronic circuits. Our goal is not only to meet given specifications but also to gain a deeper understanding of digital circuitry principles. 
+
+The design of the MAC unit has to comply to certain specifications, given in detail in the project description\cite{project_description}. A short summary of the given specifications is shown in table~\ref{tab:specifications}.
+
+\begin{table}[H]
+\caption{Given specifications for the MAC unit}
+\label{tab:specifications}
+\centering
+\begin{tabular}{|c|l|}
+\hline
+\rowcolor[HTML]{C0C0C0} 
+ Specification & Description \\ \hline
+ 1 & The gpdk 90nm technology is to be used \\ \hline
+ 2 & The circuit should consist of two subsystems: FSM and MAC \\ \hline
+ 3 & The FSM has three inputs: Reset, CLK and Run  \\ \hline
+ 4 & The FSM’s state should only be updated at the positive edge of the clock \\ \hline
+ 5 & All binary numbers are unsigned \\ \hline
+ 6 & The MAC unit has two 2-bit inputs A and B \\ \hline
+ 7 & \makecell[l]{The MAC unit must multiply A and B and add the product\\ to the currently stored value}  \\ \hline
+ 8 & \makecell[l]{The accumulated value must be stored in a 8-bit register in the MAC unit,\\ and be updated at each positive edge of the clock} \\ \hline
+ 9 & The MAC unit should output the accumulated 8-bit value \\ \hline
+ 10 & Gate lengths must be $\le$ 300 nm \\ \hline
+ 10 & Gate widths must be $\le$ 1500 nm \\ \hline
+ 11 & The upper limit for any supply voltage is 1.0 V \\ \hline
+ 11 & No logic gate can have a fan-in of more than 4 \\ \hline
+\end{tabular}
+\end{table}
+
+In addition to the given criteria above, the static power consumption of the circuit should be considered. The goal is
+to create a low power MAC unit, i.e. a MAC unit that consumes little static power. This means that
+static power consumption should be considered when choosing circuit topology, transistor dimensions, supply voltage, etc. and when designing the FSM. The verification of funtionality and power consumption is discussed in section~\ref{sec:results}.

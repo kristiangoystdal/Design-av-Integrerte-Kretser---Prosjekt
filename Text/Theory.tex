@@ -1,0 +1,54 @@
+\newpage
+\section{Theory}
+\label{sec:theory}
+
+
+
+\subsection{Finite State Machine}
+\label{subsec:fsm_theory}
+
+A finite state machine (FSM) is a model used to describe a system with a finite number of states. It operates by transitioning from one state to another in response to inputs, following a defined set of rules. FSMs consist of:
+
+\begin{enumerate}
+    \item \textbf{States}: These represent distinct conditions or configurations that the system can be in. Transitions occur between states based on inputs.
+    
+    \item \textbf{Transitions}: These are directed connections between states, triggered by specific input conditions. Transitions determine the movement from one state to another.
+    
+    \item \textbf{Inputs}: These are external signals or events that trigger state transitions. Inputs influence the behavior of the FSM.
+    
+    \item \textbf{Outputs}: FSMs may generate outputs in response to inputs and state transitions. Outputs convey information about the current state or operation of the system.
+\end{enumerate}
+\\
+FSMs can be classified into two main types:
+
+\begin{enumerate}
+    \item \textbf{Mealy Machine}: In a Mealy machine, the outputs depend on both the current state and the input. The output is produced immediately after an input is received and a state transition occurs.
+    
+    \item \textbf{Moore Machine}: In a Moore machine, the outputs depend only on the current state. The output is associated with the state itself, so it changes only after a state transition.
+\end{enumerate}
+\\
+A certain design procedure can be used for the design of FSMs~\cite{digital_design}:
+
+\begin{enumerate}
+  \item From the word description and specifications of the desired operation, derive a state diagram for the circuit.
+  \item Reduce the number of states if necessary.
+  \item Assign binary values to the states.
+  \item Obtain a binary-coded state table.
+  \item Choose the type of flip-flops to be used.
+  \item Derive the simplified flip-flop input equations and output equations.
+  \item Draw the logic diagram.
+\end{enumerate}
+
+
+\subsection{MAC}
+\label{subsec:MAC_theory}
+
+
+The theory section should contain background theory relevant for the reader in order to understand the rest of your report. Assume that the reader is yourselves at the start of the semester (before you had learnt anything from this course) and include theory accordingly. Keep in mind that this section should only include theory relevant to the project and the report, it is not meant as a place to show off everything you have ever learnt. 
+
+
+
+\subsection{Subsections, equations, figures, and tables}\label{subsec:theory_aSubsection}
+When you in later sections apply any of the theory you can refer back to this section. To make it easier for the reader to understand which part you are referring back to, it can be a good idea to divide your sections into subsections (e.g. one subsection per topic). This also makes it easier to read.
+
+Use equations, figures and tables to help get your message across. All figures/tables/equations should be referenced in the text, as they are there to help you tell your story. Remember to cite your references \cite{example}.
