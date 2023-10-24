@@ -7,7 +7,7 @@
                  *                                           *
                  *********************************************
 
-	Date: Tue Oct 24 14:56:21 2023
+	Date: Tue Oct 24 15:51:32 2023
 	Circuit File: C:\Users\krisg\OneDrive - NTNU\2023 Høst\Design av integrete kretser\Prosjekt\Design_av_Integrerte_Kretser__Prosjekt\AIMSPICE\Final_1bit_register.cir
 	Analysis: Transient
 
@@ -17,263 +17,170 @@
      2:  
      3:  **************************************************************
      4:  * Including the file containing the NMOS and PMOS transistors
-     5:  *include gpdk90nm_tt.cir
-     6:  .param  s1v_rs_ne=0.000000e+000 s1v_vsat_ne=1.120000e+005 s1v_pldd_surf=6.000000e+019   s1v_uc1_ne=3.700000e-010 s1v_u0_ne=2.000000e-002 s1v_nch_ne=5.200000e+017   s1v_rsc_ne=4.082483e-014 s1v_cgbo_ne=1.482000e-011 s1v_prt_ne=1.000000e+001   s1v_rdc_ne=4.082483e-014 s1v_vth0_ne=1.692662e-001 s1v_k2_ne=0.000000e+000   s1v_cgdo_ne=2.667600e-010 s1v_ckappa_ne=4.605336e+000 s1v_wint_ne=6.000000e-009   s1v_k1_ne=2.825346e-001 s1v_cgsl_ne=1.111500e-010 s1v_nldd_surf=3.000000e+019   s1v_js_ne=3.366667e-006 s1v_hdif_ne=1.400000e-007 s1v_rdsw_ne=3.900000e-006   s1v_jsw_ne=3.366667e-010 s1v_tox_ne=2.330000e-009 s1v_cj_ne=7.983537e-004   s1v_cjsw_ne=4.790122e-011 s1v_ldif_ne=1.000000e-008 s1v_xj_ne=2.500000e-008   s1v_rd_ne=0.000000e+000 s1v_pb_ne=9.918524e-001 s1v_cf_ne=4.594612e-011   s1v_lint_ne=1.500000e-008 s1v_cjswg_ne=1.995884e-011 s1v_rsh_ne=1.000000e+001   s1v_u0_pe=1.200000e-002 s1v_nch_pe=4.000000e+017 s1v_rsc_pe=2.886751e-014   s1v_cgbo_pe=1.392363e-011 s1v_rdc_pe=2.886751e-014 s1v_vth0_pe={-1.359511e-001}   s1v_k2_pe=0.000000e+000 s1v_cgdo_pe=2.506253e-010 s1v_ckappa_pe=1.043477e+001   s1v_wint_pe=5.000000e-009 s1v_k1_pe=2.637520e-001 s1v_cgsl_pe=1.044272e-010   s1v_js_pe=3.350000e-006 s1v_hdif_pe=1.400000e-007 s1v_rdsw_pe=7.800000e-006   s1v_jsw_pe=3.350000e-010 s1v_tox_pe=2.480000e-009 s1v_cj_pe=7.912252e-004   s1v_cjsw_pe=4.747351e-011 s1v_ldif_pe=1.000000e-008 s1v_xj_pe=2.500000e-008   s1v_rd_pe=0.000000e+000 s1v_pb_pe=1.009805e+000 s1v_cf_pe=4.527118e-011   s1v_lint_pe=1.500000e-008 s1v_cjswg_pe=1.978063e-011 s1v_rsh_pe=2.000000e+001   s1v_rs_pe=0.000000e+000 s1v_vsat_pe=1.000000e+005   gleak_scale=1.0   s1v_nat_vth0_ne=0.192662e-001 s1v_nat_k1_ne=2.825346e-002   pvt_mc=0 pu0_mc=0 pltw_mc=0
-     7:  
-     8:  .subckt nmos1v d g s b param: l=0.1u w=10u simm=1 nrd={s1v_hdif_ne/w} nrs={s1v_hdif_ne/w} as=1p ad=1p ps=1u pd=1u 
-     9:  + garea={w*l} maforward={2.5e3*garea*gleak_scale} mareverse={.03*maforward} 
-    10:  + varvt=0.004
-    11:  + geo_fac={0.7071/sqrt(l*w*simm*1e12)}
-    12:  + mm_delvt={varvt*geo_fac*pvt_mc}
-    13:  + mm_mu0={1-(0.005*geo_fac*pu0_mc)} 
-    14:  + mm_dl={2e-03*geo_fac*l*pltw_mc} 
-    15:  + mm_dw={-24e-03*geo_fac*w*pltw_mc}
-    16:  + mm_dtox={2e-03*geo_fac*s1v_tox_ne*pltw_mc}
-    17:  m1 d g s b gpdk090_nmos1v_x w=w l=l as=as ad=ad ps=ps pd=pd nrd=nrd nrs=nrs 
-    18:  .model gpdk090_nmos1v_x nmos
-    19:  + level=18
-    20:  + lmin=0.0 lmax=1.0 wmin=0.0 
-    21:  + wmax=1.0 tnom=100.0 version=3.2 
-    22:  + tox={s1v_tox_ne+mm_dtox} toxm={s1v_tox_ne+mm_dtox} xj=s1v_xj_ne 
-    23:  + nch=s1v_nch_ne lln=1.0000000 lwn=1.0000000 
-    24:  + wln=1.0000000 wwn=-1.0000000 lint=s1v_lint_ne 
-    25:  + ll=0.00 lw=0.00 lwl=0.00 
-    26:  + wint=s1v_wint_ne wl=0.00 ww=0.00 
-    27:  + wwl=0.00 mobmod=1 binunit=2 
-    28:  + dwg=0.00 
-    29:  + dwb=0.00  
-    30:  + rsh=s1v_rsh_ne 
-    31:  + vth0={s1v_vth0_ne+mm_delvt} k1=s1v_k1_ne k2=s1v_k2_ne 
-    32:  + k3=-2.3000000 dvt0=3.86366 dvt1=1.2 
-    33:  + dvt2=5.0299990e-02 dvt0w=0.00 dvt1w=0.00 
-    34:  + dvt2w=0.00 nlx=1.2517999e-07 w0={-7.1353000e-09} 
-    35:  + k3b=0.5576769 ngate=4.0e20 vsat=s1v_vsat_ne 
-    36:  + ua={-6.1879500e-10} ub=1.8806652e-18 uc=1.3823546e-10 
-    37:  + rdsw=s1v_rdsw_ne prwb=0.00 prwg=0.00 
-    38:  + wr=1.0000000 u0={s1v_u0_ne*mm_mu0} a0=2.3750000 
-    39:  + keta={-3.1429991e-02} a1=0.00 a2=0.9900000 
-    40:  + ags=0.8900000 b0=0.00 b1=0.00 
-    41:  + voff={-9.6776000e-02} nfactor=1.0200000 cit={-8.6656060e-04} 
-    42:  + cdsc=4.4460000e-02 cdscb=1.0565110e-02 cdscd=0.00 
-    43:  + eta0=7.6580000e-02 etab={-3.4998000e-02} dsub=0.2200000 
-    44:  + pclm=1.5488822 pdiblc1=0.00 pdiblc2=2.4648249e-02 
-    45:  + pdiblcb=0.00 drout=0.00 pscbe1=9.2648200e08 
-    46:  + pscbe2=1.0000000e-20 pvag=0.00 delta=7.5000000e-03 
-    47:  + alpha0=0.00 alpha1=0.0177 beta0=6.3203 
-    48:  + kt1=-0.13 kt2=-0.042 at=9.0000000e04 
-    49:  + ute=-1.7303560 ua1=1.8035814e-09 ub1={-2.1874742e-18} 
-    50:  + uc1=s1v_uc1_ne kt1l=0.00 prt=s1v_prt_ne 
-    51:  + cj=s1v_cj_ne mj=0.222 pb=s1v_pb_ne 
-    52:  + cjsw=s1v_cjsw_ne mjsw=0.01 pbsw=0.1 
-    53:  + cjswg=s1v_cjswg_ne mjswg=0.5028 pbswg=0.6859 
-    54:  + tpb=1.30e-03 tpbsw=0.0000 tpbswg=2.81e-03 
-    55:  + tcj=7.61e-04 tcjsw=1.04e-03 tcjswg=1.63e-03 
-    56:  + js=s1v_js_ne jsw=s1v_jsw_ne 
-    57:  + xti=3 cgdo=s1v_cgdo_ne cgso=s1v_cgdo_ne 
-    58:  + cgbo=s1v_cgbo_ne capmod=2  
-    59:  + elm=5 xpart=1 cgsl=s1v_cgsl_ne 
-    60:  + cgdl=s1v_cgsl_ne ckappa=s1v_ckappa_ne cf=s1v_cf_ne 
-    61:  + clc=1.0000000e-07 cle=0.6000000 dlc=1.89e-08 
-    62:  + dwc=1.62e-08 llc=1.53e-16 lwc={-9.0e-16} 
-    63:  + wlc=0 wwc=-0.0989 lwlc=0 
-    64:  + wwlc=0 acde=0.5 moin=10.5 
-    65:  + noff=1.85 voffcv=-0.048 lvoffcv=2.0e-09 
-    66:  + ijth=1 
-    67:  + noia=1.0e+19 noib=2e+4 noic=1.0e-13 
-    68:  + ef=1.0 noimod=2 em=4e+7 
-    69:  .ends gpdk090_nmos1v
-    70:  
-    71:  .subckt pmos1v d g s b param: l=0.1u w=10u simm=1 nrd={s1v_hdif_pe/w} nrs={s1v_hdif_pe/w} as=1p ad=1p ps=1u pd=1u 
-    72:  + garea={w*l} maforward={1.6e3*garea*gleak_scale} mareverse={.03*maforward} 
-    73:  + varvt=0.003
-    74:  + geo_fac={0.7071/sqrt(l*w*simm*1e12)} 
-    75:  + mm_delvt={varvt*geo_fac*pvt_mc}
-    76:  + mm_mu0={1-(0.005*geo_fac*pu0_mc)}
-    77:  + mm_dl={2e-03*geo_fac*l*pltw_mc}
-    78:  + mm_dw={-24e-03*geo_fac*w*pltw_mc}
-    79:  + mm_dtox={2e-03*geo_fac*s1v_tox_pe*pltw_mc}
-    80:  m1 d g s b gpdk090_pmos1v_x w=w l=l as=as ad=ad ps=ps pd=pd nrd=nrd nrs=nrs 
-    81:  .model gpdk090_pmos1v_x pmos 
-    82:  + level=18
-    83:  + lmin=0.0 lmax=1.0 wmin=0.0 
-    84:  + wmax=1.0 tnom=100.0 version=3.2 
-    85:  + tox={s1v_tox_pe+mm_dtox} toxm={s1v_tox_pe+mm_dtox} xj=s1v_xj_pe 
-    86:  + nch=1.7200001e17 lln=1.0000000 lwn=1.0000000 
-    87:  + wln=1.0000000 wwn=-1.0000000 lint=s1v_lint_pe 
-    88:  + ll=0.00 lw=0.00 lwl=0.00 
-    89:  + wint=s1v_wint_pe wl=0.00 ww=0.00 
-    90:  + wwl=0.00 mobmod=1 binunit=2 
-    91:  + dwg=0.00 
-    92:  + dwb=0.00
-    93:  + rsh=s1v_rsh_pe
-    94:  + vth0={s1v_vth0_pe+mm_delvt} pvth0=0 k1=s1v_k1_pe 
-    95:  + k2=s1v_k2_pe k3=-0.5000000 dvt0=8.0 
-    96:  + dvt1=2.07 dvt2=0.1000000 dvt0w=0.00 
-    97:  + dvt1w=0.00 dvt2w=0.00 nlx=2.2400000e-07 
-    98:  + w0=0.00 k3b=7.0000000e-02 ngate=9.3200000e19 
-    99:  + vsat=s1v_vsat_pe ua={-2.7643932e-10} ub=2.2546092e-18 
-   100:  + uc=1.6265005e-10 rdsw=s1v_rdsw_pe prwb=0.00 
-   101:  + prwg=0.00 wr=1.0000000 u0={s1v_u0_pe*mm_mu0} 
-   102:  + a0=2.9669099 keta={-8.2015020e-02} a1=0.00 
-   103:  + a2=1.0000000 ags=1.2279299 b0=0.00 
-   104:  + b1=0.00 voff=-0.1170768 nfactor=1.0000000 
-   105:  + cit={-2.5695576e-03} cdsc=0.00 cdscb=0.00 
-   106:  + cdscd=0.00 eta0=5.0000000e-02 leta0=0 
-   107:  + etab=0 dsub=0.3000000 pclm=1.0000000 
-   108:  + pdiblc1=6.0000000e-03 pdiblc2=5.0000000e-03 pdiblcb=-0.5267781 
-   109:  + drout=0.00 pscbe1=5.1300000e08 pscbe2=4.8900000e-07 
-   110:  + pvag=0.00 delta=9.9999990e-03 alpha0=0.00 
-   111:  + alpha1=0.001 beta0=7.6 kt1=-0.11 
-   112:  + kt2=4.4329650e-02 at=1.0000000e04 ute=-1.4468272 
-   113:  + ua1=1.2158887e-09 ub1={-4.0489830e-18} uc1={-5.6549980e-10} 
-   114:  + kt1l=0.00 prt=0 cj=s1v_cj_pe 
-   115:  + mj=0.331 pb=s1v_pb_pe cjsw=s1v_cjsw_pe 
-   116:  + mjsw=0.01 pbsw=0.10 cjswg=s1v_cjswg_pe 
-   117:  + mjswg=0.7833 pbswg=0.8137 tpb=0.00173 
-   118:  + tpbsw=0.0 tpbswg=0.0044 tcj=0.000949 
-   119:  + tcjsw=0.0000758 tcjswg=0.00388 js=s1v_js_pe 
-   120:  + jsw=s1v_jsw_pe xti=3 
-   121:  + cgdo=s1v_cgdo_pe cgso=s1v_cgdo_pe cgbo=s1v_cgbo_pe 
-   122:  + capmod=2 elm=5 
-   123:  + xpart=1 cgsl=s1v_cgsl_pe cgdl=s1v_cgsl_pe 
-   124:  + ckappa=s1v_ckappa_pe cf=s1v_cf_pe clc=1.0000000e-07 
-   125:  + cle=0.6000000 dlc=2.252e-08 dwc=1.2404e-08 
-   126:  + llc={-1.2e-16} lwc={-6.2e-16} wlc=0 
-   127:  + wwc=-0.15 lwlc=0 wwlc=0 
-   128:  + acde=0.5 moin=15.6 noff=2.16 
-   129:  + voffcv=-0.0385 lvoffcv={-3.80e-09} lnoff=7.50e-08 
-   130:  + ijth=1 
-   131:  + noia=1.0e+19 noib=2.0e+3 noic=1.0e-11 
-   132:  + ef=1.1 noimod=2 em=1.0e+8 
-   133:  .ends
-   134:  *end of: gpdk90nm_tt.cir
+     5:  *include gpdk90nm_ff.cir
+     6:  .param s1v_rs_ne=0.000000e+000 s1v_vsat_ne=1.120000e+005 s1v_pldd_surf=6.000000e+019   s1v_uc1_ne=3.700000e-010 s1v_u0_ne=2.600000e-002 s1v_nch_ne=4.680000e+017   s1v_rsc_ne=4.082483e-014 s1v_cgbo_ne=1.482000e-011 s1v_prt_ne=1.000000e+001   s1v_rdc_ne=4.082483e-014 s1v_vth0_ne=1.518852e-001 s1v_k2_ne=0.000000e+000   s1v_cgdo_ne=2.667600e-010 s1v_ckappa_ne=4.605336e+000 s1v_wint_ne=5.400000e-009   s1v_k1_ne=2.825346e-001 s1v_cgsl_ne=1.111500e-010 s1v_nldd_surf=3.000000e+019   s1v_js_ne=3.366667e-006 s1v_hdif_ne=1.400000e-007 s1v_rdsw_ne=3.900000e-006   s1v_jsw_ne=3.366667e-010 s1v_tox_ne=2.097000e-009 s1v_cj_ne=7.983537e-004   s1v_cjsw_ne=4.790122e-011 s1v_ldif_ne=1.000000e-008 s1v_xj_ne=2.500000e-008   s1v_rd_ne=0.000000e+000 s1v_pb_ne=9.918524e-001 s1v_cf_ne=4.594612e-011   s1v_lint_ne=1.650000e-008 s1v_cjswg_ne=1.995884e-011 s1v_rsh_ne=1.000000e+001   s1v_u0_pe=1.560000e-002 s1v_nch_pe=3.600000e+017 s1v_rsc_pe=2.886751e-014   s1v_cgbo_pe=1.392363e-011 s1v_rdc_pe=2.886751e-014 s1v_vth0_pe=      -1.228104e-001   s1v_k2_pe=0.000000e+000 s1v_cgdo_pe=2.506253e-010 s1v_ckappa_pe=1.043477e+001   s1v_wint_pe=4.500000e-009 s1v_k1_pe=2.637520e-001 s1v_cgsl_pe=1.044272e-010   s1v_js_pe=3.350000e-006 s1v_hdif_pe=1.400000e-007 s1v_rdsw_pe=7.800000e-006   s1v_jsw_pe=3.350000e-010 s1v_tox_pe=2.232000e-009 s1v_cj_pe=7.912252e-004   s1v_cjsw_pe=4.747351e-011 s1v_ldif_pe=1.000000e-008 s1v_xj_pe=2.500000e-008   s1v_rd_pe=0.000000e+000 s1v_pb_pe=1.009805e+000 s1v_cf_pe=4.527118e-011   s1v_lint_pe=1.650000e-008 s1v_cjswg_pe=1.978063e-011 s1v_rsh_pe=2.000000e+001   s1v_rs_pe=0.000000e+000 s1v_vsat_pe=1.000000e+005 gleak_scale=2.0  s1v_nat_vth0_ne=0.018852e-001 s1v_nat_k1_ne=2.825346e-002  pvt_mc=0 pu0_mc=0 pltw_mc=0
+     7:  .subckt nmos1v d g s b param: l=0.1u w=10u simm=1 nrd={s1v_hdif_ne/w} nrs={s1v_hdif_ne/w} as=1p ad=1p ps=1u pd=1u garea={w*l}
+     8:  + maforward={2.5e3*garea*gleak_scale} mareverse={.03*maforward} varvt=0.004 geo_fac={0.7071/sqrt(l*w*simm*1e12)} mm_delvt={varvt*geo_fac*pvt_mc}
+     9:  + mm_mu0={1-(0.005*geo_fac*pu0_mc)} mm_dl={2e-03*geo_fac*l*pltw_mc} mm_dw={-24e-03*geo_fac*w*pltw_mc} mm_dtox={2e-03*geo_fac*s1v_tox_ne*pltw_mc}
+    10:  m1 d g s b gpdk090_nmos1v_x w=w l=l as=as ad=ad ps=ps pd=pd nrd=nrd nrs=nrs
+    11:  .model gpdk090_nmos1v_x nmos level=18 lmin=0 lmax=1 wmin=0 wmax=1 tnom=25 version=3.2 tox={s1v_tox_ne+mm_dtox} toxm={s1v_tox_ne+mm_dtox} xj=s1v_xj_ne
+    12:  + nch=s1v_nch_ne lln=1 lwn=1 wln=1 wwn=-1 lint=s1v_lint_ne ll=0 lw=0 lwl=0 wint=s1v_wint_ne wl=0 ww=0 wwl=0 mobmod=1 binunit=2 dwg=0.00 
+    13:  + dwb=0 rsh=s1v_rsh_ne vth0={s1v_vth0_ne+mm_delvt} k1=s1v_k1_ne k2=s1v_k2_ne k3=-2.3 dvt0=3.86366 dvt1=1.2 dvt2=5.0299990e-2 dvt0w=0 dvt1w=0
+    14:  + dvt2w=0 nlx=1.2517999e-7 w0={-7.1353e-9} k3b=0.5576769 ngate=4e20 vsat=s1v_vsat_ne ua={-6.18795e-10} ub=1.8806652e-18 uc=1.3823546e-10
+    15:  + rdsw=s1v_rdsw_ne prwb=0 prwg=0 wr=1 u0={s1v_u0_ne*mm_mu0} a0=2.375 keta={-3.1429991e-2} a1=0 a2=0.99 ags=0.89 b0=0 b1=0 voff={-9.6776e-2}
+    16:  + nfactor=1.02 cit={-8.6656060e-4} cdsc=4.446e-2 cdscb=1.056511e-2 cdscd=0 eta0=7.658e-2 etab={-3.4998e-2} dsub=0.22 pclm=1.5488822 pdiblc1=0
+    17:  + pdiblc2=2.4648249e-2 pdiblcb=0 drout=0 pscbe1=9.26482e8 pscbe2=1e-20 pvag=0 delta=7.5e-3 alpha0=0 alpha1=0.0177 beta0=6.3203 kt1=-0.13 kt2=-0.042
+    18:  + at=9e4 ute=-1.730356 ua1=1.8035814e-9 ub1={-2.1874742e-18} uc1=s1v_uc1_ne kt1l=0 prt=s1v_prt_ne cj=s1v_cj_ne mj=0.222 pb=s1v_pb_ne cjsw=s1v_cjsw_ne
+    19:  + mjsw=0.01 pbsw=0.1 cjswg=s1v_cjswg_ne mjswg=0.5028 pbswg=0.6859 tpb=1.3e-3 tpbsw=0 tpbswg=2.81e-3 tcj=7.61e-4 tcjsw=1.04e-3 tcjswg=1.63e-3
+    20:  + js=s1v_js_ne jsw=s1v_jsw_ne xti=3 cgdo=s1v_cgdo_ne cgso=s1v_cgdo_ne cgbo=s1v_cgbo_ne capmod=2 elm=5 xpart=1 cgsl=s1v_cgsl_ne cgdl=s1v_cgsl_ne
+    21:  + ckappa=s1v_ckappa_ne cf=s1v_cf_ne clc=1e-7 cle=0.6 dlc=1.89e-8 dwc=1.62e-8 llc=1.53e-16 lwc={-9e-16} wlc=0 wwc=-0.0989 lwlc=0 wwlc=0 acde=0.5 moin=10.5
+    22:  + noff=1.85 voffcv=-0.048 lvoffcv=2e-9 ijth=1 noia=1e+19 noib=2e+4 noic=1e-13 ef=1 noimod=2 em=4e+7
+    23:  .ends
+    24:  .subckt pmos1v d g s b param: l=0.1u w=10u simm=1 nrd={s1v_hdif_pe/w} nrs={s1v_hdif_pe/w} as=1p ad=1p ps=1u pd=1u garea={w*l}
+    25:  + maforward={1.6e3*garea*gleak_scale} mareverse={.03*maforward} varvt=0.003 geo_fac={0.7071/sqrt(l*w*simm*1e12)} mm_delvt={varvt*geo_fac*pvt_mc}
+    26:  + mm_mu0={1-(0.005*geo_fac*pu0_mc)} mm_dl={2e-3*geo_fac*l*pltw_mc} mm_dw={-24e-3*geo_fac*w*pltw_mc} mm_dtox={2e-3*geo_fac*s1v_tox_pe*pltw_mc}
+    27:  m1 d g s b gpdk090_pmos1v_x w=w l=l as=as ad=ad ps=ps pd=pd nrd=nrd nrs=nrs
+    28:  .model gpdk090_pmos1v_x pmos level=18 lmin=0 lmax=1 wmin=0 wmax=1 tnom=25 version=3.2 tox={s1v_tox_pe+mm_dtox} toxm={s1v_tox_pe+mm_dtox} xj=s1v_xj_pe
+    29:  + nch=1.7200001e17 lln=1 lwn=1 wln=1 wwn=-1 lint=s1v_lint_pe ll=0 lw=0 lwl=0 wint=s1v_wint_pe wl=0 ww=0 wwl=0 mobmod=1 binunit=2 dwg=0 dwb=0 rsh=s1v_rsh_pe
+    30:  + vth0={s1v_vth0_pe+mm_delvt} pvth0=0 k1=s1v_k1_pe k2=s1v_k2_pe k3=-0.5 dvt0=8 dvt1=2.07 dvt2=0.1 dvt0w=0 dvt1w=0 dvt2w=0 nlx=2.24e-7 w0=0 k3b=7e-2
+    31:  + ngate=9.32e19 vsat=s1v_vsat_pe ua={-2.7643932e-10} ub=2.2546092e-18 uc=1.6265005e-10 rdsw=s1v_rdsw_pe prwb=0 prwg=0 wr=1 u0={s1v_u0_pe*mm_mu0} a0=2.9669099
+    32:  + keta={-8.2015020e-2} a1=0 a2=1 ags=1.2279299 b0=0 b1=0 voff=-0.1170768 nfactor=1 cit={-2.5695576e-3} cdsc=0 cdscb=0 cdscd=0 eta0=5e-2 leta0=0 etab=0 dsub=0.3
+    33:  + pclm=1 pdiblc1=6e-3 pdiblc2=5e-3 pdiblcb=-0.5267781 drout=0 pscbe1=5.13e8 pscbe2=4.89e-7 pvag=0 delta=9.9999990e-3 alpha0=0 alpha1=0.001 beta0=7.6 kt1=-0.11
+    34:  + kt2=4.4329650e-2 at=1e4 ute=-1.4468272 ua1=1.2158887e-9 ub1={-4.0489830e-18} uc1={-5.6549980e-10} kt1l=0 prt=0 cj=s1v_cj_pe mj=0.331 pb=s1v_pb_pe
+    35:  + cjsw=s1v_cjsw_pe mjsw=0.01 pbsw=0.10 cjswg=s1v_cjswg_pe mjswg=0.7833 pbswg=0.8137 tpb=0.00173 tpbsw=0 tpbswg=0.0044 tcj=0.000949
+    36:  + tcjsw=0.0000758 tcjswg=0.00388 js=s1v_js_pe jsw=s1v_jsw_pe xti=3 cgdo=s1v_cgdo_pe cgso=s1v_cgdo_pe cgbo=s1v_cgbo_pe capmod=2 elm=5
+    37:  + xpart=1 cgsl=s1v_cgsl_pe cgdl=s1v_cgsl_pe ckappa=s1v_ckappa_pe cf=s1v_cf_pe clc=1e-7 cle=0.6 dlc=2.252e-8 dwc=1.2404e-8 llc={-1.2e-16}
+    38:  + lwc={-6.2e-16} wlc=0 wwc=-0.15 lwlc=0 wwlc=0 acde=0.5 moin=15.6 noff=2.16 voffcv=-0.0385 lvoffcv={-3.8e-9} lnoff=7.5e-8 ijth=1
+    39:  + noia=1e+19 noib=2e+3 noic=1e-11 ef=1.1 noimod=2 em=1e+8
+    40:  .ends
+    41:  *end of: gpdk90nm_ff.cir
+    42:  **************************************************************
+    43:  
+    44:  **************************************************************
+    45:  .PARAM W_VAL=150n
+    46:  .PARAM L_VAL=300n
+    47:  **************************************************************
+    48:  
+    49:  **************************************************************
+    50:  * Subcircuit for a NOT gate 
+    51:  .subckt NOT GND VDD A OUT
+    52:  XMP1 OUT A VDD VDD PMOS1V W=W_VAL L=L_VAL 
+    53:  XMN1 OUT A GND GND NMOS1V W=W_VAL L=L_VAL
+    54:  .ends NOT
+    55:  **************************************************************
+    56:  
+    57:  **************************************************************
+    58:  * Subcircuit for a NAND gate 
+    59:  .subckt NAND GND VDD A B OUT
+    60:  XMP1 VDD A OUT VDD PMOS1V W=W_VAL L=L_VAL 
+    61:  XMP2 VDD B OUT VDD PMOS1V W=W_VAL L=L_VAL 
+    62:  XMN1 OUT A C C NMOS1V W=W_VAL L=L_VAL 
+    63:  XMN2 C B GND GND NMOS1V W=W_VAL L=L_VAL 
+    64:  .ends NAND
+    65:  **************************************************************
+    66:  
+    67:  **************************************************************
+    68:  * Subcircuit for an AND gate 
+    69:  .subckt AND GND VDD A B OUT
+    70:  XAND1 GND VDD A B C NAND
+    71:  XNOT1 GND VDD C OUT NOT
+    72:  .ends AND
+    73:  **************************************************************
+    74:  
+    75:  **************************************************************
+    76:  * Subcircuit for a NOR gate 
+    77:  .subckt NOR GND VDD A B OUT
+    78:  XMP1 VDD A C VDD PMOS1V W=W_VAL L=L_VAL 
+    79:  XMP2 C B OUT C PMOS1V W=W_VAL L=L_VAL 
+    80:  XMN1 OUT B GND GND NMOS1V W=W_VAL L=L_VAL 
+    81:  XMN2 OUT A GND GND NMOS1V W=W_VAL L=L_VAL 
+    82:  .ends NOR
+    83:  **************************************************************
+    84:  
+    85:  **************************************************************
+    86:  * Subcircuit for an OR gate 
+    87:  .subckt OR GND VDD A B OUT
+    88:  XGATENOR1 GND VDD A B C NOR
+    89:  XNOT1 GND VDD C OUT NOT
+    90:  .ends OR
+    91:  **************************************************************
+    92:  
+    93:  **************************************************************
+    94:  * Subcircuit for a TRANSMISSION gate 
+    95:  .subckt TRANS GND VDD IN EN_N EN_P OUT
+    96:  XMN1 IN EN_N OUT GND NMOS1V W=W_VAL L=L_VAL
+    97:  XMP1 IN EN_P OUT VDD PMOS1V W=W_VAL L=L_VAL 
+    98:  .ends TRANS
+    99:  **************************************************************
+   100:  
+   101:  **************************************************************
+   102:  * Subcircuit for a MUX for set and reset
+   103:  .subckt MUX GND VDD S R DI Q DO
+   104:  XNOT1 GND VDD S 1 NOT
+   105:  XTRANS1 GND VDD DI S 1 2 TRANS
+   106:  XTRANS2 GND VDD Q 1 S 2 TRANS
+   107:  XNOT2 GND VDD R 3 NOT
+   108:  XAND GND VDD 2 3 DO AND
+   109:  .ends 
+   110:  **************************************************************
+   111:  
+   112:  **************************************************************
+   113:  *Subcircuit for a D FLIP FLOP using TRANSMITION gates 
+   114:  .subckt FLOP GND VDD CLK D Q 
+   115:  XNOT1 GND VDD D 1 NOT
+   116:  XNOT_CLK GND VDD CLK NOTCLK NOT
+   117:  XTRANS1 GND VDD 1 NOTCLK CLK 2 TRANS
+   118:  XNOT2 GND VDD 2 3 NOT
+   119:  XNOT3 GND VDD 3 4 NOT 
+   120:  XTRANS2 GND VDD 4 CLK NOTCLK 2 TRANS
+   121:  XTRANS3 GND VDD 3 CLK NOTCLK 5 TRANS
+   122:  XNOT4 GND VDD 5 6 NOT
+   123:  XNOT5 GND VDD 6 7 NOT
+   124:  XTRANS4 GND VDD 7 NOTCLK CLK 5 TRANS
+   125:  XNOT6 GND VDD 6 Q NOT
+   126:  .ends
+   127:  **************************************************************
+   128:  
+   129:  **************************************************************
+   130:  * Subcircuit for 1bit register with set and reset
+   131:  .subckt REGISTER GND VDD CLK S R D Q 
+   132:  XMUX1 GND VDD S R D Q 1 MUX
+   133:  XFLOP GND VDD CLK 1 Q FLOP
+   134:  .ends
    135:  **************************************************************
    136:  
-   137:  **************************************************************
-   138:  .PARAM W_VAL=150n
-   139:  .PARAM L_VAL=300n
-   140:  **************************************************************
-   141:  
-   142:  **************************************************************
-   143:  * Subcircuit for a NOT gate 
-   144:  .subckt NOT GND VDD A OUT
-   145:  XMP1 OUT A VDD VDD PMOS1V W=W_VAL L=L_VAL 
-   146:  XMN1 OUT A GND GND NMOS1V W=W_VAL L=L_VAL
-   147:  .ends NOT
-   148:  **************************************************************
-   149:  
-   150:  **************************************************************
-   151:  * Subcircuit for a NAND gate 
-   152:  .subckt NAND GND VDD A B OUT
-   153:  XMP1 VDD A OUT VDD PMOS1V W=W_VAL L=L_VAL 
-   154:  XMP2 VDD B OUT VDD PMOS1V W=W_VAL L=L_VAL 
-   155:  XMN1 OUT A C C NMOS1V W=W_VAL L=L_VAL 
-   156:  XMN2 C B GND GND NMOS1V W=W_VAL L=L_VAL 
-   157:  .ends NAND
-   158:  **************************************************************
-   159:  
-   160:  **************************************************************
-   161:  * Subcircuit for an AND gate 
-   162:  .subckt AND GND VDD A B OUT
-   163:  XAND1 GND VDD A B C NAND
-   164:  XNOT1 GND VDD C OUT NOT
-   165:  .ends AND
-   166:  **************************************************************
-   167:  
-   168:  **************************************************************
-   169:  * Subcircuit for a NOR gate 
-   170:  .subckt NOR GND VDD A B OUT
-   171:  XMP1 VDD A C VDD PMOS1V W=W_VAL L=L_VAL 
-   172:  XMP2 C B OUT C PMOS1V W=W_VAL L=L_VAL 
-   173:  XMN1 OUT B GND GND NMOS1V W=W_VAL L=L_VAL 
-   174:  XMN2 OUT A GND GND NMOS1V W=W_VAL L=L_VAL 
-   175:  .ends NOR
-   176:  **************************************************************
-   177:  
-   178:  **************************************************************
-   179:  * Subcircuit for an OR gate 
-   180:  .subckt OR GND VDD A B OUT
-   181:  XGATENOR1 GND VDD A B C NOR
-   182:  XNOT1 GND VDD C OUT NOT
-   183:  .ends OR
-   184:  **************************************************************
-   185:  
-   186:  **************************************************************
-   187:  * Subcircuit for a TRANSMISSION gate 
-   188:  .subckt TRANS GND VDD IN EN_N EN_P OUT
-   189:  XMN1 IN EN_N OUT GND NMOS1V W=W_VAL L=L_VAL
-   190:  XMP1 IN EN_P OUT VDD PMOS1V W=W_VAL L=L_VAL 
-   191:  .ends TRANS
-   192:  **************************************************************
-   193:  
-   194:  **************************************************************
-   195:  * Subcircuit for a MUX for set and reset
-   196:  .subckt MUX GND VDD S R DI Q DO
-   197:  XNOT1 GND VDD S 1 NOT
-   198:  XTRANS1 GND VDD DI S 1 2 TRANS
-   199:  XTRANS2 GND VDD Q 1 S 2 TRANS
-   200:  XNOT2 GND VDD R 3 NOT
-   201:  XAND GND VDD 2 3 DO AND
-   202:  .ends 
-   203:  **************************************************************
-   204:  
-   205:  **************************************************************
-   206:  *Subcircuit for a D FLIP FLOP using TRANSMITION gates 
-   207:  .subckt FLOP GND VDD CLK D Q 
-   208:  XNOT1 GND VDD D 1 NOT
-   209:  XNOT_CLK GND VDD CLK NOTCLK NOT
-   210:  XTRANS1 GND VDD 1 NOTCLK CLK 2 TRANS
-   211:  XNOT2 GND VDD 2 3 NOT
-   212:  XNOT3 GND VDD 3 4 NOT 
-   213:  XTRANS2 GND VDD 4 CLK NOTCLK 2 TRANS
-   214:  XTRANS3 GND VDD 3 CLK NOTCLK 5 TRANS
-   215:  XNOT4 GND VDD 5 6 NOT
-   216:  XNOT5 GND VDD 6 7 NOT
-   217:  XTRANS4 GND VDD 7 NOTCLK CLK 5 TRANS
-   218:  XNOT6 GND VDD 6 Q NOT
-   219:  .ends
-   220:  **************************************************************
-   221:  
-   222:  **************************************************************
-   223:  * Subcircuit for 1bit register with set and reset
-   224:  .subckt REGISTER GND VDD CLK S R D Q 
-   225:  XMUX1 GND VDD S R D Q 1 MUX
-   226:  XFLOP GND VDD CLK 1 Q FLOP
-   227:  .ends
-   228:  **************************************************************
-   229:  
-   230:  
-   231:  **************************************************************
-   232:  .PARAM RISE_TIME=0.1n 
-   233:  .PARAM FALL_TIME=0.1n 
-   234:  .PARAM CLK_PERIOD=20n 
-   235:  .PARAM CLK_HIGH=10n 
-   236:  .PARAM V_DD=0.85
-   237:  
-   238:  
-   239:  *Setting VDD = 1, the CLK and D as two different pulses
-   240:  VDD 1 0 V_DD
-   241:  VD D 0 PULSE(V_DD V_DD 25n RISE_TIME FALL_TIME 20ns 40ns)
-   242:  VCLK CLK 0 PULSE(0 0 0 RISE_TIME FALL_TIME CLK_HIGH CLK_PERIOD)
-   243:  VS S 0 PULSE(V_DD V_DD 35n RISE_TIME FALL_TIME 60n 120n)
-   244:  VR R 0 PULSE(V_DD V_DD 145n RISE_TIME FALL_TIME 50n 100n)
-   245:  **************************************************************
-   246:  
-   247:  **************************************************************
-   248:  *Defining the register
-   249:  XREG 0 1 CLK S R D Q REGISTER
-   250:  **************************************************************
-   251:  
-   252:  **************************************************************
-   253:  *Plotting D, CLK and Q for the register
-   254:  *.plot v(Q)
-   255:  *.plot v(D)
-   256:  *.plot v(CLK)
-   257:  *.plot v(S) 
-   258:  *.plot v(R)
-   259:  .plot i(1)
-   260:  **************************************************************
-   261:  .tran 0.1n 300n
+   137:  
+   138:  **************************************************************
+   139:  .PARAM RISE_TIME=0.1n 
+   140:  .PARAM FALL_TIME=0.1n 
+   141:  .PARAM CLK_PERIOD=20n 
+   142:  .PARAM CLK_HIGH=10n 
+   143:  .PARAM V_DD=0.85
+   144:  
+   145:  
+   146:  *Setting VDD = 1, the CLK and D as two different pulses
+   147:  VDD 1 0 V_DD
+   148:  VD D 0 PULSE(0 0 25n RISE_TIME FALL_TIME 20ns 40ns)
+   149:  VCLK CLK 0 PULSE(0 0 0 RISE_TIME FALL_TIME CLK_HIGH CLK_PERIOD)
+   150:  VS S 0 PULSE(0 0 35n RISE_TIME FALL_TIME 60n 120n)
+   151:  VR R 0 PULSE(0 0 145n RISE_TIME FALL_TIME 50n 100n)
+   152:  **************************************************************
+   153:  
+   154:  **************************************************************
+   155:  *Defining the register
+   156:  XREG 0 1 CLK S R D Q REGISTER
+   157:  **************************************************************
+   158:  
+   159:  **************************************************************
+   160:  *Plotting D, CLK and Q for the register
+   161:  *.plot v(Q)
+   162:  *.plot v(D)
+   163:  *.plot v(CLK)
+   164:  *.plot v(S) 
+   165:  *.plot v(R)
+   166:  .plot i(1)
+   167:  **************************************************************
+   168:  .tran 0.1n 300n
 
 ***************************  Model Parameters  ****************************
 
@@ -297,25 +204,24 @@
 
 *************************  Simulation Statistics  *************************
 
-	Total number of iterations.....................: 1568
-	Number of iterations for transient analysis....: 1554
+	Total number of iterations.....................: 1515
+	Number of iterations for transient analysis....: 1491
 	Total number of timepoints.....................: 732
 	Number of timepoints accepted..................: 732
 	Number of timepoints rejected..................: 0
-	Total analysis time (sec)......................: 0.065
-	Transient analysis time (sec)..................: 0.062
-	Time spent in device loading (sec).............: 0.035
-	Time spent in L-U decomposition (sec)..........: 0
+	Total analysis time (sec)......................: 0.08
+	Transient analysis time (sec)..................: 0.076
+	Time spent in device loading (sec).............: 0.031
+	Time spent in L-U decomposition (sec)..........: 0.007
 	Time spent in matrix reordering (sec)..........: 0
 	Time spent in matrix solving (sec).............: 0.003
-	Time spent in transient L-U decomposition (sec): 0
+	Time spent in transient L-U decomposition (sec): 0.007
 	Time spent in transient matrix solving (sec)...: 0.003
 
 ***************************  Kernel Messages  *****************************
 
 Circuit: 1Bit Register
 
-Warning: premature EOF
 BSIM3 v3.3.0 Parameter Checking.
 Model = reg:flop:not6:mn1:gpdk090_nmos1v_x
 BSIM3 v3.3.0 Parameter Checking.

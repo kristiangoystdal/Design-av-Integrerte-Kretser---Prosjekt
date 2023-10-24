@@ -1,11 +1,11 @@
 [aimspice]
 [description]
-4402
+4420
 1Bit Register
 
 **************************************************************
 * Including the file containing the NMOS and PMOS transistors
-.include gpdk90nm_tt.cir
+.include gpdk90nm_ff.cir
 **************************************************************
 
 **************************************************************
@@ -112,10 +112,10 @@ XFLOP GND VDD CLK 1 Q FLOP
 
 *Setting VDD = 1, the CLK and D as two different pulses
 VDD 1 0 V_DD
-VD D 0 PULSE(0 0 25n RISE_TIME FALL_TIME 20ns 40ns)
+VD D 0 PULSE(V_DD V_DD 25n RISE_TIME FALL_TIME 20ns 40ns)
 VCLK CLK 0 PULSE(0 0 0 RISE_TIME FALL_TIME CLK_HIGH CLK_PERIOD)
-VS S 0 PULSE(0 0 35n RISE_TIME FALL_TIME 60n 120n)
-VR R 0 PULSE(0 0 145n RISE_TIME FALL_TIME 50n 100n)
+VS S 0 PULSE(V_DD V_DD 35n RISE_TIME FALL_TIME 60n 120n)
+VR R 0 PULSE(V_DD V_DD 145n RISE_TIME FALL_TIME 50n 100n)
 **************************************************************
 
 **************************************************************
@@ -148,5 +148,10 @@ X
 X
 0
 [ana]
-4 0
+4 1
+0
+1 1
+1 1 -2E-08 5E-09
+1
+i(vdd)
 [end]
