@@ -2,6 +2,7 @@
 \label{sec:method}
 
 \subsection{Circuit design}
+\label{subsec:circuitDesign}
 The Multiply accumulate circuit can be divided into different subsystems. In this section we are going to explain the functions of each subsystem and create a circuit design to implement in later sections. In figure \ref{fig:blokk} the different subsystems are shown and how they connect. 
 
 \begin{figure}[H]
@@ -26,8 +27,65 @@ The MAC unit will receive two 2-bit inputs, A and B, which will be multiplied an
     \label{fig:mac-blokk}
 \end{figure}
 
+\paragraph{Multiplier}
+The multiplier takes in A and B, two 2 bits inputs, and multiply them. The value of A times B can't be higher than 9, which means that the output of the multiplier has to be at least 4 bits. 
+
+A 2-bit multiplier could be designed like shown in figure \ref{fig:multiplier}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Figures/multiplier.png}
+    \caption{Possible design of multiplier}
+    \label{fig:multiplier}
+\end{figure}
+
+\paragraph{Adder}
+As shown in figure \ref{fig:mac-blokk}, the adder has to take the sum of a 4-bit number and a 8-bit number. The design of an 8-bit adder is shown in figure \ref{fig:adder-blokk}. The figure shows two 8-bit numbers A and B, and their sum S with a carry $C_O$. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Figures/8bitadder.png}
+    \caption{8-bit adder}
+    \label{fig:adder-blokk}
+\end{figure}
+
+The circuit for the half and full adder is shown in figure \ref{fig:halfadder} and \ref{fig:fulladder}.
+
+\begin{figure}[H]
+\begin{minipage}{0.4\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Figures/halfadder.png}
+    \caption{Half adder}
+    \label{fig:halfadder}
+\end{minipage}
+\begin{minipage}{0.6\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Figures/fulladder.png}
+    \caption{Full adder}
+    \label{fig:fulladder}
+\end{minipage}
+\end{figure}
+
+
+
+\paragraph{Accumulator}
+The accumulator is an 8-bit register with some control signals, that is received from the Final State Machine (FSM). 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Figures/8bitRegister.png}
+    \caption{8 bit register}
+    \label{fig:fulladder}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Figures/Mux.png}
+    \caption{Mux for controlling register}
+    \label{fig:fulladder}
+\end{figure}
+
 \subsection{AimSpice}
-In the 
+In the AimSpice related part of the assignment, a 1 bit register will be implemented using the designs shown in section \ref{subsec:circuitDesign}. The register is to be made from pmos and nmos transistors with 
 
 
 \subsection{Verilog}

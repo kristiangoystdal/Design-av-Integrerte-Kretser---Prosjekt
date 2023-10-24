@@ -136,21 +136,126 @@ XREG 0 1 CLK S R D Q REGISTER
 
 
 \section{Verilog Code}
-Include all your verilog code here. You might want to include snippets of it earlier in the text as well, but the entire code should at least be included here.
-\\ \\
-Remember to format and comment your code for increased readability.
 
 \begin{lstlisting}[style=verilogStyle, caption=D Flip-Flop in Verilog, label=verilog_dflipflop]
-// Your Verilog code here
-module my_module(
-    input A,
-    output B
-);
-    // Verilog code...
+module D_Flip_Flop ( input D_flip , output Q_flip , input clk_flip );
+	
+	wire clk_bar_flip; 
+	not(clk_bar_flip, clk_flip);
+	not(w1_flip, D_flip);	  
+	wire w2_flip;
+	cmos(w2_flip, w1_flip, clk_bar_flip, clk_flip);	
+	wire w3_flip;
+	not(w3_flip, w2_flip); 
+	wire w4_flip;
+	not(w4_flip, w3_flip);
+	cmos(w2_flip, w4_flip, clk_flip, clk_bar_flip);	 
+	wire w5_flip;
+	cmos(w5_flip, w3_flip, clk_flip, clk_bar_flip);
+	wire w6_flip, w7_flip;
+	not(w6_flip, w5_flip);
+	not(w7_flip, w6_flip);
+	cmos(w5_flip, w7_flip, clk_bar_flip, clk_flip);	 
+	not(Q_flip, w6_flip);
+
 endmodule
-...
 \end{lstlisting}
 
+\begin{lstlisting}[style=verilogStyle, caption=RegisterMux in Verilog, label=verilog_regmux]
+module Reg_mux (
+    input S_mux,
+    input R_mux,
+    input D_I_mux,
+    input Q_mux,
+    output D_O_mux
+);			  
+wire Y_mux;	
+assign sbar = ~S_mux;
+assign rbar = ~R_mux;  
+
+cmos(Y_mux,D_I_mux, S_mux, sbar);
+cmos(Y_mux,Q_mux,sbar,S_mux);
+and(D_O_mux, rbar, Y_mux);
+
+endmodule  
+\end{lstlisting}
+
+\begin{lstlisting}[style=verilogStyle, caption=Half Adder in Verilog, label=verilog_halfadder]
+module Half_Adder ( A_0 ,B_0 ,S_0 ,C_0 );
+
+input A_0 ;
+wire A_0 ;
+input B_0 ;
+wire B_0 ;
+output S_0 ;
+wire S_0 ;
+output C_0 ;
+wire C_0 ;
+
+and(C_0, A_0, B_0);
+xor(S_0, A_0, B_0);
+
+endmodule
+\end{lstlisting}
+
+\begin{lstlisting}[style=verilogStyle, caption=Full Adder in Verilog, label=verilog_fulladder]
+module Full_Adder ( C_I ,S_O ,A_I ,C_O ,B_I );
+
+input C_I ;
+wire C_I ;
+output S_O ;
+wire S_O ;
+input A_I ;
+wire A_I ;
+output C_O ;
+wire C_O ;
+input B_I ;
+wire B_I ;
+
+wire w1,w2,w3;
+xor(w1, A_I, B_I);
+and(w2, A_I, B_I); 
+and(w3, w1, C_I);
+xor(S_O, w1, C_I);
+or(C_O, w2, w3); 
+
+endmodule
+\end{lstlisting}
+
+\begin{lstlisting}[style=verilogStyle, caption=1-bit Register in Verilog, label=verilog_1bitregister]
+`include "Reg_mux.v"
+`include "D_Flip_Flop.v"
+
+module onebit_register (input D, input S, input R, input CLK, output Q);
+
+  wire D_O_mux; // Output from the multiplexer 
+
+  Reg_mux mux_instance (
+    .S_mux(S),
+    .R_mux(R),
+    .D_I_mux(D), 
+    .Q_mux(Q), // Connect the Q output of the flip-flop to the input of the multiplexer  
+    .D_O_mux(D_O_mux)
+  );
+
+  D_Flip_Flop flip_flop_instance (
+    .D_flip(D_O_mux), // Connect the input of the flip-flop to the multiplexer's output
+    .Q_flip(Q),
+    .clk_flip(CLK)
+  );  
+  
+  not(D, Q);
+
+endmodule
+\end{lstlisting}
+
+\begin{lstlisting}[style=verilogStyle, caption=, label=]
+\end{lstlisting}
+
+
+
+\begin{lstlisting}[style=verilogStyle, caption=, label=]
+\end{lstlisting}
 
 \section{Optional (rename based on what you put here)}
 Sometimes one might end up running a lot of simulations, and then find out that not all of them were relevant enough to present in the actual report. Additional figures and results can then be included here (with a brief explanation so that the reader knows what they are looking at). This section of the appendix is optional, and might not be relevant for your group. 
