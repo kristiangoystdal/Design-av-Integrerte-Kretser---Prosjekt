@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-10-24T11:20:42.858Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="vxA_oCNwkMhc5a-Pu6JG" version="22.0.6" type="github">
+<mxfile host="app.diagrams.net" modified="2023-10-24T11:23:03.537Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="E_GwpsdVyZwVopzRnR8c" version="22.0.6" type="github">
   <diagram name="Page-1" id="_UM0i6C4peb4IL8pWmH5">
-    <mxGraphModel dx="2269" dy="1600" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1034" dy="820" grid="0" gridSize="10" guides="0" tooltips="1" connect="0" arrows="0" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -2304,7 +2304,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="XkicySLFO15Dte9fFzA2-151" value="Final State Machine" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=30;" vertex="1" parent="1">
-          <mxGeometry x="2820" y="-120" width="290" height="50" as="geometry" />
+          <mxGeometry x="2835" y="-103" width="290" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
