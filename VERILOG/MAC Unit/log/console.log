@@ -1,0 +1,403 @@
+alog -O2 -sve -msg 5 -sv2k12 -work MAC_Unit $dsn/src/Components/D_Flip_Flop.v
+# Pass 1. Scanning modules hierarchy.
+# Pass 2. Processing instantiations.
+# Info: VCP2876 Components/D_Flip_Flop.v : (28, 16): Implicit net declaration, symbol w1_flip has not been declared in module D_Flip_Flop.
+# Pass 3. Processing behavioral statements.
+# Running Optimizer.
+# ELB/DAG code generating.
+# Unit top modules: D_Flip_Flop.
+# $root top modules: D_Flip_Flop.
+# Compile success 0 Errors 0 Warnings  Analysis time: 0[s].
+# Warning: ALOG: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# done
+alog -O2 -sve -msg 5 -sv2k12 -work MAC_Unit $dsn/src/Components/eightbit_adder.v
+# Pass 1. Scanning modules hierarchy.
+# Info: VCP2113 Module \$root found in current working library.
+# Pass 2. Processing instantiations.
+# Pass 3. Processing behavioral statements.
+# Running Optimizer.
+# ELB/DAG code generating.
+# Info: VCP2113 Module \$root found in current working library.
+# Unit top modules: eightbit_adder.
+# $root top modules: D_Flip_Flop eightbit_adder.
+# Compile success 0 Errors 0 Warnings  Analysis time: 0[s].
+# Warning: ALOG: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# done
+alog -O2 -sve -msg 5 -sv2k12 -work MAC_Unit $dsn/src/Components/D_Flip_Flop.v $dsn/src/Components/eightbit_adder.v $dsn/src/Components/eightbit_register.v $dsn/src/Components/Full_Adder.v $dsn/src/Components/onebit_register.v $dsn/src/Components/Reg_mux.v
+# Pass 1. Scanning modules hierarchy.
+# Info: VCP2113 Module \$root found in current working library.
+# Info: VCP2876 Components/Reg_mux.v : (32, 14): Implicit net declaration, symbol sbar has not been declared in module Reg_mux.
+# Info: VCP2876 Components/Reg_mux.v : (33, 14): Implicit net declaration, symbol rbar has not been declared in module Reg_mux.
+# Error: VCP7801 Components/D_Flip_Flop.v : (24, 19): Duplicated declaration of unit D_Flip_Flop.
+# Info: VCP7802 Components/D_Flip_Flop.v : (24, 19): D_Flip_Flop was already declared. See previous declaration.
+# Error: VCP2545 Components/D_Flip_Flop.v : (24, 28): Duplicate port identifier: D_flip.
+# Error: VCP2562 Components/D_Flip_Flop.v : (24, 28): Redeclaration of port D_flip.
+# Error: VCP2545 Components/D_Flip_Flop.v : (24, 44): Duplicate port identifier: Q_flip.
+# Error: VCP2562 Components/D_Flip_Flop.v : (24, 44): Redeclaration of port Q_flip.
+# Error: VCP2545 Components/D_Flip_Flop.v : (24, 59): Duplicate port identifier: clk_flip.
+# Error: VCP2562 Components/D_Flip_Flop.v : (24, 59): Redeclaration of port clk_flip.
+# Error: VCP2505 Components/D_Flip_Flop.v : (26, 23): Duplicate identifier: clk_bar_flip.
+# Error: VCP2505 Components/D_Flip_Flop.v : (29, 18): Duplicate identifier: w2_flip.
+# Error: VCP2505 Components/D_Flip_Flop.v : (31, 18): Duplicate identifier: w3_flip.
+# Error: VCP2505 Components/D_Flip_Flop.v : (33, 18): Duplicate identifier: w4_flip.
+# Error: VCP2505 Components/D_Flip_Flop.v : (36, 18): Duplicate identifier: w5_flip.
+# Error: VCP2505 Components/D_Flip_Flop.v : (38, 27): Duplicate identifier: w6_flip.
+# Error: VCP2505 Components/D_Flip_Flop.v : (38, 27): Duplicate identifier: w7_flip.
+# Error: VCP2505 Components/Full_Adder.v : (25, 18): Duplicate identifier: Full_Adder.
+# Error: VCP2562 Components/Full_Adder.v : (27, 1): Redeclaration of port C_I.
+# Error: VCP2505 Components/Full_Adder.v : (28, 11): Duplicate identifier: C_I.
+# Error: VCP2562 Components/Full_Adder.v : (29, 1): Redeclaration of port S_O.
+# Error: VCP2505 Components/Full_Adder.v : (30, 11): Duplicate identifier: S_O.
+# Error: VCP2562 Components/Full_Adder.v : (31, 1): Redeclaration of port A_I.
+# Error: VCP2505 Components/Full_Adder.v : (32, 11): Duplicate identifier: A_I.
+# Error: VCP2562 Components/Full_Adder.v : (33, 1): Redeclaration of port C_O.
+# Error: VCP2505 Components/Full_Adder.v : (34, 11): Duplicate identifier: C_O.
+# Error: VCP2562 Components/Full_Adder.v : (35, 1): Redeclaration of port B_I.
+# Error: VCP2505 Components/Full_Adder.v : (36, 11): Duplicate identifier: B_I.
+# Error: VCP2505 Components/Full_Adder.v : (39, 15): Duplicate identifier: w1.
+# Error: VCP2505 Components/Full_Adder.v : (39, 15): Duplicate identifier: w2.
+# Error: VCP2505 Components/Full_Adder.v : (39, 15): Duplicate identifier: w3.
+# Error: VCP2505 Components/Reg_mux.v : (24, 15): Duplicate identifier: Reg_mux.
+# Error: VCP2545 Components/Reg_mux.v : (25, 11): Duplicate port identifier: S_mux.
+# Error: VCP2562 Components/Reg_mux.v : (25, 11): Redeclaration of port S_mux.
+# Error: VCP2545 Components/Reg_mux.v : (26, 11): Duplicate port identifier: R_mux.
+# Error: VCP2562 Components/Reg_mux.v : (26, 11): Redeclaration of port R_mux.
+# Error: VCP2545 Components/Reg_mux.v : (27, 11): Duplicate port identifier: D_I_mux.
+# Error: VCP2562 Components/Reg_mux.v : (27, 11): Redeclaration of port D_I_mux.
+# Error: VCP2545 Components/Reg_mux.v : (28, 11): Duplicate port identifier: Q_mux.
+# Error: VCP2562 Components/Reg_mux.v : (28, 11): Redeclaration of port Q_mux.
+# Error: VCP2545 Components/Reg_mux.v : (29, 12): Duplicate port identifier: D_O_mux.
+# Error: VCP2562 Components/Reg_mux.v : (29, 12): Redeclaration of port D_O_mux.
+# Error: VCP2505 Components/Reg_mux.v : (31, 12): Duplicate identifier: Y_mux.
+# Error: VCP2505 Components/D_Flip_Flop.v : (24, 19): Duplicate identifier: D_Flip_Flop.
+# Error: VCP2545 Components/D_Flip_Flop.v : (24, 28): Duplicate port identifier: D_flip.
+# Error: VCP2562 Components/D_Flip_Flop.v : (24, 28): Redeclaration of port D_flip.
+# Error: VCP2545 Components/D_Flip_Flop.v : (24, 44): Duplicate port identifier: Q_flip.
+# Error: VCP2562 Components/D_Flip_Flop.v : (24, 44): Redeclaration of port Q_flip.
+# Error: VCP2545 Components/D_Flip_Flop.v : (24, 59): Duplicate port identifier: clk_flip.
+# Error: VCP2562 Components/D_Flip_Flop.v : (24, 59): Redeclaration of port clk_flip.
+# Error: VCP2505 Components/D_Flip_Flop.v : (26, 23): Duplicate identifier: clk_bar_flip.
+# Error: VCP2505 Components/D_Flip_Flop.v : (29, 18): Duplicate identifier: w2_flip.
+# Error: VCP2505 Components/D_Flip_Flop.v : (31, 18): Duplicate identifier: w3_flip.
+# Error: VCP2505 Components/D_Flip_Flop.v : (33, 18): Duplicate identifier: w4_flip.
+# Error: VCP2505 Components/D_Flip_Flop.v : (36, 18): Duplicate identifier: w5_flip.
+# Error: VCP2505 Components/D_Flip_Flop.v : (38, 27): Duplicate identifier: w6_flip.
+# Error: VCP2505 Components/D_Flip_Flop.v : (38, 27): Duplicate identifier: w7_flip.
+# Error: VCP2505 Components/onebit_register.v : (27, 23): Duplicate identifier: onebit_register.
+# Error: VCP2545 Components/onebit_register.v : (27, 31): Duplicate port identifier: D.
+# Error: VCP2562 Components/onebit_register.v : (27, 31): Redeclaration of port D.
+# Error: VCP2545 Components/onebit_register.v : (27, 40): Duplicate port identifier: S.
+# Error: VCP2562 Components/onebit_register.v : (27, 40): Redeclaration of port S.
+# Error: VCP2545 Components/onebit_register.v : (27, 49): Duplicate port identifier: R.
+# Error: VCP2562 Components/onebit_register.v : (27, 49): Redeclaration of port R.
+# Error: VCP2545 Components/onebit_register.v : (27, 58): Duplicate port identifier: CLK.
+# Error: VCP2562 Components/onebit_register.v : (27, 58): Redeclaration of port CLK.
+# Error: VCP2545 Components/onebit_register.v : (27, 70): Duplicate port identifier: Q.
+# Error: VCP2562 Components/onebit_register.v : (27, 70): Redeclaration of port Q.
+# Error: VCP2505 Components/onebit_register.v : (29, 16): Duplicate identifier: D_O_mux.
+# Error: VCP2505 Components/onebit_register.v : (37, 5): Duplicate identifier: mux_instance.
+# Error: VCP2505 Components/onebit_register.v : (43, 5): Duplicate identifier: flip_flop_instance.
+# Error: VCP2505 Components/Reg_mux.v : (24, 15): Duplicate identifier: Reg_mux.
+# Error: VCP2545 Components/Reg_mux.v : (25, 11): Duplicate port identifier: S_mux.
+# Error: VCP2562 Components/Reg_mux.v : (25, 11): Redeclaration of port S_mux.
+# Error: VCP2545 Components/Reg_mux.v : (26, 11): Duplicate port identifier: R_mux.
+# Error: VCP2562 Components/Reg_mux.v : (26, 11): Redeclaration of port R_mux.
+# Error: VCP2545 Components/Reg_mux.v : (27, 11): Duplicate port identifier: D_I_mux.
+# Error: VCP2562 Components/Reg_mux.v : (27, 11): Redeclaration of port D_I_mux.
+# Error: VCP2545 Components/Reg_mux.v : (28, 11): Duplicate port identifier: Q_mux.
+# Error: VCP2562 Components/Reg_mux.v : (28, 11): Redeclaration of port Q_mux.
+# Error: VCP2545 Components/Reg_mux.v : (29, 12): Duplicate port identifier: D_O_mux.
+# Error: VCP2562 Components/Reg_mux.v : (29, 12): Redeclaration of port D_O_mux.
+# Error: VCP2505 Components/Reg_mux.v : (31, 12): Duplicate identifier: Y_mux.
+# Compile failure 80 Errors 0 Warnings  Analysis time: 0[s].
+alog -O2 -sve -msg 5 -sv2k12 -work MAC_Unit $dsn/src/Components/D_Flip_Flop.v
+# Pass 1. Scanning modules hierarchy.
+# Info: VCP2113 Module \$root found in current working library.
+# Pass 2. Processing instantiations.
+# Info: VCP2876 Components/D_Flip_Flop.v : (28, 16): Implicit net declaration, symbol w1_flip has not been declared in module D_Flip_Flop.
+# Pass 3. Processing behavioral statements.
+# Running Optimizer.
+# ELB/DAG code generating.
+# Info: VCP2113 Module \$root found in current working library.
+# Unit top modules: D_Flip_Flop.
+# $root top modules: D_Flip_Flop eightbit_adder.
+# Compile success 0 Errors 0 Warnings  Analysis time: 0[s].
+# Warning: ALOG: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# done
+alog -O2 -sve -msg 5 -sv2k12 -work MAC_Unit $dsn/src/Components/eightbit_adder.v
+# Pass 1. Scanning modules hierarchy.
+# Info: VCP2113 Module \$root found in current working library.
+# Pass 2. Processing instantiations.
+# Pass 3. Processing behavioral statements.
+# Running Optimizer.
+# ELB/DAG code generating.
+# Info: VCP2113 Module \$root found in current working library.
+# Unit top modules: eightbit_adder.
+# $root top modules: D_Flip_Flop eightbit_adder.
+# Compile success 0 Errors 0 Warnings  Analysis time: 0[s].
+# Warning: ALOG: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# done
+alog -O2 -sve -msg 5 -sv2k12 -work MAC_Unit $dsn/src/Components/eightbit_register.v
+# Pass 1. Scanning modules hierarchy.
+# Info: VCP2113 Module \$root found in current working library.
+# Info: VCP2876 Components/Reg_mux.v : (32, 14): Implicit net declaration, symbol sbar has not been declared in module Reg_mux.
+# Info: VCP2876 Components/Reg_mux.v : (33, 14): Implicit net declaration, symbol rbar has not been declared in module Reg_mux.
+# Pass 2. Processing instantiations.
+# Info: VCP2876 Components/D_Flip_Flop.v : (28, 16): Implicit net declaration, symbol w1_flip has not been declared in module D_Flip_Flop.
+# Warning: VCP2738 Components/onebit_register.v : (45, 1): Module input port D connected to gate output.
+# Pass 3. Processing behavioral statements.
+# Running Optimizer.
+# ELB/DAG code generating.
+# Info: VCP2113 Module \$root found in current working library.
+# Unit top modules: eightbit_register.
+# $root top modules: eightbit_adder eightbit_register.
+# Compile success 0 Errors 1 Warnings  Analysis time: 0[s].
+# Warning: ALOG: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# done
+# ELBREAD: Elaboration process.
+# ELBREAD: Elaboration time 0.0 [s].
+asim -O5 +access +r +m+eightbit_register eightbit_register
+# ELBREAD: Elaboration process.
+# ELBREAD: Elaboration time 0.0 [s].
+# VSIM: Stack memory: 32MB
+# VSIM: Retval memory: 32MB
+# 
+# KERNEL: Main thread initiated.
+# KERNEL: Kernel process initialization phase.
+# ELAB2: Elaboration final pass...
+# ELAB2: Create instances ...
+# KERNEL: Time resolution set to 1ps.
+# ELAB2: Create instances complete.
+# SLP: Started
+# SLP: Elaboration phase ...
+# SLP: Elaboration phase ... done : 0.1 [s]
+# SLP: Generation phase ...
+# SLP: Generation phase ... done : 1.5 [s]
+# SLP: Finished : 1.6 [s]
+# SLP: 120 (88.24%) primitives and 16 (11.76%) other processes in SLP
+# SLP: 206 (100.00%) signals in SLP and 0 interface signals
+# ELAB2: Elaboration final pass complete - time: 1.7 [s].
+# KERNEL: SLP loading done - time: 0.1 [s].
+# KERNEL: Warning: You are using the Active-HDL Student Edition. The performance of simulation is running at a reduced rate.
+# KERNEL: Warning: Contact Aldec for available upgrade options - sales@aldec.com.
+# KERNEL: SLP simulation initialization done - time: 0.0 [s].
+# KERNEL: Kernel process initialization done.
+# Allocation: Simulator allocated 4671 kB (elbread=429 elab2=4107 kernel=134 sdf=0)
+# KERNEL: ASDB file was created in location C:\Users\krisg\OneDrive - NTNU\2023 Høst\Design av integrete kretser\Prosjekt\Design_av_Integrerte_Kretser__Prosjekt\VERILOG\MAC Unit\src\wave.asdb
+#  20:47, tirsdag 24. oktober 2023
+#  Simulation has been initialized
+# VSIM: 6 object(s) traced.
+# Waveform file 'untitled.awc' connected to 'C:/Users/krisg/OneDrive - NTNU/2023 Høst/Design av integrete kretser/Prosjekt/Design_av_Integrerte_Kretser__Prosjekt/VERILOG/MAC Unit/src/wave.asdb'.
+vsim +access +w_nets eightbit_register
+# VSIM: Simulation has finished.
+# ELBREAD: Elaboration process.
+# ELBREAD: Elaboration time 0.0 [s].
+# VSIM: Stack memory: 32MB
+# VSIM: Retval memory: 32MB
+# 
+# KERNEL: Main thread initiated.
+# KERNEL: Kernel process initialization phase.
+# ELAB2: Elaboration final pass...
+# ELAB2: Create instances ...
+# KERNEL: Time resolution set to 1ps.
+# ELAB2: Create instances complete.
+# SLP: Started
+# SLP: Elaboration phase ...
+# SLP: Elaboration phase ... done : 0.0 [s]
+# SLP: Generation phase ...
+# SLP: Generation phase ... done : 0.3 [s]
+# SLP: Finished : 0.3 [s]
+# SLP: 120 (88.24%) primitives and 16 (11.76%) other processes in SLP
+# SLP: 0 signals in SLP and 205 (99.51%) interface signals
+# ELAB2: Elaboration final pass complete - time: 0.3 [s].
+# KERNEL: SLP loading done - time: 0.0 [s].
+# KERNEL: Warning: You are using the Active-HDL Student Edition. The performance of simulation is running at a reduced rate.
+# KERNEL: Warning: Contact Aldec for available upgrade options - sales@aldec.com.
+# KERNEL: SLP simulation initialization done - time: 0.0 [s].
+# KERNEL: Kernel process initialization done.
+# Allocation: Simulator allocated 5510 kB (elbread=429 elab2=4946 kernel=134 sdf=0)
+# KERNEL: ASDB file was created in location C:\Users\krisg\OneDrive - NTNU\2023 Høst\Design av integrete kretser\Prosjekt\Design_av_Integrerte_Kretser__Prosjekt\VERILOG\MAC Unit\src\wave.asdb
+#  20:48, tirsdag 24. oktober 2023
+#  Simulation has been initialized
+# Waveform file 'untitled.awc' connected to 'C:/Users/krisg/OneDrive - NTNU/2023 Høst/Design av integrete kretser/Prosjekt/Design_av_Integrerte_Kretser__Prosjekt/VERILOG/MAC Unit/src/wave.asdb'.
+run @1us
+# KERNEL: stopped at time: 1 us
+run @2us
+# KERNEL: stopped at time: 2 us
+run @3us
+# KERNEL: stopped at time: 3 us
+run @4us
+# KERNEL: stopped at time: 4 us
+restart
+# ELBREAD: Elaboration process.
+# ELBREAD: Elaboration time 0.0 [s].
+# 
+# KERNEL: Main thread initiated.
+# KERNEL: Kernel process initialization phase.
+# ELAB2: Elaboration final pass...
+# ELAB2: Create instances ...
+# KERNEL: Time resolution set to 1ps.
+# ELAB2: Create instances complete.
+# SLP: Started
+# SLP: Finished. Using existing simulator library
+# SLP: 120 (88.24%) primitives and 16 (11.76%) other processes in SLP
+# SLP: 0 signals in SLP and 205 (99.51%) interface signals
+# ELAB2: Elaboration final pass complete - time: 0.0 [s].
+# KERNEL: SLP loading done - time: 0.0 [s].
+# KERNEL: Warning: You are using the Active-HDL Student Edition. The performance of simulation is running at a reduced rate.
+# KERNEL: Warning: Contact Aldec for available upgrade options - sales@aldec.com.
+# KERNEL: SLP simulation initialization done - time: 0.0 [s].
+# KERNEL: Kernel process initialization done.
+# Allocation: Simulator allocated 5510 kB (elbread=429 elab2=4946 kernel=134 sdf=0)
+# KERNEL: ASDB file was created in location C:\Users\krisg\OneDrive - NTNU\2023 Høst\Design av integrete kretser\Prosjekt\Design_av_Integrerte_Kretser__Prosjekt\VERILOG\MAC Unit\src\wave.asdb
+# Stimuli: Warning: The stimuli set "StimuliSet1" has been made inactive.
+#  20:50, tirsdag 24. oktober 2023
+#  Simulation has been initialized
+# Waveform file 'untitled.awc' connected to 'C:/Users/krisg/OneDrive - NTNU/2023 Høst/Design av integrete kretser/Prosjekt/Design_av_Integrerte_Kretser__Prosjekt/VERILOG/MAC Unit/src/wave.asdb'.
+run @1us
+# KERNEL: stopped at time: 1 us
+run @2us
+# KERNEL: stopped at time: 2 us
+alog -O2 -sve -msg 5 -sv2k12 -work MAC_Unit $dsn/src/Components/eightbit_register.v
+# Pass 1. Scanning modules hierarchy.
+# Info: VCP2113 Module \$root found in current working library.
+# Info: VCP2876 Components/Reg_mux.v : (32, 14): Implicit net declaration, symbol sbar has not been declared in module Reg_mux.
+# Info: VCP2876 Components/Reg_mux.v : (33, 14): Implicit net declaration, symbol rbar has not been declared in module Reg_mux.
+# Pass 2. Processing instantiations.
+# Info: VCP2876 Components/D_Flip_Flop.v : (28, 16): Implicit net declaration, symbol w1_flip has not been declared in module D_Flip_Flop.
+# Warning: VCP2738 Components/onebit_register.v : (45, 1): Module input port D connected to gate output.
+# Pass 3. Processing behavioral statements.
+# Running Optimizer.
+# ELB/DAG code generating.
+# Info: VCP2113 Module \$root found in current working library.
+# Unit top modules: eightbit_register.
+# $root top modules: eightbit_adder eightbit_register.
+# Compile success 0 Errors 1 Warnings  Analysis time: 0[s].
+# Warning: ALOG: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# done
+endsim
+# VSIM: Simulation has finished.
+asim -O5 +access +r +m+eightbit_register eightbit_register
+# ELBREAD: Elaboration process.
+# ELBREAD: Elaboration time 0.0 [s].
+# VSIM: Stack memory: 32MB
+# VSIM: Retval memory: 32MB
+# 
+# KERNEL: Main thread initiated.
+# KERNEL: Kernel process initialization phase.
+# ELAB2: Elaboration final pass...
+# ELAB2: Create instances ...
+# KERNEL: Time resolution set to 1ps.
+# ELAB2: Create instances complete.
+# SLP: Started
+# SLP: Elaboration phase ...
+# SLP: Elaboration phase ... done : 0.0 [s]
+# SLP: Generation phase ...
+# SLP: Generation phase ... done : 0.3 [s]
+# SLP: Finished : 0.3 [s]
+# SLP: 120 (88.24%) primitives and 16 (11.76%) other processes in SLP
+# SLP: 205 (100.00%) signals in SLP and 0 interface signals
+# ELAB2: Elaboration final pass complete - time: 0.3 [s].
+# KERNEL: SLP loading done - time: 0.0 [s].
+# KERNEL: Warning: You are using the Active-HDL Student Edition. The performance of simulation is running at a reduced rate.
+# KERNEL: Warning: Contact Aldec for available upgrade options - sales@aldec.com.
+# KERNEL: SLP simulation initialization done - time: 0.0 [s].
+# KERNEL: Kernel process initialization done.
+# Allocation: Simulator allocated 575 kB (elbread=429 elab2=11 kernel=134 sdf=0)
+# KERNEL: ASDB file was created in location C:\Users\krisg\OneDrive - NTNU\2023 Høst\Design av integrete kretser\Prosjekt\Design_av_Integrerte_Kretser__Prosjekt\VERILOG\MAC Unit\src\wave.asdb
+# Stimuli: Warning: The stimuli set "StimuliSet2" has been made inactive.
+#  20:51, tirsdag 24. oktober 2023
+#  Simulation has been initialized
+# Waveform file 'untitled.awc' connected to 'C:/Users/krisg/OneDrive - NTNU/2023 Høst/Design av integrete kretser/Prosjekt/Design_av_Integrerte_Kretser__Prosjekt/VERILOG/MAC Unit/src/wave.asdb'.
+# Warning: WAVEFORM: Object matching /eightbit_register/q_onebit not found in C:/Users/krisg/OneDrive - NTNU/2023 Høst/Design av integrete kretser/Prosjekt/Design_av_Integrerte_Kretser__Prosjekt/VERILOG/MAC Unit/src/wave.asdb.
+# KERNEL: Warning: KERNEL_0291 Object "/eightbit_register/s_eight" has already been traced.
+# KERNEL: Warning: KERNEL_0291 Object "/eightbit_register/r_eight" has already been traced.
+# KERNEL: Warning: KERNEL_0291 Object "/eightbit_register/clk_eight" has already been traced.
+# KERNEL: Warning: KERNEL_0291 Object "/eightbit_register/d_eight" has already been traced.
+# KERNEL: Warning: KERNEL_0291 Object "/eightbit_register/q_eight" has already been traced.
+# VSIM: 0 object(s) traced.
+vsim +access +w_nets eightbit_register
+# VSIM: Simulation has finished.
+# ELBREAD: Elaboration process.
+# ELBREAD: Elaboration time 0.0 [s].
+# VSIM: Stack memory: 32MB
+# VSIM: Retval memory: 32MB
+# 
+# KERNEL: Main thread initiated.
+# KERNEL: Kernel process initialization phase.
+# ELAB2: Elaboration final pass...
+# ELAB2: Create instances ...
+# KERNEL: Time resolution set to 1ps.
+# ELAB2: Create instances complete.
+# SLP: Started
+# SLP: Elaboration phase ...
+# SLP: Elaboration phase ... done : 0.0 [s]
+# SLP: Generation phase ...
+# SLP: Generation phase ... done : 0.3 [s]
+# SLP: Finished : 0.3 [s]
+# SLP: 120 (88.24%) primitives and 16 (11.76%) other processes in SLP
+# SLP: 0 signals in SLP and 205 (100.00%) interface signals
+# ELAB2: Elaboration final pass complete - time: 0.3 [s].
+# KERNEL: SLP loading done - time: 0.0 [s].
+# KERNEL: Warning: You are using the Active-HDL Student Edition. The performance of simulation is running at a reduced rate.
+# KERNEL: Warning: Contact Aldec for available upgrade options - sales@aldec.com.
+# KERNEL: SLP simulation initialization done - time: 0.0 [s].
+# KERNEL: Kernel process initialization done.
+# Allocation: Simulator allocated 5382 kB (elbread=429 elab2=4818 kernel=134 sdf=0)
+# KERNEL: ASDB file was created in location C:\Users\krisg\OneDrive - NTNU\2023 Høst\Design av integrete kretser\Prosjekt\Design_av_Integrerte_Kretser__Prosjekt\VERILOG\MAC Unit\src\wave.asdb
+#  20:52, tirsdag 24. oktober 2023
+#  Simulation has been initialized
+# Waveform file 'untitled.awc' connected to 'C:/Users/krisg/OneDrive - NTNU/2023 Høst/Design av integrete kretser/Prosjekt/Design_av_Integrerte_Kretser__Prosjekt/VERILOG/MAC Unit/src/wave.asdb'.
+run @1us
+# KERNEL: stopped at time: 1 us
+run @2us
+# KERNEL: stopped at time: 2 us
+alog -O2 -sve -msg 5 -sv2k12 -work MAC_Unit $dsn/src/Components/onebit_register.v
+# Pass 1. Scanning modules hierarchy.
+# Info: VCP2113 Module \$root found in current working library.
+# Info: VCP2876 Components/Reg_mux.v : (32, 14): Implicit net declaration, symbol sbar has not been declared in module Reg_mux.
+# Info: VCP2876 Components/Reg_mux.v : (33, 14): Implicit net declaration, symbol rbar has not been declared in module Reg_mux.
+# Pass 2. Processing instantiations.
+# Info: VCP2876 Components/D_Flip_Flop.v : (28, 16): Implicit net declaration, symbol w1_flip has not been declared in module D_Flip_Flop.
+# Warning: VCP2738 Components/onebit_register.v : (45, 1): Module input port D connected to gate output.
+# Pass 3. Processing behavioral statements.
+# Running Optimizer.
+# ELB/DAG code generating.
+# Info: VCP2113 Module \$root found in current working library.
+# $root top modules: eightbit_adder eightbit_register.
+# Compile success 0 Errors 1 Warnings  Analysis time: 0[s].
+# Warning: ALOG: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# done
+alog -O2 -sve -msg 5 -sv2k12 -work MAC_Unit $dsn/src/Components/onebit_register.v
+# Pass 1. Scanning modules hierarchy.
+# Info: VCP2113 Module \$root found in current working library.
+# Info: VCP2876 Components/Reg_mux.v : (32, 14): Implicit net declaration, symbol sbar has not been declared in module Reg_mux.
+# Info: VCP2876 Components/Reg_mux.v : (33, 14): Implicit net declaration, symbol rbar has not been declared in module Reg_mux.
+# Pass 2. Processing instantiations.
+# Info: VCP2876 Components/D_Flip_Flop.v : (28, 16): Implicit net declaration, symbol w1_flip has not been declared in module D_Flip_Flop.
+# Pass 3. Processing behavioral statements.
+# Running Optimizer.
+# ELB/DAG code generating.
+# Info: VCP2113 Module \$root found in current working library.
+# $root top modules: eightbit_adder eightbit_register.
+# Compile success 0 Errors 0 Warnings  Analysis time: 0[s].
+# Warning: ALOG: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# done
+alog -O2 -sve -msg 5 -sv2k12 -work MAC_Unit $dsn/src/Components/eightbit_register.v
+# Pass 1. Scanning modules hierarchy.
+# Info: VCP2113 Module \$root found in current working library.
+# Info: VCP2876 Components/Reg_mux.v : (32, 14): Implicit net declaration, symbol sbar has not been declared in module Reg_mux.
+# Info: VCP2876 Components/Reg_mux.v : (33, 14): Implicit net declaration, symbol rbar has not been declared in module Reg_mux.
+# Pass 2. Processing instantiations.
+# Info: VCP2876 Components/D_Flip_Flop.v : (28, 16): Implicit net declaration, symbol w1_flip has not been declared in module D_Flip_Flop.
+# Pass 3. Processing behavioral statements.
+# Running Optimizer.
+# ELB/DAG code generating.
+# Info: VCP2113 Module \$root found in current working library.
+# Unit top modules: eightbit_register.
+# $root top modules: eightbit_adder eightbit_register.
+# Compile success 0 Errors 0 Warnings  Analysis time: 0[s].
+# Warning: ALOG: The source is compiled without the -dbg switch. Line breakpoints and assertion debug will not be available.
+# done
+endsim
+# VSIM: Simulation has finished.
