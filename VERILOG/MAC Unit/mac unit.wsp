@@ -1,0 +1,33 @@
+[CACHESIMPLE|Aldec.SymbolsCommands.7]
+Built-in symbols=1
+MAC_Unit=0
+[General]
+CurrentVersion=103
+[CACHEDOC|Aldec.Project.Generic.7|.\MAC Unit\MAC Unit.adf|]
+Path=
+[Gui config]
+RunFor=100 ns
+[COMPILESTATUS|.\src\Components\D_Flip_Flop.v]
+FileTimeLow=2682712047
+FileTimeHigh=31065700
+Status=Compiled
+[COMPILESTATUS|.\src\Components\eightbit_adder.v]
+FileTimeLow=2682730049
+FileTimeHigh=31065700
+Status=Compiled
+[COMPILESTATUS|.\src\Components\eightbit_register.v]
+FileTimeLow=541391345
+FileTimeHigh=31065771
+Status=Compiled
+[COMPILESTATUS|.\src\Components\Full_Adder.v]
+FileTimeLow=2682712047
+FileTimeHigh=31065700
+Status=Compiled
+[COMPILESTATUS|.\src\Components\onebit_register.v]
+FileTimeLow=2019203113
+FileTimeHigh=31065771
+Status=Compiled
+[COMPILESTATUS|.\src\Components\Reg_mux.v]
+FileTimeLow=2682726198
+FileTimeHigh=31065700
+Status=Compiled

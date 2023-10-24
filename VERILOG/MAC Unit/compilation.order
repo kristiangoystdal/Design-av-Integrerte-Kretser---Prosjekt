@@ -1,0 +1,6 @@
+.\src\Components\D_Flip_Flop.v
+.\src\Components\eightbit_adder.v
+.\src\Components\eightbit_register.v
+.\src\Components\Full_Adder.v
+.\src\Components\onebit_register.v
+.\src\Components\Reg_mux.v
