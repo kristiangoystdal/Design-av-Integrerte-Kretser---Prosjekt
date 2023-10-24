@@ -161,7 +161,7 @@ module D_Flip_Flop ( input D_flip , output Q_flip , input clk_flip );
 endmodule
 \end{lstlisting}
 
-\begin{lstlisting}[style=verilogStyle, caption=RegisterMux in Verilog, label=verilog_regmux]
+\begin{lstlisting}[style=verilogStyle, caption=Set/Reset-Circuit in Verilog, label=verilog_regmux]
 module Reg_mux (
     input S_mux,
     input R_mux,
@@ -178,6 +178,99 @@ cmos(Y_mux,Q_mux,sbar,S_mux);
 and(D_O_mux, rbar, Y_mux);
 
 endmodule  
+\end{lstlisting}
+
+\begin{lstlisting}[style=verilogStyle, caption=1-bit Register in Verilog, label=verilog_1bitregister]
+`include "Reg_mux.v"
+`include "D_Flip_Flop.v"
+
+module onebit_register (input D, input S, input R, input CLK, output Q);
+
+  wire D_O_mux; // Output from the multiplexer 
+
+  Reg_mux mux_instance (
+    .S_mux(S),
+    .R_mux(R),
+    .D_I_mux(D), 
+    .Q_mux(Q), // Connect the Q output of the flip-flop to the input of the multiplexer  
+    .D_O_mux(D_O_mux)
+  );
+
+  D_Flip_Flop flip_flop_instance (
+    .D_flip(D_O_mux), // Connect the input of the flip-flop to the multiplexer's output
+    .Q_flip(Q),
+    .clk_flip(CLK)
+  );  
+  
+  not(D, Q);
+
+endmodule
+\end{lstlisting}
+
+\begin{lstlisting}[style=verilogStyle, caption=8-bit Register in Verilog, label=verilog_8bitregister]
+`include "onebit_register.v"
+module eightbit_register ( input s_eight , input r_eight ,input clk_eight, input [7:0] d_eight ,output [7:0] q_eight );
+	
+	wire [7:0] q_onebit[7:0];
+	
+	onebit_register onebit_instance0 (
+	    .S(s_eight),
+	    .R(r_eight),
+		.CLK(clk_eight),
+	    .D(d_eight[0]), // Connect the corresponding bit of d_eight to onebit_register
+	    .Q(q_eight[0])
+	); 
+	onebit_register onebit_instance1 (
+	    .S(s_eight),
+	    .R(r_eight),
+		.CLK(clk_eight),
+	    .D(d_eight[1]), // Connect the corresponding bit of d_eight to onebit_register
+	    .Q(q_eight[1])
+	);
+	onebit_register onebit_instance2 (
+	    .S(s_eight),
+	    .R(r_eight),
+		.CLK(clk_eight),
+	    .D(d_eight[2]), // Connect the corresponding bit of d_eight to onebit_register
+	    .Q(q_eight[2])
+	);		   
+	onebit_register onebit_instance3 (
+	    .S(s_eight),
+	    .R(r_eight),
+		.CLK(clk_eight),
+	    .D(d_eight[3]), // Connect the corresponding bit of d_eight to onebit_register
+	    .Q(q_eight[3])
+	);
+	onebit_register onebit_instance4 (
+	    .S(s_eight),
+	    .R(r_eight),
+		.CLK(clk_eight),
+	    .D(d_eight[4]), // Connect the corresponding bit of d_eight to onebit_register
+	    .Q(q_eight[4])
+	);
+	onebit_register onebit_instance5 (
+	    .S(s_eight),
+	    .R(r_eight),
+		.CLK(clk_eight),
+	    .D(d_eight[5]), // Connect the corresponding bit of d_eight to onebit_register
+	    .Q(q_eight[5])
+	);
+	onebit_register onebit_instance6 (
+	    .S(s_eight),
+	    .R(r_eight),
+		.CLK(clk_eight),
+	    .D(d_eight[6]), // Connect the corresponding bit of d_eight to onebit_register
+	    .Q(q_eight[6])
+	);
+	onebit_register onebit_instance7 (
+	    .S(s_eight),
+	    .R(r_eight),
+		.CLK(clk_eight),
+	    .D(d_eight[7]), // Connect the corresponding bit of d_eight to onebit_register
+	    .Q(q_eight[7])
+	);
+
+endmodule
 \end{lstlisting}
 
 \begin{lstlisting}[style=verilogStyle, caption=Half Adder in Verilog, label=verilog_halfadder]
@@ -222,37 +315,190 @@ or(C_O, w2, w3);
 endmodule
 \end{lstlisting}
 
-\begin{lstlisting}[style=verilogStyle, caption=1-bit Register in Verilog, label=verilog_1bitregister]
-`include "Reg_mux.v"
-`include "D_Flip_Flop.v"
+\begin{lstlisting}[style=verilogStyle, caption=8-bit Adder in Verilog, label=verilog_8bitadder]
+`include "Half_Adder.v"
+`include "Full_Adder.v"
 
-module onebit_register (input D, input S, input R, input CLK, output Q);
+module eightbit_adder (
+    input [7:0] A,
+    input [7:0] B,
+    output [7:0] S
+);
 
-  wire D_O_mux; // Output from the multiplexer 
+wire [7:0] carry;
+wire [7:0] carry_out;
 
-  Reg_mux mux_instance (
-    .S_mux(S),
-    .R_mux(R),
-    .D_I_mux(D), 
-    .Q_mux(Q), // Connect the Q output of the flip-flop to the input of the multiplexer  
-    .D_O_mux(D_O_mux)
-  );
+Half_Adder ha_instance_0 (
+    .A_0(A[0]),
+    .B_0(B[0]),
+    .S_0(S[0]),
+    .C_0(carry[0])
+);
 
-  D_Flip_Flop flip_flop_instance (
-    .D_flip(D_O_mux), // Connect the input of the flip-flop to the multiplexer's output
-    .Q_flip(Q),
-    .clk_flip(CLK)
-  );  
-  
-  not(D, Q);
+Full_Adder FA_1 (
+    .A_I(A[1]),
+    .B_I(B[1]),
+    .C_I(carry[0]),
+    .S_O(S[1]),
+    .C_O(carry_out[1])
+);
+
+Full_Adder FA_2 (
+    .A_I(A[2]),
+    .B_I(B[2]),
+    .C_I(carry_out[1]),
+    .S_O(S[2]),
+    .C_O(carry_out[2])
+);
+
+Full_Adder FA_3 (
+    .A_I(A[3]),
+    .B_I(B[3]),
+    .C_I(carry_out[2]),
+    .S_O(S[3]),
+    .C_O(carry_out[3])
+);
+
+Full_Adder FA_4 (
+    .A_I(A[4]),
+    .B_I(B[4]),
+    .C_I(carry_out[3]),
+    .S_O(S[4]),
+    .C_O(carry_out[4])
+);
+
+Full_Adder FA_5 (
+    .A_I(A[5]),
+    .B_I(B[5]),
+    .C_I(carry_out[4]),
+    .S_O(S[5]),
+    .C_O(carry_out[5])
+);
+
+Full_Adder FA_6 (
+    .A_I(A[6]),
+    .B_I(B[6]),
+    .C_I(carry_out[5]),
+    .S_O(S[6]),
+    .C_O(carry_out[6])
+);
+
+Full_Adder FA_7 (
+    .A_I(A[7]),
+    .B_I(B[7]),
+    .C_I(carry_out[6]),
+    .S_O(S[7]),
+    .C_O(carry_out[7])
+);
 
 endmodule
 \end{lstlisting}
 
-\begin{lstlisting}[style=verilogStyle, caption=, label=]
+\begin{lstlisting}[style=verilogStyle, caption=FSM in Verilog, label=verilog_fsm]
+`include "D_Flip_Flop.v"
+
+module FSM ( I ,CLK ,O );
+
+//Initiate inputs/outputs
+
+input [1:0] I ;
+wire [1:0] I ;
+input CLK ;
+wire CLK ;
+output [1:0] O ;
+wire [1:0] O ;
+
+
+//Initiate all internal wires
+
+wire C[2:0];		//Current state		   
+wire N[2:0];		//Next state   
+
+wire C2not;
+wire C1not;
+wire C0not;
+wire I1not;
+wire I0not;
+wire C0orC1;   
+wire C1xorC0;
+wire A;
+wire B;
+wire T;
+wire D;
+wire E;
+wire F;
+wire G;
+wire H;
+wire J;
+wire K;	
+wire S;	   //Set bit for testing
+wire X;
+wire Y;
+wire Z;
+
+	//Initiate the 3-bit register
+
+	D_Flip_Flop flip_flop_instance_0 (
+	.D_flip(N[0]),
+	.Q_flip(C[0]),
+	.clk_flip(CLK)
+	);	  
+	
+	D_Flip_Flop flip_flop_instance_1 (
+	.D_flip(N[1]),
+	.Q_flip(C[1]),
+	.clk_flip(CLK)
+	);	
+	
+	D_Flip_Flop flip_flop_instance_2 (
+	.D_flip(N[2]),
+	.Q_flip(C[2]),
+	.clk_flip(CLK)
+	);	
+	
+	//Initiate the output logic
+	
+	and(O[1],C[1],C[2]);
+	and(O[0],C0orC1,C2not);
+	or(C0orC1, C[0], C[1]);
+	
+	
+	//Initiate the Next state logic
+	
+	//NOT-gates
+	not(C2not, C[2]);
+	not(C1not, C[1]);
+	not(C0not, C[0]);
+	not(I1not, I[1]);
+	not(I0not, I[0]);
+	
+	//other gates
+
+	and(N[2], X, S);	//To initiate the register for this simulation we make the next state N[2:0]=000 if S=0
+	
+	or(X, I[1], A, B);
+	and(A, C[2], C1not, I0not);
+	and(B, I0not, C2not, C1xorC0);
+	xor(C1xorC0, C[1], C[0]);
+
+	and(N[1], Y, S);	
+	
+	or(Y, I[1], T, D);
+	and(T, C[2], C1not, I[0]);
+	and(D, I[0], C2not, C1xorC0);
+	
+	and(N[0], Z, S);
+	
+	or(Z, K, J);	 
+	or(K, G, H);
+	or(J, E, F);	
+	and(E, C2not, C0not, I1not, I[0]);
+	and(F, C[2], C1not, C[0], I1not);
+	and(G, C[1], C0not, I1not, I[0]);
+	and(H, C2not, C[1], C0not, I1not);
+
+endmodule
 \end{lstlisting}
-
-
 
 \begin{lstlisting}[style=verilogStyle, caption=, label=]
 \end{lstlisting}
