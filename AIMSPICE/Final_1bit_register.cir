@@ -1,11 +1,11 @@
 [aimspice]
 [description]
-4399
+4397
 1Bit Register
 
 **************************************************************
 * Including the file containing the NMOS and PMOS transistors
-.include gpdk90nm_ff.cir
+.include gpdk90nm_tt.cir
 **************************************************************
 
 **************************************************************
@@ -131,7 +131,6 @@ XREG 0 1 CLK S R D Q REGISTER
 .plot v(S) 
 .plot v(R)
 **************************************************************
-
 [options]
 2
 Gmin 1.0E-39

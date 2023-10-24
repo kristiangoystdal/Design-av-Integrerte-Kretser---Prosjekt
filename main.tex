@@ -6,6 +6,7 @@
 \usepackage{float}
 \usepackage{makecell}
 \usepackage{colortbl}
+\usepackage{listings}
 \usepackage[colorlinks=true,allcolors=black]{hyperref}
 \usepackage[british]{babel}     % Defining UK English as language. This will among other things ensure that dates are displayed as 24/03/1997 rather than 03/24/1997 in the bibliography.
 \addto\extrasbritish{   % Change naming of different functions, e.g. figure references.
@@ -19,6 +20,34 @@
     \def\subsectionautorefname{Subsection} % Autoref-name for subsections
     \def\subsubsectionautorefname{Subsection} % Autoref-name for subsubsections
 }
+
+\lstdefinestyle{aimspiceStyle}{
+    language=Verilog,
+    basicstyle=\small\ttfamily,
+    commentstyle=\color{green},
+    keywordstyle=,
+    numberstyle=\tiny\color{gray},
+    numbers=left,
+    numbersep=5pt,
+    breaklines=true,
+    frame=lines,
+    backgroundcolor=\color{lightgray!20}, % Adjust the percentage for a lighter shade
+}
+
+\lstdefinestyle{verilogStyle}{
+    language=Verilog,     % Set the language to Verilog
+    basicstyle=\small\ttfamily,
+    commentstyle=\color{green},
+    keywordstyle=\color{blue},
+    numberstyle=\tiny\color{gray},
+    numbers=left,
+    numbersep=5pt,
+    breaklines=true,
+    frame=lines,
+    backgroundcolor=\color{lightgray!20}, % Lighter background color
+}
+
+
 
 \begin{document}
 

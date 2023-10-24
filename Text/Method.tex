@@ -1,7 +1,39 @@
 \section{Method}
 \label{sec:method}
 
-\subsection{Finite State Machine}
+\subsection{Circuit design}
+The Multiply accumulate circuit can be divided into different subsystems. In this section we are going to explain the functions of each subsystem and create a circuit design to implement in later sections. In figure \ref{fig:blokk} the different subsystems are shown and how they connect. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{Figures/Blokk.png}
+    \caption{An overview of the complete system.}
+    \label{fig:blokk}
+\end{figure}
+
+\subsubsection{MAC Unit}
+The equation that the MAC unit are going to use is
+
+\begin{equation}
+    C \leftarrow C + (A \cdot B)
+\end{equation}
+
+The MAC unit will receive two 2-bit inputs, A and B, which will be multiplied and added to C. This should happen every rising edge of the clock. The MAC unit consist of a multiplier, an adder and an accumulator. The layout of the MAC is shown in figure \ref{fig:mac-blokk}. 
+\begin{figure}[htpb]
+    \centering
+    \includegraphics[width=0.3\textwidth]{Figures/mac-blokk.png}
+    \caption{Layout of MAC unit}
+    \label{fig:mac-blokk}
+\end{figure}
+
+\subsection{AimSpice}
+In the 
+
+
+\subsection{Verilog}
+
+
+\subsubsection{Finite State Machine}
 \label{subsec:fsm_}
 
 Three input signals are given by the project description~\cite{project_description}, Reset, CLK and Run. The CLK-signal will only be used to time the sequential logic in the FSM and passed on to the MAC unit without further modification.
