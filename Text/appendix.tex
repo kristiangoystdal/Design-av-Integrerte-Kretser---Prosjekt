@@ -399,7 +399,7 @@ endmodule
 
 module FSM ( I ,CLK ,O );
 
-//Initiate inputs/outputs
+//Initiate inputs+outputs
 
 input [1:0] I ;
 wire [1:0] I ;
@@ -474,7 +474,7 @@ wire Z;
 	
 	//other gates
 
-	and(N[2], X, S);	//To initiate the register for this simulation we make the next state N[2:0]=000 if S=0
+	and(N[2], X, S);	//To initiate the register for simulation we make the next state N[2:0]=000 if S=0
 	
 	or(X, I[1], A, B);
 	and(A, C[2], C1not, I0not);
