@@ -36,12 +36,16 @@ R & S & Q  \\ \cline{1-3}
 
 As shown in figure \ref{fig:result_TT27} and figure \ref{fig:result_FF27}, the different combinations of the inputs signals. If set is high, Q only updates to the D-value when the CLK changes from low to high. And if the reset is high, the value Q is overruled to low, even if set and D is high.
 
+When looking at the different corners and temperatures, the difference of the functionality is quite similar. One can see in this case with the TT and FF corners at 27$^\circ C$, that the register is just a tiny fraction more stable with a FF corner rather than a TT corner.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{Figures/Aimspice_Plots/FF_27.png}
     \caption{Plot of register for FF corner}
     \label{fig:result_FF27}
 \end{figure}
+
+
 
 \subsection{Verilog}
 
