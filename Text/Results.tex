@@ -40,12 +40,36 @@ When looking at the different corners and temperatures, the difference of the fu
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{Figures/Aimspice_Plots/FF_27.png}
+    \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/FF_27.png}
     \caption{Plot of register for FF corner}
     \label{fig:result_FF27}
 \end{figure}
 
+When simulation the static power consumption for the TT and FF corner, we look at a state where the CLK is not running and the inputs, D, S and R, are set to high. The static power consumption is calculated by taking the current in the VDD node and multiplying it with the VDD, as shown in equation \ref{eq:power}.
 
+\begin{equation}
+    \label{eq:power}
+    P = I \cdot V
+\end{equation}
+
+For the TT corner, absolute value of the average current in the VDD node is $\approx$5 nA, and for the FF corner the absolute value of the average is $\approx$14 nA.
+
+The static power consumption is therefore equal to $\approx$4.25 nW and $\approx$11.9 nW for the TT and FF corner respectively.
+
+\begin{figure}[H]
+\begin{minipage}{0.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Figures/Current_VDD_TT.png}
+    \caption{Current for TT corner}
+    \label{fig:currentTT}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Figures/Current_VDD_FF.png}
+    \caption{Current for FF corner}
+    \label{fig:currentFF}
+\end{minipage}
+\end{figure}
 
 \subsection{Verilog}
 
