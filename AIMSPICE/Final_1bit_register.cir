@@ -1,6 +1,6 @@
 [aimspice]
 [description]
-4409
+4402
 1Bit Register
 
 **************************************************************
@@ -112,10 +112,10 @@ XFLOP GND VDD CLK 1 Q FLOP
 
 *Setting VDD = 1, the CLK and D as two different pulses
 VDD 1 0 V_DD
-VD D 0 PULSE(0 V_DD 25n RISE_TIME FALL_TIME 20ns 40ns)
-VCLK CLK 0 PULSE(0 V_DD 0 RISE_TIME FALL_TIME CLK_HIGH CLK_PERIOD)
-VS S 0 PULSE(0 V_DD 35n RISE_TIME FALL_TIME 60n 120n)
-VR R 0 PULSE(0 V_DD 145n RISE_TIME FALL_TIME 50n 100n)
+VD D 0 PULSE(0 0 25n RISE_TIME FALL_TIME 20ns 40ns)
+VCLK CLK 0 PULSE(0 0 0 RISE_TIME FALL_TIME CLK_HIGH CLK_PERIOD)
+VS S 0 PULSE(0 0 35n RISE_TIME FALL_TIME 60n 120n)
+VR R 0 PULSE(0 0 145n RISE_TIME FALL_TIME 50n 100n)
 **************************************************************
 
 **************************************************************
@@ -125,17 +125,16 @@ XREG 0 1 CLK S R D Q REGISTER
 
 **************************************************************
 *Plotting D, CLK and Q for the register
-.plot v(Q)
-.plot v(D)
-.plot v(CLK)
-.plot v(S) 
-.plot v(R)
+*.plot v(Q)
+*.plot v(D)
+*.plot v(CLK)
+*.plot v(S) 
+*.plot v(R)
 .plot i(1)
 **************************************************************
 [options]
-2
+1
 Gmin 1.0E-39
-Temp 70
 [dc]
 1
 VB
@@ -149,10 +148,5 @@ X
 X
 0
 [ana]
-4 1
-0
-1 1
-1 1 -3E-05 2E-05
-1
-i(vdd)
+4 0
 [end]

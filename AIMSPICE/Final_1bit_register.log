@@ -7,7 +7,7 @@
                  *                                           *
                  *********************************************
 
-	Date: Tue Oct 24 12:42:26 2023
+	Date: Tue Oct 24 14:56:21 2023
 	Circuit File: C:\Users\krisg\OneDrive - NTNU\2023 Høst\Design av integrete kretser\Prosjekt\Design_av_Integrerte_Kretser__Prosjekt\AIMSPICE\Final_1bit_register.cir
 	Analysis: Transient
 
@@ -253,10 +253,10 @@
    238:  
    239:  *Setting VDD = 1, the CLK and D as two different pulses
    240:  VDD 1 0 V_DD
-   241:  VD D 0 PULSE(0 V_DD 25n RISE_TIME FALL_TIME 20ns 40ns)
-   242:  VCLK CLK 0 PULSE(0 V_DD 0 RISE_TIME FALL_TIME CLK_HIGH CLK_PERIOD)
-   243:  VS S 0 PULSE(0 V_DD 35n RISE_TIME FALL_TIME 60n 120n)
-   244:  VR R 0 PULSE(0 V_DD 145n RISE_TIME FALL_TIME 50n 100n)
+   241:  VD D 0 PULSE(V_DD V_DD 25n RISE_TIME FALL_TIME 20ns 40ns)
+   242:  VCLK CLK 0 PULSE(0 0 0 RISE_TIME FALL_TIME CLK_HIGH CLK_PERIOD)
+   243:  VS S 0 PULSE(V_DD V_DD 35n RISE_TIME FALL_TIME 60n 120n)
+   244:  VR R 0 PULSE(V_DD V_DD 145n RISE_TIME FALL_TIME 50n 100n)
    245:  **************************************************************
    246:  
    247:  **************************************************************
@@ -266,11 +266,11 @@
    251:  
    252:  **************************************************************
    253:  *Plotting D, CLK and Q for the register
-   254:  .plot v(Q)
-   255:  .plot v(D)
-   256:  .plot v(CLK)
-   257:  .plot v(S) 
-   258:  .plot v(R)
+   254:  *.plot v(Q)
+   255:  *.plot v(D)
+   256:  *.plot v(CLK)
+   257:  *.plot v(S) 
+   258:  *.plot v(R)
    259:  .plot i(1)
    260:  **************************************************************
    261:  .tran 0.1n 300n
@@ -293,24 +293,23 @@
 **************  Options (Only those different from default)  **************
 
 	Gmin:        1.0E-39
-	Temp:        70
 
 
 *************************  Simulation Statistics  *************************
 
-	Total number of iterations.....................: 2516
-	Number of iterations for transient analysis....: 2503
-	Total number of timepoints.....................: 780
-	Number of timepoints accepted..................: 780
+	Total number of iterations.....................: 1568
+	Number of iterations for transient analysis....: 1554
+	Total number of timepoints.....................: 732
+	Number of timepoints accepted..................: 732
 	Number of timepoints rejected..................: 0
-	Total analysis time (sec)......................: 0.236
-	Transient analysis time (sec)..................: 0.23
-	Time spent in device loading (sec).............: 0.081
-	Time spent in L-U decomposition (sec)..........: 0.009
-	Time spent in matrix reordering (sec)..........: 0.001
-	Time spent in matrix solving (sec).............: 0.008
-	Time spent in transient L-U decomposition (sec): 0.009
-	Time spent in transient matrix solving (sec)...: 0.008
+	Total analysis time (sec)......................: 0.065
+	Transient analysis time (sec)..................: 0.062
+	Time spent in device loading (sec).............: 0.035
+	Time spent in L-U decomposition (sec)..........: 0
+	Time spent in matrix reordering (sec)..........: 0
+	Time spent in matrix solving (sec).............: 0.003
+	Time spent in transient L-U decomposition (sec): 0
+	Time spent in transient matrix solving (sec)...: 0.003
 
 ***************************  Kernel Messages  *****************************
 
