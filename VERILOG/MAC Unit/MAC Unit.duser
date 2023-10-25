@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<design-settings>
+	<plugins>
+		<Aldec.Stimuli.1>
+			<hierarchy activeStimuliSetName="StimuliSet4">
+				<stimuliSet name="StimuliSet1">
+					<stimulus name="Stimulus1" strength="default" enabled="true" type="clock">
+						<stimulus_data>
+							<period value="100ns"/>
+							<low_value value="0"/>
+							<high_value value="1"/>
+							<starting_value value="low"/>
+							<duty_cycle value="50.000000"/>
+							<offset value="0fs" enabled="false"/>
+							<cancel_time value="0fs" enabled="false"/>
+							<frequency_jitter value="0fs" enabled="false"/>
+							<phase_jitter value="0fs" enabled="false"/>
+						</stimulus_data>
+						<signals>
+							<signal path="/eightbit_register/clk_eight"/>
+						</signals>
+					</stimulus>
+					<stimulus name="Stimulus2" strength="default" enabled="true" type="value">
+						<stimulus_data>
+							<value value="1"/>
+							<radix value="default"/>
+							<cancel_time value="0fs" enabled="false"/>
+						</stimulus_data>
+						<signals>
+							<signal path="/eightbit_register/s_eight"/>
+						</signals>
+					</stimulus>
+					<stimulus name="Stimulus3" strength="default" enabled="true" type="value">
+						<stimulus_data>
+							<value value="0"/>
+							<radix value="default"/>
+							<cancel_time value="0fs" enabled="false"/>
+						</stimulus_data>
+						<signals>
+							<signal path="/eightbit_register/r_eight"/>
+						</signals>
+					</stimulus>
+					<stimulus name="Stimulus4" strength="default" enabled="true" type="clock">
+						<stimulus_data>
+							<period value="220ns"/>
+							<low_value value="0"/>
+							<high_value value="1"/>
+							<starting_value value="low"/>
+							<duty_cycle value="50.000000"/>
+							<offset value="0fs" enabled="false"/>
+							<cancel_time value="0fs" enabled="false"/>
+							<frequency_jitter value="0fs" enabled="false"/>
+							<phase_jitter value="0fs" enabled="false"/>
+						</stimulus_data>
+					</stimulus>
+					<stimulus name="Stimulus5" strength="default" enabled="true" type="clock">
+						<stimulus_data>
+							<period value="200ns"/>
+							<low_value value="0"/>
+							<high_value value="1"/>
+							<starting_value value="low"/>
+							<duty_cycle value="50.000000"/>
+							<offset value="0fs" enabled="false"/>
+							<cancel_time value="0fs" enabled="false"/>
+							<frequency_jitter value="0fs" enabled="false"/>
+							<phase_jitter value="0fs" enabled="false"/>
+						</stimulus_data>
+						<signals>
+							<signal path="/eightbit_register/d_eight(4)"/>
+						</signals>
+					</stimulus>
+				</stimuliSet>
+				<stimuliSet name="StimuliSet2">
+					<stimulus name="Stimulus1" strength="default" enabled="true" type="clock">
+						<stimulus_data>
+							<period value="200ns"/>
+							<low_value value="0"/>
+							<high_value value="1"/>
+							<starting_value value="low"/>
+							<duty_cycle value="50.000000"/>
+							<offset value="0fs" enabled="false"/>
+							<cancel_time value="0fs" enabled="false"/>
+							<frequency_jitter value="0fs" enabled="false"/>
+							<phase_jitter value="0fs" enabled="false"/>
+						</stimulus_data>
+						<signals>
+							<signal path="/eightbit_register/d_eight(4)"/>
+						</signals>
+					</stimulus>
+					<stimulus name="Stimulus2" strength="default" enabled="true" type="clock">
+						<stimulus_data>
+							<period value="100ns"/>
+							<low_value value="0"/>
+							<high_value value="1"/>
+							<starting_value value="low"/>
+							<duty_cycle value="50.000000"/>
+							<offset value="0fs" enabled="false"/>
+							<cancel_time value="0fs" enabled="false"/>
+							<frequency_jitter value="0fs" enabled="false"/>
+							<phase_jitter value="0fs" enabled="false"/>
+						</stimulus_data>
+						<signals>
+							<signal path="/eightbit_register/clk_eight"/>
+						</signals>
+					</stimulus>
+					<stimulus name="Stimulus3" strength="default" enabled="true" type="value">
+						<stimulus_data>
+							<value value="1"/>
+							<radix value="default"/>
+							<cancel_time value="0fs" enabled="false"/>
+						</stimulus_data>
+						<signals>
+							<signal path="/eightbit_register/s_eight"/>
+						</signals>
+					</stimulus>
+					<stimulus name="Stimulus4" strength="default" enabled="true" type="clock">
+						<stimulus_data>
+							<period value="100ns"/>
+							<low_value value="0"/>
+							<high_value value="1"/>
+							<starting_value value="low"/>
+							<duty_cycle value="50.000000"/>
+							<offset value="0fs" enabled="false"/>
+							<cancel_time value="0fs" enabled="false"/>
+							<frequency_jitter value="0fs" enabled="false"/>
+							<phase_jitter value="0fs" enabled="false"/>
+						</stimulus_data>
+						<signals>
+							<signal path="/eightbit_register/d_eight(0)"/>
+						</signals>
+					</stimulus>
+				</stimuliSet>
+				<stimuliSet name="StimuliSet3">
+					<stimulus name="S" strength="default" enabled="true" type="value">
+						<stimulus_data>
+							<value value="1"/>
+							<radix value="default"/>
+							<cancel_time value="0fs" enabled="false"/>
+						</stimulus_data>
+						<signals>
+							<signal path="/eightbit_register/s_eight"/>
+						</signals>
+					</stimulus>
+					<stimulus name="Stimulus1" strength="default" enabled="true" type="clock">
+						<stimulus_data>
+							<period value="100ns"/>
+							<low_value value="0"/>
+							<high_value value="1"/>
+							<starting_value value="low"/>
+							<duty_cycle value="50.000000"/>
+							<offset value="0fs" enabled="false"/>
+							<cancel_time value="0fs" enabled="false"/>
+							<frequency_jitter value="0fs" enabled="false"/>
+							<phase_jitter value="0fs" enabled="false"/>
+						</stimulus_data>
+						<signals>
+							<signal path="/eightbit_register/clk_eight"/>
+						</signals>
+					</stimulus>
+					<stimulus name="Stimulus2" strength="default" enabled="true" type="clock">
+						<stimulus_data>
+							<period value="200ns"/>
+							<low_value value="0"/>
+							<high_value value="1"/>
+							<starting_value value="low"/>
+							<duty_cycle value="50.000000"/>
+							<offset value="0fs" enabled="false"/>
+							<cancel_time value="0fs" enabled="false"/>
+							<frequency_jitter value="0fs" enabled="false"/>
+							<phase_jitter value="0fs" enabled="false"/>
+						</stimulus_data>
+						<signals>
+							<signal path="/eightbit_register/d_eight(0)"/>
+						</signals>
+					</stimulus>
+				</stimuliSet>
+				<stimuliSet name="StimuliSet4">
+					<stimulus name="Stimulus1" strength="default" enabled="true" type="value">
+						<stimulus_data>
+							<value value="1"/>
+							<radix value="default"/>
+							<cancel_time value="0fs" enabled="false"/>
+						</stimulus_data>
+						<signals>
+							<signal path="/eightbit_register/s_eight"/>
+						</signals>
+					</stimulus>
+					<stimulus name="Stimulus2" strength="default" enabled="true" type="clock">
+						<stimulus_data>
+							<period value="100ns"/>
+							<low_value value="0"/>
+							<high_value value="1"/>
+							<starting_value value="low"/>
+							<duty_cycle value="50.000000"/>
+							<offset value="0fs" enabled="false"/>
+							<cancel_time value="0fs" enabled="false"/>
+							<frequency_jitter value="0fs" enabled="false"/>
+							<phase_jitter value="0fs" enabled="false"/>
+						</stimulus_data>
+						<signals>
+							<signal path="/eightbit_register/clk_eight"/>
+						</signals>
+					</stimulus>
+					<stimulus name="Stimulus3" strength="default" enabled="true" type="clock">
+						<stimulus_data>
+							<period value="900ns"/>
+							<low_value value="0"/>
+							<high_value value="1"/>
+							<starting_value value="high"/>
+							<duty_cycle value="10.000000"/>
+							<offset value="0fs" enabled="false"/>
+							<cancel_time value="0fs" enabled="false"/>
+							<frequency_jitter value="0fs" enabled="false"/>
+							<phase_jitter value="0fs" enabled="false"/>
+						</stimulus_data>
+						<signals>
+							<signal path="/eightbit_register/r_eight"/>
+						</signals>
+					</stimulus>
+					<stimulus name="D0" strength="default" enabled="true" type="clock">
+						<stimulus_data>
+							<period value="200ns"/>
+							<low_value value="0"/>
+							<high_value value="1"/>
+							<starting_value value="low"/>
+							<duty_cycle value="50.000000"/>
+							<offset value="0fs" enabled="false"/>
+							<cancel_time value="0fs" enabled="false"/>
+							<frequency_jitter value="0fs" enabled="false"/>
+							<phase_jitter value="0fs" enabled="false"/>
+						</stimulus_data>
+						<signals>
+							<signal path="/eightbit_register/d_eight(0)"/>
+						</signals>
+					</stimulus>
+				</stimuliSet>
+			</hierarchy>
+		</Aldec.Stimuli.1>
+	</plugins>
+</design-settings>
