@@ -7,7 +7,7 @@
 //
 //-----------------------------------------------------------------------------
 //
-// File        : C:\Users\krisg\OneDrive - NTNU\2023 Høst\Design av integrete kretser\Prosjekt\Verilog\Verilog_Implementasjon\MAC Unit\src\Reg_mux.v
+// File        : C:\Users\krisg\OneDrive - NTNU\2023 Hï¿½st\Design av integrete kretser\Prosjekt\Verilog\Verilog_Implementasjon\MAC Unit\src\Reg_mux.v
 // Generated   : Mon Oct 23 13:11:06 2023
 // From        : interface description file
 // By          : Itf2Vhdl ver. 1.22
@@ -28,9 +28,9 @@ module Reg_mux (
     input Q_mux,
     output D_O_mux
 );			  
-wire Y_mux;	
-assign sbar = ~S_mux;
-assign rbar = ~R_mux;  
+wire Y_mux, sbar, rbar;	
+not(sbar,S_mux);
+not(rbar,R_mux); 
 
 cmos(Y_mux,D_I_mux, S_mux, sbar);
 cmos(Y_mux,Q_mux,sbar,S_mux);
