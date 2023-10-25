@@ -73,6 +73,8 @@ The static power consumption is therefore equal to $\approx$4.25 nW and $\approx
 
 \subsection{Verilog}
 
+In this subsection results of Verilog-simulation will be presented. All Verilog-code is given in appendix~\ref{appendix:Verilog-code}.
+
 Figure~\ref{fig:fsm_simulation} shows the FSM simulated for randomized inputs $I_1$ and $I_0$.
 
 \begin{figure}[H]
@@ -86,11 +88,40 @@ From the figure we see that the memory transitions to the expected states based 
 
 This simulation was run and verified to follow the wanted behaviour as given by table~\ref{tab:truthtable}.
 
-Present the results of your simulations in this section. Use tables and graphs or other figures to illustrate your results. Remember: The table caption goes above the table, the figure caption goes below the figure.
+Figure~\ref{fig:eightbitadder_sim} shows a simulation of the 8-bit adder with random 8-bit inputs A and B. Note that all values in the timing diagram are hexadecimal and that any overflow-bits are handled outside our system. The code used for this simulation is given in listing~\ref{verilog_8bitadder}.
 
-The results section must include:
-\begin{itemize}
-    \item Figures and/or tables that show the results of your simulation.
-    \item Text that describe what we see in the simulation results (e.g. as expected we can see that XYZ which means the circuit functions as intended).
-    \item NB! The result section is a \textit{what?}-section. \textit{What} where the results? \textit{What} do the figures/results mean? Any \textit{why}-questions you might want to write about and try to answer typically belong in the discussion section.
-\end{itemize}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Figures/Test of eightbitadder.png}
+    \caption{Timing diagram of 8-bit adder simulated in Verilog}
+    \label{fig:eightbitadder_sim}
+\end{figure}
+
+Figure~\ref{fig:dflipflop_sim} shows a simulation of a single D Flip-Flop realized in Verilog.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Figures/Test of Dflipflop.png}
+    \caption{Timing diagram of D Flip-Flop simulated in Verilog}
+    \label{fig:dflipflop_sim}
+\end{figure}
+
+Figure~\ref{fig:multiplier_sim} shows a simulation of the 2-bit multiplier realized in Verilog. Inputs A and B are stimulated with arbitrary two bit values to observe the possible outputs. The multiplier has a 4-bit output as the largest possible output result, 9, needs four bits to be represented in binary.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Figures/Test of multiplier.png}
+    \caption{Timing diagram of multiplier simulated in Verilog}
+    \label{fig:multiplier_sim}
+\end{figure}
+
+
+
+% Present the results of your simulations in this section. Use tables and graphs or other figures to illustrate your results. Remember: The table caption goes above the table, the figure caption goes below the figure.
+
+% The results section must include:
+% \begin{itemize}
+%     \item Figures and/or tables that show the results of your simulation.
+%     \item Text that describe what we see in the simulation results (e.g. as expected we can see that XYZ which means the circuit functions as intended).
+%     \item NB! The result section is a \textit{what?}-section. \textit{What} where the results? \textit{What} do the figures/results mean? Any \textit{why}-questions you might want to write about and try to answer typically belong in the discussion section.
+% \end{itemize}
