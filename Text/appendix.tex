@@ -136,6 +136,7 @@ XREG 0 1 CLK S R D Q REGISTER
 
 
 \section{Verilog Code}
+\label{appendix:Verilog-code}
 
 \begin{lstlisting}[style=verilogStyle, caption=D Flip-Flop in Verilog, label=verilog_dflipflop]
 module D_Flip_Flop ( input D_flip , output Q_flip , input clk_flip );
@@ -496,6 +497,29 @@ wire Z;
 	and(F, C[2], C1not, C[0], I1not);
 	and(G, C[1], C0not, I1not, I[0]);
 	and(H, C2not, C[1], C0not, I1not);
+
+endmodule
+\end{lstlisting}
+
+\begin{lstlisting}[style=verilogStyle, caption=2-bit Multiplier in Verilog, label=verilog_multiplier]
+module twobit_multiplier ( A ,B ,O );
+
+input [1:0] A ;
+wire [1:0] A ;
+input [1:0] B ;
+wire [1:0] B ;
+output [3:0] O ;
+wire [3:0] O ;
+
+wire C, D, E;
+
+and(C,A[1],B[1]);
+and(D,A[1],B[0]);
+and(E,A[0],B[1]);
+and(O[0],A[0],B[0]);
+and(O[3],D,E);
+xor(O[2],C,O[3]);
+xor(O[1],D,E);
 
 endmodule
 \end{lstlisting}
