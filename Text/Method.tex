@@ -1,34 +1,42 @@
 \section{Method}
 \label{sec:method}
 
+In this section we will look on how to implement the circuit using transistors and logic gates. 
+
 \subsection{Circuit design}
 \label{subsec:circuitDesign}
-The Multiply accumulate circuit can be divided into different subsystems. In this section we are going to explain the functions of each subsystem and create a circuit design to implement in later sections. In figure \ref{fig:blokk} the different subsystems are shown and how they connect. 
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.7\textwidth]{Figures/Blokk.png}
-    \caption{An overview of the complete system.}
-    \label{fig:blokk}
-\end{figure}
+When designing the different componenents for the circuit, we will use PMOS and NMOS transistors to create the logic gates and components needed. 
+
+
+% The Multiply accumulate circuit can be divided into different subsystems. In this section we are going to explain the functions of each subsystem and create a circuit design to implement in later sections. In figure \ref{fig:blokk} the different subsystems are shown and how they connect. 
+
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=0.7\textwidth]{Figures/Blokk.png}
+%     \caption{An overview of the complete system.}
+%     \label{fig:blokk}
+% \end{figure}
 
 \subsubsection{MAC Unit}
-The equation that the MAC unit are going to use is
 
-\begin{equation}
-    C \leftarrow C + (A \cdot B)
-\end{equation}
 
-The MAC unit will receive two 2-bit inputs, A and B, which will be multiplied and added to C. This should happen every rising edge of the clock. The MAC unit consist of a multiplier, an adder and an accumulator. The layout of the MAC is shown in figure \ref{fig:mac-blokk}. 
-\begin{figure}[htpb]
-    \centering
-    \includegraphics[width=0.3\textwidth]{Figures/mac-blokk.png}
-    \caption{Layout of MAC unit}
-    \label{fig:mac-blokk}
-\end{figure}
+% The equation that the MAC unit are going to use is
+
+% \begin{equation}
+%     C \leftarrow C + (A \cdot B)
+% \end{equation}
+
+% The MAC unit will receive two 2-bit inputs, A and B, which will be multiplied and added to C. This should happen every rising edge of the clock. The MAC unit consist of a multiplier, an adder and an accumulator. The layout of the MAC is shown in figure \ref{fig:mac-blokk}. 
+% \begin{figure}[htpb]
+%     \centering
+%     \includegraphics[width=0.3\textwidth]{Figures/mac-blokk.png}
+%     \caption{Layout of MAC unit}
+%     \label{fig:mac-blokk}
+% \end{figure}
 
 \paragraph{Multiplier}
-The multiplier takes in A and B, two 2 bits inputs, and multiply them. The value of A times B can't be higher than 9, which means that the output of the multiplier has to be at least 4 bits. 
+% The multiplier takes in A and B, two 2 bits inputs, and multiply them. The value of A times B can't be higher than 9, which means that the output of the multiplier has to be at least 4 bits. 
 
 A 2-bit multiplier could be designed like shown in figure \ref{fig:multiplier}.
 
@@ -40,14 +48,8 @@ A 2-bit multiplier could be designed like shown in figure \ref{fig:multiplier}.
 \end{figure}
 
 \paragraph{Adder}
-As shown in figure \ref{fig:mac-blokk}, the adder has to take the sum of a 4-bit number and a 8-bit number. The design of an 8-bit adder is shown in figure \ref{fig:adder-blokk}. The figure shows two 8-bit numbers A and B, and their sum S with a carry $C_O$. 
+% As shown in figure \ref{fig:mac-blokk}, the adder has to take the sum of a 4-bit number and a 8-bit number. The design of an 8-bit adder is shown in figure \ref{fig:adder-blokk}. The figure shows two 8-bit numbers A and B, and their sum S with a carry $C_O$. 
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{Figures/8bitadder.png}
-    \caption{8-bit adder}
-    \label{fig:adder-blokk}
-\end{figure}
 
 The circuit for the half and full adder is shown in figure \ref{fig:halfadder} and \ref{fig:fulladder}.
 
@@ -71,12 +73,6 @@ The circuit for the half and full adder is shown in figure \ref{fig:halfadder} a
 \paragraph{Accumulator}
 The accumulator is an 8-bit register with some control signals, that is received from the Final State Machine (FSM). 
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.9\textwidth]{Figures/8bitRegister.png}
-    \caption{8 bit register}
-    \label{fig:8bitregister}
-\end{figure}
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{Figures/setReset.png}

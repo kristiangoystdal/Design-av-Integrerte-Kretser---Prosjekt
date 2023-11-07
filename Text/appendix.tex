@@ -3,13 +3,15 @@
 \label{appendix:aimspice}
 
 \begin{lstlisting}[style=aimspiceStyle, caption=1-bit register in AIMSPICE, label=testcode]
+1Bit Register
+
 **************************************************************
 * Including the file containing the NMOS and PMOS transistors
 .include gpdk90nm_tt.cir
 **************************************************************
 
 **************************************************************
-.PARAM W_VAL=150n
+.PARAM W_VAL=1500n
 .PARAM L_VAL=300n
 **************************************************************
 
@@ -103,19 +105,20 @@ XFLOP GND VDD CLK 1 Q FLOP
 
 
 **************************************************************
-.PARAM RISE_TIME=0.1n 
-.PARAM FALL_TIME=0.1n 
+.PARAM RISE_TIME=0.5n 
+.PARAM FALL_TIME=0.5n 
 .PARAM CLK_PERIOD=20n 
 .PARAM CLK_HIGH=10n 
 .PARAM V_DD=0.85
+.PARAM C_VDD=0.85
 
 
-*Setting VDD = 1, the CLK and D as two different pulses
+*Setting VDD = 0.85, the D, CLK, S and R as different square waves
 VDD 1 0 V_DD
-VD D 0 PULSE(0 V_DD 25n RISE_TIME FALL_TIME 20ns 40ns)
-VCLK CLK 0 PULSE(0 V_DD 0 RISE_TIME FALL_TIME CLK_HIGH CLK_PERIOD)
-VS S 0 PULSE(0 V_DD 35n RISE_TIME FALL_TIME 60n 120n)
-VR R 0 PULSE(0 V_DD 145n RISE_TIME FALL_TIME 50n 100n)
+VD D 0 PULSE(0 C_VDD 25n RISE_TIME FALL_TIME 20ns 40ns)
+VCLK CLK 0 PULSE(0 C_VDD 0 RISE_TIME FALL_TIME CLK_HIGH CLK_PERIOD)
+VS S 0 PULSE(0 C_VDD 20n RISE_TIME FALL_TIME 60n 120n)
+VR R 0 PULSE(0 C_VDD 145n RISE_TIME FALL_TIME 50n 100n)
 **************************************************************
 
 **************************************************************
@@ -130,7 +133,7 @@ XREG 0 1 CLK S R D Q REGISTER
 .plot v(CLK)
 .plot v(S) 
 .plot v(R)
-**************************************************************
+**************************************************************  
 
 \end{lstlisting}
 
