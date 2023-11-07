@@ -1,11 +1,11 @@
 [aimspice]
 [description]
-4438
+3813
 1Bit Register
 
 **************************************************************
 * Including the file containing the NMOS and PMOS transistors
-.include gpdk90nm_tt.cir
+.include gpdk90nm_ff.cir
 **************************************************************
 
 **************************************************************
@@ -37,24 +37,6 @@ XMN2 C B GND GND NMOS1V W=W_VAL L=L_VAL
 XAND1 GND VDD A B C NAND
 XNOT1 GND VDD C OUT NOT
 .ends AND
-**************************************************************
-
-**************************************************************
-* Subcircuit for a NOR gate 
-.subckt NOR GND VDD A B OUT
-XMP1 VDD A C VDD PMOS1V W=W_VAL L=L_VAL 
-XMP2 C B OUT C PMOS1V W=W_VAL L=L_VAL 
-XMN1 OUT B GND GND NMOS1V W=W_VAL L=L_VAL 
-XMN2 OUT A GND GND NMOS1V W=W_VAL L=L_VAL 
-.ends NOR
-**************************************************************
-
-**************************************************************
-* Subcircuit for an OR gate 
-.subckt OR GND VDD A B OUT
-XGATENOR1 GND VDD A B C NOR
-XNOT1 GND VDD C OUT NOT
-.ends OR
 **************************************************************
 
 **************************************************************
@@ -108,7 +90,7 @@ XFLOP GND VDD CLK 1 Q FLOP
 .PARAM CLK_PERIOD=20n 
 .PARAM CLK_HIGH=10n 
 .PARAM V_DD=0.85
-.PARAM C_VDD=0.85
+.PARAM C_VDD=0
 
 
 *Setting VDD = 0.85, the D, CLK, S and R as different square waves
