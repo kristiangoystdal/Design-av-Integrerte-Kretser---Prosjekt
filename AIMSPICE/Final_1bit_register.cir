@@ -1,15 +1,15 @@
 [aimspice]
 [description]
-4420
+3816
 1Bit Register
 
 **************************************************************
 * Including the file containing the NMOS and PMOS transistors
-.include gpdk90nm_ff.cir
+.include gpdk90nm_tt.cir
 **************************************************************
 
 **************************************************************
-.PARAM W_VAL=150n
+.PARAM W_VAL=1500n
 .PARAM L_VAL=300n
 **************************************************************
 
@@ -37,24 +37,6 @@ XMN2 C B GND GND NMOS1V W=W_VAL L=L_VAL
 XAND1 GND VDD A B C NAND
 XNOT1 GND VDD C OUT NOT
 .ends AND
-**************************************************************
-
-**************************************************************
-* Subcircuit for a NOR gate 
-.subckt NOR GND VDD A B OUT
-XMP1 VDD A C VDD PMOS1V W=W_VAL L=L_VAL 
-XMP2 C B OUT C PMOS1V W=W_VAL L=L_VAL 
-XMN1 OUT B GND GND NMOS1V W=W_VAL L=L_VAL 
-XMN2 OUT A GND GND NMOS1V W=W_VAL L=L_VAL 
-.ends NOR
-**************************************************************
-
-**************************************************************
-* Subcircuit for an OR gate 
-.subckt OR GND VDD A B OUT
-XGATENOR1 GND VDD A B C NOR
-XNOT1 GND VDD C OUT NOT
-.ends OR
 **************************************************************
 
 **************************************************************
@@ -103,19 +85,24 @@ XFLOP GND VDD CLK 1 Q FLOP
 
 
 **************************************************************
-.PARAM RISE_TIME=0.1n 
-.PARAM FALL_TIME=0.1n 
+.PARAM RISE_TIME=0.5n 
+.PARAM FALL_TIME=0.5n 
 .PARAM CLK_PERIOD=20n 
 .PARAM CLK_HIGH=10n 
 .PARAM V_DD=0.85
+<<<<<<< HEAD
+.PARAM C_VDD=0.85
+=======
+.PARAM C_VDD=0
+>>>>>>> 9580381762154e275cd1419b8354290062438192
 
 
-*Setting VDD = 1, the CLK and D as two different pulses
+*Setting VDD = 0.85, the D, CLK, S and R as different square waves
 VDD 1 0 V_DD
-VD D 0 PULSE(V_DD V_DD 25n RISE_TIME FALL_TIME 20ns 40ns)
-VCLK CLK 0 PULSE(0 0 0 RISE_TIME FALL_TIME CLK_HIGH CLK_PERIOD)
-VS S 0 PULSE(V_DD V_DD 35n RISE_TIME FALL_TIME 60n 120n)
-VR R 0 PULSE(V_DD V_DD 145n RISE_TIME FALL_TIME 50n 100n)
+VD D 0 PULSE(0 C_VDD 25n RISE_TIME FALL_TIME 20ns 40ns)
+VCLK CLK 0 PULSE(0 C_VDD 0 RISE_TIME FALL_TIME CLK_HIGH CLK_PERIOD)
+VS S 0 PULSE(0 C_VDD 20n RISE_TIME FALL_TIME 60n 120n)
+VR R 0 PULSE(0 C_VDD 145n RISE_TIME FALL_TIME 50n 100n)
 **************************************************************
 
 **************************************************************
@@ -124,20 +111,19 @@ XREG 0 1 CLK S R D Q REGISTER
 **************************************************************
 
 **************************************************************
-*Plotting D, CLK and Q for the register
-*.plot v(Q)
-*.plot v(D)
-*.plot v(CLK)
-*.plot v(S) 
-*.plot v(R)
-.plot i(1)
+*Plotting Q, D, CLK, S and R for the register
+.plot v(Q)
+.plot v(D)
+.plot v(CLK)
+.plot v(S) 
+.plot v(R)
 **************************************************************
 [options]
 1
 Gmin 1.0E-39
 [dc]
 1
-VB
+VA
 0
 1
 0.001
@@ -148,10 +134,5 @@ X
 X
 0
 [ana]
-4 1
-0
-1 1
-1 1 -2E-08 5E-09
-1
-i(vdd)
+4 0
 [end]

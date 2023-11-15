@@ -1,34 +1,21 @@
 \section{Method}
 \label{sec:method}
 
+\subsection{FSM design}
+
+The state diagram for the FSM was designed acording to the project description. Both a Mealy and a Moore FSM design has been considered. 
+
+
+
+
+
+
 \subsection{Circuit design}
 \label{subsec:circuitDesign}
-The Multiply accumulate circuit can be divided into different subsystems. In this section we are going to explain the functions of each subsystem and create a circuit design to implement in later sections. In figure \ref{fig:blokk} the different subsystems are shown and how they connect. 
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.7\textwidth]{Figures/Blokk.png}
-    \caption{An overview of the complete system.}
-    \label{fig:blokk}
-\end{figure}
+In this section we will look on how to implement the different subsystems of the MAC unit. The designs are shown at a logic gate level as that is used for both the AIMSpice and Verilog implementation. 
 
-\subsubsection{MAC Unit}
-The equation that the MAC unit are going to use is
-
-\begin{equation}
-    C \leftarrow C + (A \cdot B)
-\end{equation}
-
-The MAC unit will receive two 2-bit inputs, A and B, which will be multiplied and added to C. This should happen every rising edge of the clock. The MAC unit consist of a multiplier, an adder and an accumulator. The layout of the MAC is shown in figure \ref{fig:mac-blokk}. 
-\begin{figure}[htpb]
-    \centering
-    \includegraphics[width=0.3\textwidth]{Figures/mac-blokk.png}
-    \caption{Layout of MAC unit}
-    \label{fig:mac-blokk}
-\end{figure}
-
-\paragraph{Multiplier}
-The multiplier takes in A and B, two 2 bits inputs, and multiply them. The value of A times B can't be higher than 9, which means that the output of the multiplier has to be at least 4 bits. 
+\subsubsection{Multiplier} 
 
 A 2-bit multiplier could be designed like shown in figure \ref{fig:multiplier}.
 
@@ -39,16 +26,7 @@ A 2-bit multiplier could be designed like shown in figure \ref{fig:multiplier}.
     \label{fig:multiplier}
 \end{figure}
 
-\paragraph{Adder}
-As shown in figure \ref{fig:mac-blokk}, the adder has to take the sum of a 4-bit number and a 8-bit number. The design of an 8-bit adder is shown in figure \ref{fig:adder-blokk}. The figure shows two 8-bit numbers A and B, and their sum S with a carry $C_O$. 
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{Figures/8bitadder.png}
-    \caption{8-bit adder}
-    \label{fig:adder-blokk}
-\end{figure}
-
+\subsubsection{Adder}
 The circuit for the half and full adder is shown in figure \ref{fig:halfadder} and \ref{fig:fulladder}.
 
 \begin{figure}[H]
@@ -67,28 +45,54 @@ The circuit for the half and full adder is shown in figure \ref{fig:halfadder} a
 \end{figure}
 
 
-
-\paragraph{Accumulator}
-The accumulator is an 8-bit register with some control signals, that is received from the Final State Machine (FSM). 
+\subsubsection{Accumulator}
+The accumulator is an 8-bit register with some control signals, that is received from the Final State Machine (FSM). As shown in figure \ref{fig:8bitregister}, the accumulator consists of a D-Flip-Flop and a control circuit. These are implemented as shown in figure \ref{fig:dflipflop} and \ref{fig:setreset} respectfully.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{Figures/8bitRegister.png}
-    \caption{8 bit register}
-    \label{fig:8bitregister}
+    \includegraphics[width=\textwidth]{Figures/D_Flip_Flop.png}
+    \caption{D-flip flop}
+    \label{fig:dflipflop}
 \end{figure}
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.7\textwidth]{Figures/setReset.png}
+    \includegraphics[width=0.4\textwidth]{Figures/setReset.png}
     \caption{Circuit for controlling register}
     \label{fig:setreset}
 \end{figure}
 
+
+
 \subsection{AimSpice}
 In the AimSpice related part of the assignment, a 1 bit register will be implemented using the designs shown in section \ref{subsec:circuitDesign}. 
 
-To implement the register in AimSpice, different logic gates are made using transistors. The 
+To implement the register in AimSpice, different logic gates are made using transistors. The different logic gates used in the 1-bit register are NOT-, AND- and transmission gates. This is shown in figure \ref{fig:dflipflop} and \ref{fig:setreset}.
 
+\begin{figure}[H]
+\begin{minipage}{0.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Figures/Not gate.png}
+    \caption{NOT gate using MOSFET}
+    \label{fig:NOT}
+\end{minipage}
+\begin{minipage}{0.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Figures/Nand Gate.png}
+    \caption{NAND gate using MOSFET}
+    \label{fig:NAND}
+\end{minipage}
+\end{figure}
+
+The AND gate is made by connecting a NAND and NOT in series, as shown in figure \ref{fig:AND}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{Figures/And gate.png}
+    \caption{AND gate}
+    \label{fig:AND}
+\end{figure}
+
+\subsubsection{Static CMOS}
 
 \subsection{Verilog}
 

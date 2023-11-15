@@ -1,0 +1,113 @@
+timestamp=1698319466016
+
+[~A]
+C:/Users/krisg/OneDrive - NTNU/2023 Høst/Design av integrete kretser/Prosjekt/Design_av_Integrerte_Kretser__Prosjekt/VERILOG/MAC Unit/src/Components/D_Flip_Flop.v=0*5190*5936
+C:/Users/krisg/OneDrive - NTNU/2023 Høst/Design av integrete kretser/Prosjekt/Design_av_Integrerte_Kretser__Prosjekt/VERILOG/MAC Unit/src/Components/eightbit_adder.v=0*7602*8816
+C:/Users/krisg/OneDrive - NTNU/2023 Høst/Design av integrete kretser/Prosjekt/Design_av_Integrerte_Kretser__Prosjekt/VERILOG/MAC Unit/src/Components/eightbit_register.v=0*23046*24407
+C:/Users/krisg/OneDrive - NTNU/2023 Høst/Design av integrete kretser/Prosjekt/Design_av_Integrerte_Kretser__Prosjekt/VERILOG/MAC Unit/src/Components/onebit_register.v=0*19991*21077
+C:/Users/krisg/OneDrive - NTNU/2023 Høst/Design av integrete kretser/Prosjekt/Design_av_Integrerte_Kretser__Prosjekt/VERILOG/MAC Unit/src/Testbenches/testbench.v=0*42286*45704
+LastVerilogToplevel=test_MAC_Unit
+ModifyID=12
+Version=74
+
+[~MFT]
+0=16|0MAC_Unit.mgf|45704|17954
+1=24|1MAC_Unit.mgf|130041|106305
+3=48|3MAC_Unit.mgf|27901|22757
+
+[$root]
+A/$root=22|||1*106305
+BinW64/$root=3*22757
+SLP=3*22872
+Version=13.0.376.8320 (Windows64)|0000000b789cd3f53752d02d2e33ca3634020010aa02e5|c73a565f2ade592f8ac1c68f484c92164afe988cc6e9b1bfa6d35df69490636b
+
+[D_Flip_Flop]
+A/D_Flip_Flop=22|../src/Components/D_Flip_Flop.v|24|1*106679
+BinW64/D_Flip_Flop=3*22940
+R=../src/Components/D_Flip_Flop.v|24
+SLP=3*23061
+Version=13.0.376.8320 (Windows64)|0000000b789cd3f53752d02d2e33ca3634020010aa02e5|3035114a8eea3ac612f138148cd45037d65708298f3fe4b2dead010c312b71b03042a0900c9cf33996a64757a7836996
+
+[FSM]
+A/FSM=22|../src/Components/FSM.v|27|1*109385
+BinW64/FSM=3*23174
+R=../src/Components/FSM.v|27
+SLP=3*23287
+Version=13.0.376.8320 (Windows64)|0000000b789cd3f53752d02d2e33ca3634020010aa02e5|906700607a7a928e22a805630cb51601b691d854a0e7defd1a3cb98dc0d98688
+
+[Full_Adder]
+A/Full_Adder=22|../src/Components/Full_Adder.v|25|1*118474
+BinW64/Full_Adder=3*24412
+R=../src/Components/Full_Adder.v|25
+SLP=3*24532
+Version=13.0.376.8320 (Windows64)|0000000b789cd3f53752d02d2e33ca3634020010aa02e5|fa69c5930488640f559f7e13be5c9d3b268a21810912fca3e06878041bd0da2d103b9599335e49d4e637d2e3d57aaaab
+
+[Half_Adder]
+A/Half_Adder=22|../src/Components/Half_Adder.v|25|1*117385
+BinW64/Half_Adder=3*24175
+R=../src/Components/Half_Adder.v|25
+SLP=3*24295
+Version=13.0.376.8320 (Windows64)|0000000b789cd3f53752d02d2e33ca3634020010aa02e5|88b910d2a4f2a72b0b374d36b1f3abcd0ac0ec2c96bf6a907ebcee0db0473475efd7fce8337478adf0ea2402dfe26a41
+
+[MAC_Unit]
+A/MAC_Unit=22|../src/Components/MAC_Unit.v|31|1*127957
+BinW64/MAC_Unit=3*26365
+R=../src/Components/MAC_Unit.v|31
+SLP=3*26483
+Version=13.0.376.8320 (Windows64)|0000000b789cd3f53752d02d2e33ca3634020010aa02e5|fb0e602f13aeae2a7384e6dc60815f2385dd599cb6821e716ffd063b83d6ea835b8df7d6a74639f6b5820152fec8f545
+
+[Reg_mux]
+A/Reg_mux=22|../src/Components/Reg_mux.v|24|1*122443
+BinW64/Reg_mux=3*25392
+R=../src/Components/Reg_mux.v|24
+SLP=3*25509
+Version=13.0.376.8320 (Windows64)|0000000b789cd3f53752d02d2e33ca3634020010aa02e5|ded7175c303395fd92606c3ea66e29b626527262ddaa47cb266f3a3c4d9b973a2e90239f15ae56fad1ecf95e7ff91154
+
+[eightbit_adder]
+A/eightbit_adder=22|../src/Components/eightbit_adder.v|28|1*120144
+BinW64/eightbit_adder=3*24652
+R=../src/Components/eightbit_adder.v|28
+SLP=3*24776
+Version=13.0.376.8320 (Windows64)|0000000b789cd3f53752d02d2e33ca3634020010aa02e5|ac5cf963368003a10ace8602337c4075195e982d7b5475d2ecf899d70ce0dad5c56c11bf0534f43351c76a206aff28e9
+
+[eightbit_register]
+A/eightbit_register=22|../src/Components/eightbit_register.v|27|1*125470
+BinW64/eightbit_register=3*25878
+R=../src/Components/eightbit_register.v|27
+SLP=3*26005
+Version=13.0.376.8320 (Windows64)|0000000b789cd3f53752d02d2e33ca3634020010aa02e5|a5e07b9f0814c580d30024370493bee75f39d2d8ba77c793d7e04716b74ef77e0e7e53c6b6b566b6e4579a5f1e9efd5c
+
+[onebit_register]
+A/onebit_register=22|../src/Components/onebit_register.v|27|1*124157
+BinW64/onebit_register=3*25623
+R=../src/Components/onebit_register.v|27
+SLP=3*25748
+Version=13.0.376.8320 (Windows64)|0000000b789cd3f53752d02d2e33ca3634020010aa02e5|41b4d61dd7932f11ac242f68f79090a83e104013731e0af671c05ddf2c61ae9980a2cd80d4e9cf66331c9ba302f066ae
+
+[test_MAC_Unit]
+A/test_MAC_Unit=22|../src/Testbenches/testbench.v|5|1*130041
+BinW64/test_MAC_Unit=3*26709
+R=../src/Testbenches/testbench.v|5
+SLP=3*27901
+Version=13.0.376.8320 (Windows64)|0000000b789cd3f53752d02d2e33ca3634020010aa02e5|ed7dc5dc84a49cac360eb0332d443e5de007e0e111a1a0d6b2171d76fbf77b620babc0892186d0099954b8e10fb457d6
+
+[twobit_multiplier]
+A/twobit_multiplier=22|../src/Components/twobit_multiplier.v|25|1*115449
+BinW64/twobit_multiplier=3*23735
+R=../src/Components/twobit_multiplier.v|25
+SLP=3*23862
+Version=13.0.376.8320 (Windows64)|0000000b789cd3f53752d02d2e33ca3634020010aa02e5|8e499e954479e025e3e120d4b1145db0f42c222420832dd31ce9696320c96067ca47f1211a7f43aa59cde7f2a7b2f822
+
+[~U]
+$root=12|0*39340|
+D_Flip_Flop=12|0*39602|
+FSM=12|0*39807|
+Full_Adder=12|0*40467|
+Half_Adder=12|0*40262|
+MAC_Unit=12|0*41702|
+Reg_mux=12|0*40943|
+eightbit_adder=12|0*40682|
+eightbit_register=12|0*41406|
+onebit_register=12|0*41151|
+test_MAC_Unit=12|0*42032||0x10
+twobit_multiplier=12|0*40043|

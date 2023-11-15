@@ -1,0 +1,13 @@
+[Files List]
+C:\Aldec\Active-HDL-Student-Edition\vlib\std/src/standard.vhd=S
+C:\Users\krisg\OneDrive - NTNU\2023 Høst\Design av integrete kretser\Prosjekt\Design_av_Integrerte_Kretser__Prosjekt\VERILOG\MAC Unit/src/Components/D_Flip_Flop.v=S
+C:\Users\krisg\OneDrive - NTNU\2023 Høst\Design av integrete kretser\Prosjekt\Design_av_Integrerte_Kretser__Prosjekt\VERILOG\MAC Unit/src/Testbenches/testbench.v=S
+C:\Users\krisg\OneDrive - NTNU\2023 Høst\Design av integrete kretser\Prosjekt\Design_av_Integrerte_Kretser__Prosjekt\VERILOG\MAC Unit/src/Components/Reg_mux.v=S
+C:\Users\krisg\OneDrive - NTNU\2023 Høst\Design av integrete kretser\Prosjekt\Design_av_Integrerte_Kretser__Prosjekt\VERILOG\MAC Unit/src/Components/onebit_register.v=S
+C:\Users\krisg\OneDrive - NTNU\2023 Høst\Design av integrete kretser\Prosjekt\Design_av_Integrerte_Kretser__Prosjekt\VERILOG\MAC Unit/src/Components/Full_Adder.v=S
+C:\Users\krisg\OneDrive - NTNU\2023 Høst\Design av integrete kretser\Prosjekt\Design_av_Integrerte_Kretser__Prosjekt\VERILOG\MAC Unit/src/Components/Half_Adder.v=S
+C:\Users\krisg\OneDrive - NTNU\2023 Høst\Design av integrete kretser\Prosjekt\Design_av_Integrerte_Kretser__Prosjekt\VERILOG\MAC Unit/src/Components/eightbit_register.v=S
+C:\Users\krisg\OneDrive - NTNU\2023 Høst\Design av integrete kretser\Prosjekt\Design_av_Integrerte_Kretser__Prosjekt\VERILOG\MAC Unit/src/Components/eightbit_adder.v=S
+C:\Users\krisg\OneDrive - NTNU\2023 Høst\Design av integrete kretser\Prosjekt\Design_av_Integrerte_Kretser__Prosjekt\VERILOG\MAC Unit/src/Components/twobit_multiplier.v=S
+C:\Users\krisg\OneDrive - NTNU\2023 Høst\Design av integrete kretser\Prosjekt\Design_av_Integrerte_Kretser__Prosjekt\VERILOG\MAC Unit/src/Components/FSM.v=S
+C:\Users\krisg\OneDrive - NTNU\2023 Høst\Design av integrete kretser\Prosjekt\Design_av_Integrerte_Kretser__Prosjekt\VERILOG\MAC Unit/src/Components/MAC_Unit.v=S

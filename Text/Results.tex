@@ -3,7 +3,7 @@
 
 \subsection{AimSpice}
 
-To test the 1bit register made by in AimSpice, we have to set some pulses for the clock signal, the data input, and the set and reset signals. 
+To test the 1-bit register made by in AimSpice, we have to set some pulses for the clock signal, the data input, and the set and reset signals.
 
 As shown in appendix \ref{appendix:aimspice}, line 110-113, we use the PULSE function in AimSpice to create square waves for the different inputs. These inputs will together determine what the output Q is set to. 
 
@@ -45,16 +45,18 @@ When looking at the different corners and temperatures, the difference of the fu
     \label{fig:result_FF27}
 \end{figure}
 
-When simulation the static power consumption for the TT and FF corner, we look at a state where the CLK is not running and the inputs, D, S and R, are set to high. The static power consumption is calculated by taking the current in the VDD node and multiplying it with the VDD, as shown in equation \ref{eq:power}.
+When simulation the static power consumption for the TT and FF corner, we look at a state where the CLK is not running and the inputs, D, S and R, are set to low. The static power consumption is calculated by taking the current in the $V_{DD}$ node and multiplying it with the $V_{DD}$, as shown in equation \ref{eq:power}.
 
 \begin{equation}
     \label{eq:power}
-    P = I \cdot V
+    P = I \cdot V_{DD}
 \end{equation}
 
-For the TT corner, absolute value of the average current in the VDD node is $\approx$5 nA, and for the FF corner the absolute value of the average is $\approx$14 nA.
+We have therefore chosen a value for $V_{DD} = 0.85V$, as a lower $V_{DD}$ gives a lower power consumption. By using the function operating point in AimSpice, a current in the $V_{DD}$ node can be found.  
 
-The static power consumption is therefore equal to $\approx$4.25 nW and $\approx$11.9 nW for the TT and FF corner respectively.
+For the TT corner, absolute value of the current in the $V_{DD}$ node is $\approx$23.8 nA, and for the FF corner the absolute value is $\approx$67.99 nA.
+
+The static power consumption is therefore equal to $\approx$20.23 nW and $\approx$57.79 nW for the TT and FF corner respectively.
 
 \begin{figure}[H]
 \begin{minipage}{0.5\textwidth}
@@ -105,6 +107,8 @@ Figure~\ref{fig:dflipflop_sim} shows a simulation of a single D Flip-Flop realiz
     \caption{Timing diagram of D Flip-Flop simulated in Verilog}
     \label{fig:dflipflop_sim}
 \end{figure}
+
+Figure \ref{fig:8bitregister_sim} shows a simulation of a 8-bit register realized in Verilog.
 
 \begin{figure}[H]
     \centering

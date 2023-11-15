@@ -1,0 +1,11 @@
+.\src\Components\D_Flip_Flop.v
+.\src\Components\eightbit_adder.v
+.\src\Components\eightbit_register.v
+.\src\Components\Full_Adder.v
+.\src\Components\onebit_register.v
+.\src\Components\Reg_mux.v
+.\src\Components\Half_Adder.v
+.\src\Components\MAC_Unit.v
+.\src\Components\twobit_multiplier.v
+.\src\Components\FSM.v
+.\src\Testbenches\testbench.v

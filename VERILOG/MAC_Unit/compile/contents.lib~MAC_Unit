@@ -1,0 +1,25 @@
+12
+~M 0 "" 0 $root
+~A 1 "" 0 $root
+~M 1 "../src/Components/D_Flip_Flop.v" 24 D_Flip_Flop
+~A 1 "../src/Components/D_Flip_Flop.v" 24 D_Flip_Flop
+~M 1 "../src/Components/FSM.v" 27 FSM
+~A 1 "../src/Components/FSM.v" 27 FSM
+~M 1 "../src/Components/Full_Adder.v" 25 Full_Adder
+~A 1 "../src/Components/Full_Adder.v" 25 Full_Adder
+~M 1 "../src/Components/Half_Adder.v" 25 Half_Adder
+~A 1 "../src/Components/Half_Adder.v" 25 Half_Adder
+~M 1 "../src/Components/MAC_Unit.v" 31 MAC_Unit
+~A 1 "../src/Components/MAC_Unit.v" 31 MAC_Unit
+~M 1 "../src/Components/Reg_mux.v" 24 Reg_mux
+~A 1 "../src/Components/Reg_mux.v" 24 Reg_mux
+~M 1 "../src/Components/eightbit_adder.v" 28 eightbit_adder
+~A 1 "../src/Components/eightbit_adder.v" 28 eightbit_adder
+~M 1 "../src/Components/eightbit_register.v" 27 eightbit_register
+~A 1 "../src/Components/eightbit_register.v" 27 eightbit_register
+~M 1 "../src/Components/onebit_register.v" 27 onebit_register
+~A 1 "../src/Components/onebit_register.v" 27 onebit_register
+~M 3 "../src/Testbenches/testbench.v" 5 test_MAC_Unit
+~A 1 "../src/Testbenches/testbench.v" 5 test_MAC_Unit
+~M 1 "../src/Components/twobit_multiplier.v" 25 twobit_multiplier
+~A 1 "../src/Components/twobit_multiplier.v" 25 twobit_multiplier
