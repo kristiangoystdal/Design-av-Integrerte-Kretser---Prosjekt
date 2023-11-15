@@ -1,0 +1,49 @@
+[aimspice]
+[description]
+1482
+**************************************************************
+* Including the file containing the NMOS and PMOS transistors
+.include gpdk90nm_tt.cir
+**************************************************************
+
+**************************************************************
+.PARAM W_VAL=1500n
+.PARAM L_VAL=300n
+**************************************************************
+
+**************************************************************
+* Subcircuit for a NOT gate 
+.subckt NOT GND VDD A_P A_N OUT
+XMP1 OUT A_P VDD VDD PMOS1V W=W_VAL L=L_VAL 
+XMN1 OUT A_N GND GND NMOS1V W=W_VAL L=L_VAL
+.ends NOT
+**************************************************************
+
+**************************************************************
+* Subcircuit for a NAND gate 
+.subckt NAND GND VDD A_P A_N B_P B_N OUT
+XMP1 VDD A_P OUT VDD PMOS1V W=W_VAL L=L_VAL 
+XMP2 VDD B_P OUT VDD PMOS1V W=W_VAL L=L_VAL 
+XMN1 OUT A_N C C NMOS1V W=W_VAL L=L_VAL 
+XMN2 C B_N GND GND NMOS1V W=W_VAL L=L_VAL 
+.ends NAND
+**************************************************************
+
+**************************************************************
+* Subcircuit for a TRANSMISSION gate 
+.subckt TRANS GND VDD IN EN_N EN_P OUT
+XMN1 IN EN_N OUT GND NMOS1V W=W_VAL L=L_VAL
+XMP1 IN EN_P OUT VDD PMOS1V W=W_VAL L=L_VAL 
+.ends TRANS
+**************************************************************
+
+VDD 0 V_DD 0.85
+VP 0 V_P 0.85
+VN 0 V_N 0
+
+XINVERT 0 1 V_P V_N OUT NOT
+.plot i(VDD)
+
+
+
+[end]
