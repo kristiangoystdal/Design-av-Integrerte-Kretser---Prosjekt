@@ -3,11 +3,77 @@
 
 \subsection{FSM design}
 
-The state diagram for the FSM was designed acording to the project description. Both a Mealy and a Moore FSM design has been considered. 
+The FSM was designed according to the project description and the design procedure given in section \ref{subsec:fsm_theory}. Both a Mealy and a Moore FSM design has been considered. The Mealy state machine resulted in 4 states needed and the Moore machine resulted in 8 states needed, requiring an additional state register and more combinatorial logic. The final design was subsequently chosen to be a Mealy FSM. The state diagram derived from the text description is shown in figure~\ref{fig:fsm_diagram}. To be able to hold four different states, one pause state and three different run states, the FSM needs a 2-bit register, with at least a reset function. 
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Figures/FSM-diagram.png}
+    \caption{FSM Diagram}
+    \label{fig:fsm_diagram}
+\end{figure}
 
+Three input signals are given by the project description~\cite{project_description}, Reset, CLK and Run. The CLK-signal
+will only be used to time the sequential logic in the FSM and passed on to the MAC unit without
+further modification. The reset signal $I_1$ is only used to reset to the pause-state ''00'' and passed on to the MAC unit as $CTRL_1$ without further modification. The combinatorial part of the FSM and the resulting state table~(\ref{tab:state_table}) is therefore only dependent on the current state ($C_1$ and $C_0$) and the Run input signal $R_0$. The logic outputs the next state ($N_1$ and $N_0$) and the Run control signal $CTRL_0$.
 
+\begin{table}[H]
+\caption{State table for the FSM}
+\label{tab:state_table}
+\centering
+\begin{tabular}{|l|l|l|l|l|l|}
+\hline
+\rowcolor[HTML]{C0C0C0} 
+$C_1$ & $C_0$ & $I_0$ & $N_1$ & $N_0$ & $CTRL_0$ \\
+\hline
+0  & 0  & 0  & 0   & 0   & 0 \\ 
+\hline
+0  & 0  & 1  & 0   & 1   & 1 \\ 
+\hline
+0  & 1  & 0  & 0   & 1   & 0 \\ 
+\hline
+0  & 1  & 1  & 1   & 0   & 1 \\ 
+\hline
+1  & 0  & 0  & 1   & 0   & 0 \\ 
+\hline
+1  & 0  & 1  & 1   & 1   & 1 \\ 
+\hline
+1  & 1  & 0  & 1   & 1   & 0 \\ 
+\hline
+1  & 1  & 1  & 0   & 0   & 0 \\ 
+\hline
 
+\end{tabular}
+\end{table}
+
+\noindent
+The logic expression for the outputs of the combinatorial logic can be written down and simplified to equation \ref{eq:comb_eq_1}, \ref{eq:comb_eq_2} and \ref{eq:comb_eq_3}.
+
+\begin{equation}
+\label{eq:comb_eq_1}
+    CTRL_0 = I_0\cdot(\overline{C_1 \cdot C_0})
+\end{equation}
+
+\begin{equation}
+\label{eq:comb_eq_2}
+    N_0 = C_0 \oplus I_0
+\end{equation}
+
+\begin{equation}
+\label{eq:comb_eq_3}
+    N_1 = C_1 \oplus (C_0 \cdot I_0)
+\end{equation}
+
+From the boolean equations, we can draw up the logic diagram shown in figure~\ref{fig:fsm_logic_diagram}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Figures/logic diagram.png}
+    \caption{FSM logic diagram}
+    \label{fig:fsm_logic_diagram}
+\end{figure}
+
+\noindent
+The register used in this circuit is of the same design as the register described in section~\ref{subsubsec:accumulator}.
 
 
 \subsection{Circuit design}
@@ -46,6 +112,7 @@ The circuit for the half and full adder is shown in figure \ref{fig:halfadder} a
 
 
 \subsubsection{Accumulator}
+\label{subsubsec:accumulator}
 The accumulator is an 8-bit register with some control signals, that is received from the Final State Machine (FSM). As shown in figure \ref{fig:8bitregister}, the accumulator consists of a D-Flip-Flop and a control circuit. These are implemented as shown in figure \ref{fig:dflipflop} and \ref{fig:setreset} respectfully.
 
 \begin{figure}[H]
@@ -118,54 +185,6 @@ Following the detailed description of the FSM's functionality in section 2.2.1 i
 The current state is from here described by the three signals $C_2$, $C_1$ and $C_0$. The next state is describrd by the three signals $N_2$, $N_1$ and $N_0$.
 
 Figure~\ref{fig:fsm_diagram} and table~\ref{tab:truthtable} show a detailed overview of the wanted functionality of the FSM, describing the relation between inputs, outputs, current state and next state. Transitions for each current state and input is described by arrows, and output is described within each state ($C_2 C_1 C_0$/$O_1 O_0$)
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{Figures/FSM-diagram.png}
-    \caption{FSM Diagram}
-    \label{fig:fsm_diagram}
-\end{figure}
-
-\begin{table}[H]
-\caption{Truth table for the FSM}
-\label{tab:truthtable}
-\centering
-\begin{tabular}{|l|l|l|l|l|l|l|l|l|l|}
-\hline
-\rowcolor[HTML]{C0C0C0} 
-$C_2$ & $C_1$ & $C_0$ & $I_1$ & $I_0$ & $N_2$ & $N_1$ & $N_0$ & $O_1$ & $O_0$ \\ \hline
-0  & 0  & 0  & 0   & 0   & 0  & 0  & 0  & 0   & 0   \\ \hline
-0  & 0  & 0  & 0   & 1   & 0  & 0  & 1  & 0   & 0   \\ \hline
-0  & 0  & 0  & 1   & 0   & 1  & 1  & 0  & 0   & 0   \\ \hline
-0  & 0  & 0  & 1   & 1   & 1  & 1  & 0  & 0   & 0   \\ \hline
-0  & 0  & 1  & 0   & 0   & 1  & 0  & 0  & 0   & 1   \\ \hline
-0  & 0  & 1  & 0   & 1   & 0  & 1  & 0  & 0   & 1   \\ \hline
-0  & 0  & 1  & 1   & 0   & 1  & 1  & 0  & 0   & 1   \\ \hline
-0  & 0  & 1  & 1   & 1   & 1  & 1  & 0  & 0   & 1   \\ \hline
-0  & 1  & 0  & 0   & 0   & 1  & 0  & 1  & 0   & 1   \\ \hline
-0  & 1  & 0  & 0   & 1   & 0  & 1  & 1  & 0   & 1   \\ \hline
-0  & 1  & 0  & 1   & 0   & 1  & 1  & 0  & 0   & 1   \\ \hline
-0  & 1  & 0  & 1   & 1   & 1  & 1  & 0  & 0   & 1   \\ \hline
-0  & 1  & 1  & 0   & 0   & 0  & 0  & 0  & 0   & 1   \\ \hline
-0  & 1  & 1  & 0   & 1   & 0  & 0  & 0  & 0   & 1   \\ \hline
-0  & 1  & 1  & 1   & 0   & 1  & 1  & 0  & 0   & 1   \\ \hline
-0  & 1  & 1  & 1   & 1   & 1  & 1  & 0  & 0   & 1   \\ \hline
-1  & 0  & 0  & 0   & 0   & 1  & 0  & 0  & 0   & 0   \\ \hline
-1  & 0  & 0  & 0   & 1   & 0  & 1  & 0  & 0   & 0   \\ \hline
-1  & 0  & 0  & 1   & 0   & 1  & 1  & 0  & 0   & 0   \\ \hline
-1  & 0  & 0  & 1   & 1   & 1  & 1  & 0  & 0   & 0   \\ \hline
-1  & 0  & 1  & 0   & 0   & 1  & 0  & 1  & 0   & 0   \\ \hline
-1  & 0  & 1  & 0   & 1   & 0  & 1  & 1  & 0   & 0   \\ \hline
-1  & 0  & 1  & 1   & 0   & 1  & 1  & 0  & 0   & 0   \\ \hline
-1  & 0  & 1  & 1   & 1   & 1  & 1  & 0  & 0   & 0   \\ \hline
-1  & 1  & 0  & 0   & 0   & 0  & 0  & 0  & 1   & 0   \\ \hline
-1  & 1  & 0  & 0   & 1   & 0  & 0  & 1  & 1   & 0   \\ \hline
-1  & 1  & 0  & 1   & 0   & 1  & 1  & 0  & 1   & 0   \\ \hline
-1  & 1  & 0  & 1   & 1   & 1  & 1  & 0  & 1   & 0   \\ \hline
-\end{tabular}
-\end{table}
-
-
 
 In this section you should explain what you have done, and how you have done it. The explanations should have enough detail to make a reproduction possible (i.e. it should be possible to do exactly what you have done, and receive the same results, only by doing what you write in this section).
 
