@@ -13,7 +13,7 @@ def txt_to_csv(input_txt, output_csv, delimiter="\t"):
 
 
 def convert_folder_txt_to_csv(
-    input_folder="txt_Files", output_folder="csv_Files", delimiter="\t"
+    input_folder=txt_path, output_folder=output_path, delimiter="\t"
 ):
     script_path = os.path.abspath(__file__)
     input_folder_path = os.path.join(os.path.dirname(script_path), input_folder)
@@ -29,4 +29,6 @@ def convert_folder_txt_to_csv(
 
 
 # Example usage:
+txt_path = "txt_Files"
+output_path = "csv_Files"
 convert_folder_txt_to_csv()
