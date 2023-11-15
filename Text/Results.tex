@@ -3,9 +3,9 @@
 
 \subsection{AimSpice}
 
-To test the 1-bit register made by in AimSpice, we have to set some pulses for the clock signal, the data input, and the set and reset signals.
+To test the 1-bit register made by in AimSpice, we have to set some square waves for the clock signal, the data input, and the set and reset signals.
 
-As shown in appendix \ref{appendix:aimspice}, line 110-113, we use the PULSE function in AimSpice to create square waves for the different inputs. These inputs will together determine what the output Q is set to. 
+As shown in appendix \ref{appendix:aimspice}, line 95-98, we use the PULSE function in AimSpice to create square waves for the different inputs. These inputs will together determine what the output Q is set to. 
 
 The register could have different effect and operations due to the corner of the transistor and the temperature. There are five corners the transistors could be; TT(typical-typical), SS(slow-slow), FF(fast-fast), SF(slow-fast) and FS(fast-slow). For all of the corners they have been tested for three temperatures, 0$^\circ C$, 27$^\circ C$ and 70$^\circ C$. All the different plots for the different cases are shown in the appendix \ref{appendix:aimspicePlots}. 
 
@@ -45,33 +45,83 @@ When looking at the different corners and temperatures, the difference of the fu
     \label{fig:result_FF27}
 \end{figure}
 
-When simulation the static power consumption for the TT and FF corner, we look at a state where the CLK is not running and the inputs, D, S and R, are set to low. The static power consumption is calculated by taking the current in the $V_{DD}$ node and multiplying it with the $V_{DD}$, as shown in equation \ref{eq:power}.
+\subsubsection{Static Power Consumption}
 
-\begin{equation}
-    \label{eq:power}
-    P = I \cdot V_{DD}
-\end{equation}
+We have therefore chosen a value for $V_{DD} = 0.85V$, as a lower $V_{DD}$ gives a lower power consumption. By using the function operating point in AimSpice, a current in the $V_{DD}$ node can be found.
 
-We have therefore chosen a value for $V_{DD} = 0.85V$, as a lower $V_{DD}$ gives a lower power consumption. By using the function operating point in AimSpice, a current in the $V_{DD}$ node can be found.  
+Table \ref{tab:leakage} shows the different leakage current for the different corners with all three temperatures. To calculate the static power consumption, we use the formula \ref{eq:power} for all the values and get table \ref{tab:power}.
 
-For the TT corner, absolute value of the current in the $V_{DD}$ node is $\approx$23.8 nA, and for the FF corner the absolute value is $\approx$67.99 nA.
+\begin{table}[H]
+\centering
+\caption{Leakage Current}
+\label{tab:leakage}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llllll}
+\cline{2-6}
+\multicolumn{1}{l|}{} &
+  \multicolumn{1}{l|}{TT} &
+  \multicolumn{1}{l|}{SF} &
+  \multicolumn{1}{l|}{FS} &
+  \multicolumn{1}{l|}{SS} &
+  \multicolumn{1}{l|}{FF} \\ \hline
+\multicolumn{1}{|l|}{0 $^\circ$C} &
+  \multicolumn{1}{l|}{10.764 nA} &
+  \multicolumn{1}{l|}{7.576 nA} &
+  \multicolumn{1}{l|}{27.658 nA} &
+  \multicolumn{1}{l|}{5.667 nA} &
+  \multicolumn{1}{l|}{31.842 nA} \\ \hline
+\multicolumn{1}{|l|}{27 $^\circ$C} &
+  \multicolumn{1}{l|}{23.828 nA} &
+  \multicolumn{1}{l|}{83.146 $\mu$A} &
+  \multicolumn{1}{l|}{58.765 nA} &
+  \multicolumn{1}{l|}{13.360 nA} &
+  \multicolumn{1}{l|}{67.994 nA} \\ \hline
+\multicolumn{1}{|l|}{70 $^\circ$C} &
+  \multicolumn{1}{l|}{64.986 nA} &
+  \multicolumn{1}{l|}{64.437 nA} &
+  \multicolumn{1}{l|}{151.939 nA} &
+  \multicolumn{1}{l|}{33.104 nA} &
+  \multicolumn{1}{l|}{176.953 nA} \\ \hline
+ &  &  &  &  & 
+\end{tabular}%
+}
+\end{table}
 
-The static power consumption is therefore equal to $\approx$20.23 nW and $\approx$57.79 nW for the TT and FF corner respectively.
-
-\begin{figure}[H]
-\begin{minipage}{0.5\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{Figures/Current_VDD_TT.png}
-    \caption{Current for TT corner}
-    \label{fig:currentTT}
-\end{minipage}
-\begin{minipage}{0.5\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{Figures/Current_VDD_FF.png}
-    \caption{Current for FF corner}
-    \label{fig:currentFF}
-\end{minipage}
-\end{figure}
+\begin{table}[H]
+\centering
+\caption{Static Power Consumption}
+\label{tab:power}
+\resizebox{\columnwidth}{!}{%
+\begin{tabular}{llllll}
+\cline{2-6}
+\multicolumn{1}{l|}{} &
+  \multicolumn{1}{l|}{TT} &
+  \multicolumn{1}{l|}{SF} &
+  \multicolumn{1}{l|}{FS} &
+  \multicolumn{1}{l|}{SS} &
+  \multicolumn{1}{l|}{FF} \\ \hline
+\multicolumn{1}{|l|}{0 $^\circ$C} &
+  \multicolumn{1}{l|}{9.1494 nW} &
+  \multicolumn{1}{l|}{6.4396 nW} &
+  \multicolumn{1}{l|}{23.509 nW} &
+  \multicolumn{1}{l|}{4.8170 nW} &
+  \multicolumn{1}{l|}{27.066 nW} \\ \hline
+\multicolumn{1}{|l|}{27 $^\circ$C} &
+  \multicolumn{1}{l|}{20.254 nW} &
+  \multicolumn{1}{l|}{70.674 $\mu$W} &
+  \multicolumn{1}{l|}{49.950 nW} &
+  \multicolumn{1}{l|}{11,356 nW} &
+  \multicolumn{1}{l|}{57.795 nW} \\ \hline
+\multicolumn{1}{|l|}{70 $^\circ$C} &
+  \multicolumn{1}{l|}{55.238 nW} &
+  \multicolumn{1}{l|}{64.772 nW} &
+  \multicolumn{1}{l|}{129.15 nW} &
+  \multicolumn{1}{l|}{28.138 nW} &
+  \multicolumn{1}{l|}{159.41 nW} \\ \hline
+ &  &  &  &  & 
+\end{tabular}%
+}
+\end{table}
 
 \subsection{Verilog}
 
