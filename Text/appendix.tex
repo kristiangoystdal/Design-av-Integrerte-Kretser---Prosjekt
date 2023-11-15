@@ -42,24 +42,6 @@ XNOT1 GND VDD C OUT NOT
 **************************************************************
 
 **************************************************************
-* Subcircuit for a NOR gate 
-.subckt NOR GND VDD A B OUT
-XMP1 VDD A C VDD PMOS1V W=W_VAL L=L_VAL 
-XMP2 C B OUT C PMOS1V W=W_VAL L=L_VAL 
-XMN1 OUT B GND GND NMOS1V W=W_VAL L=L_VAL 
-XMN2 OUT A GND GND NMOS1V W=W_VAL L=L_VAL 
-.ends NOR
-**************************************************************
-
-**************************************************************
-* Subcircuit for an OR gate 
-.subckt OR GND VDD A B OUT
-XGATENOR1 GND VDD A B C NOR
-XNOT1 GND VDD C OUT NOT
-.ends OR
-**************************************************************
-
-**************************************************************
 * Subcircuit for a TRANSMISSION gate 
 .subckt TRANS GND VDD IN EN_N EN_P OUT
 XMN1 IN EN_N OUT GND NMOS1V W=W_VAL L=L_VAL
@@ -133,8 +115,7 @@ XREG 0 1 CLK S R D Q REGISTER
 .plot v(CLK)
 .plot v(S) 
 .plot v(R)
-**************************************************************  
-
+**************************************************************
 \end{lstlisting}
 
 
@@ -535,110 +516,126 @@ Sometimes one might end up running a lot of simulations, and then find out that 
 
 Anything added here will not affect the grade directly, but might contribute to the overall impression of the work you have done (which is part of what we grade). Your grade will NOT be affected negatively if only the AIMSpice and Verilog code is in the appendix.
 
+\newpage
 \section{AimSpice Plots}
 \label{appendix:aimspicePlots}
 
 \begin{figure}[H]
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/TT_0.png}
+        \caption{Plot of register for TT corner}
+        \label{fig:TT0}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/TT_27.png}
+        \caption{Plot of register for TT corner}
+        \label{fig:TT27}
+    \end{minipage}
+\end{figure}
+\begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/TT_0.png}
-    \caption{Plot of register for TT corner}
-    \label{fig:TT0}
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/TT_70.png}
+        \caption{Plot of register for TT corner}
+        \label{fig:TT0}
+    \end{minipage}%
 \end{figure}
 
 \begin{figure}[H]
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/FS_0.png}
+        \caption{Plot of register for FS corner}
+        \label{fig:TT0}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/FS_27.png}
+        \caption{Plot of register for FS corner}
+        \label{fig:TT27}
+    \end{minipage}
+\end{figure}
+\begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/TT_27.png}
-    \caption{Plot of register for TT corner}
-    \label{fig:TT27}
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/FS_70.png}
+        \caption{Plot of register for FS corner}
+        \label{fig:TT0}
+    \end{minipage}%
 \end{figure}
 
 \begin{figure}[H]
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/SF_0.png}
+        \caption{Plot of register for SF corner}
+        \label{fig:TT0}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/SF_27.png}
+        \caption{Plot of register for SF corner}
+        \label{fig:TT27}
+    \end{minipage}
+\end{figure}
+\begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/TT_70.png}
-    \caption{Plot of register for TT corner}
-    \label{fig:TT70}
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/SF_70.png}
+        \caption{Plot of register for SF corner}
+        \label{fig:TT0}
+    \end{minipage}%
 \end{figure}
 
 \begin{figure}[H]
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/SS_0.png}
+        \caption{Plot of register for SS corner}
+        \label{fig:TT0}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/SS_27.png}
+        \caption{Plot of register for SS corner}
+        \label{fig:TT27}
+    \end{minipage}
+\end{figure}
+\begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/FS_0.png}
-    \caption{Plot of register for FS corner}
-    \label{fig:FS0}
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/SS_70.png}
+        \caption{Plot of register for SS corner}
+        \label{fig:TT0}
+    \end{minipage}%
 \end{figure}
 
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/FS_27.png}
-    \caption{Plot of register for FS corner}
-    \label{fig:FS27}
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/FF_0.png}
+        \caption{Plot of register for FF corner}
+        \label{fig:TT0}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/FF_27.png}
+        \caption{Plot of register for FF corner}
+        \label{fig:TT27}
+    \end{minipage}
 \end{figure}
-
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/FS_70.png}
-    \caption{Plot of register for FS corner}
-    \label{fig:FS70}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/SF_0.png}
-    \caption{Plot of register for SF corner}
-    \label{fig:SF0}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/SF_27.png}
-    \caption{Plot of register for SF corner}
-    \label{fig:SF27}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/SF_70.png}
-    \caption{Plot of register for SF corner}
-    \label{fig:SF70}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/SS_0.png}
-    \caption{Plot of register for SS corner}
-    \label{fig:SS0}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/SS_27.png}
-    \caption{Plot of register for SS corner}
-    \label{fig:SS27}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/SS_70.png}
-    \caption{Plot of register for SS corner}
-    \label{fig:SS70}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.7\textwidth]{Figures/Aimspice_Plots/FF_0.png}
-    \caption{Plot of register for FF corner}
-    \label{fig:FF0}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{Figures/Aimspice_Plots/FF_27.png}
-    \caption{Plot of register for FF corner}
-    \label{fig:FF27}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{Figures/Aimspice_Plots/FF_70.png}
-    \caption{Plot of register for FF corner}
-    \label{fig:FF70}
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/FF_70.png}
+        \caption{Plot of register for FF corner}
+        \label{fig:TT0}
+    \end{minipage}%
 \end{figure}
