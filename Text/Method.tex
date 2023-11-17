@@ -193,7 +193,12 @@ The AND gate is made by connecting a NAND and NOT in series, as shown in \autore
 \subsubsection{Finite State Machine}
 \label{subsec:fsm_verilog}
 
-The FSM is implemented and its functionality is verified using the hardware desctriptive language verilog. The code for implementing the FSM in verilog is given in \autoref{verilog_FSM} in the appendix. To simplify the implementation, the register is written as a separate module, shown in the appendix \autoref{verilog_onebitregister}.
+The FSM is implemented and its functionality is verified using the hardware desctriptive language verilog. The complete code for implementing the FSM in verilog is given in \autoref{verilog_FSM} in the appendix. An excerpt of the logic part is given below
+
+\begin
+
+
+To simplify the implementation, the register is written as a separate module, shown in the appendix \autoref{verilog_onebitregister}.
 
 To test the functionality, a separate testbench-module is made in verilog. The FSM is run through a series of different possible inputs. The output timing diagram is subsequently analyzed to verify that the FSM has the correct output based on the input.
 
