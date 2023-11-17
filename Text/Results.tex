@@ -1,31 +1,11 @@
 \section{Results}
 \label{sec:results}
 
-\subsection{AimSpice}
+\subsection{AIMSpice}
 
-To test the 1-bit register made by in AimSpice, we have to set some square waves for the clock signal, the data input, and the set and reset signals.
-
-As shown in appendix \ref{appendix:aimspice}, line 95-98, we use the PULSE function in AimSpice to create square waves for the different inputs. These inputs will together determine what the output Q is set to. 
-
-The register could have different effect and operations due to the corner of the transistor and the temperature. There are five corners the transistors could be; TT(typical-typical), SS(slow-slow), FF(fast-fast), SF(slow-fast) and FS(fast-slow). For all of the corners they have been tested for three temperatures, 0$^\circ C$, 27$^\circ C$ and 70$^\circ C$. All the different plots for the different cases are shown in the appendix \ref{appendix:aimspicePlots}. 
+The register could have different effect and operations due to the corner of the transistor and the temperature. There are five corners the transistors could be; TT(typical-typical), SS(slow-slow), FF(fast-fast), SF(slow-fast) and FS(fast-slow).  For all of the corners they have been tested for three temperatures, 0$^\circ C$, 27$^\circ C$ and 70$^\circ C$. All the different plots for the different cases are shown in the appendix \ref{appendix:aimspicePlots}. 
 
 To validate the functionality of the register, one can examine the plot of the TT and FF corner at 27$^\circ C$. 
-
-The register should have the functionality as shown in the table \ref{tab:registerFunc}. Where the value of Q gets set to D if set is low and it keeps its previous value if set is high. If reset is high, the value Q is set to low. 
-
-\begin{table}[H]
-\label{tab:registerFunc}
-\centering
-\caption{Functionality of 1bit-register}
-\begin{tabular}{|l|l|l|}
-\cline{1-3}
-R & S & Q  \\ \cline{1-3}
-0 & 0 & Q  \\ \cline{1-3}
-0 & 1 & D  \\ \cline{1-3}
-1 & 0 & 0  \\ \cline{1-3}
-1 & 1 & 0  \\ \cline{1-3}
-\end{tabular}
-\end{table}
 
 \begin{figure}[H]
     \centering
@@ -47,7 +27,7 @@ When looking at the different corners and temperatures, the difference of the fu
 
 \subsubsection{Static Power Consumption}
 
-As explained in section \ref{subsec:low_power}, a low voltage on $V_{DD}$ is optimal. We have therefore chosen a value for $V_{DD} = 0.85V$, as a lower $V_{DD}$ gives a lower power consumption. By using the function operating point in AimSpice, the leakage current in the $V_{DD}$ node can be found.
+As explained in section \ref{subsec:low_power}, a low voltage on $V_{DD}$ is optimal. We have therefore chosen a value for $V_{DD} = 0.85V$, as a lower $V_{DD}$ gives a lower power consumption. By using the function operating point in AIMSpice, the leakage current in the $V_{DD}$ node can be found.
 
 Table \ref{tab:leakage} shows the different leakage current for the TT and FF corners with all three temperatures. To calculate the static power consumption, we use the formula \ref{eq:power} for all the values and get table \ref{tab:power}.
 
@@ -107,7 +87,7 @@ In this subsection results of Verilog-simulation will be presented. All Verilog-
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{Figures/Test of FSM.png}
+    \includegraphics[width=\textwidth]{Figures/FSM_testbench_out.png}
     \caption{Timing diagram of FSM simulated in Verilog}
     \label{fig:fsm_simulation}
 \end{figure}
