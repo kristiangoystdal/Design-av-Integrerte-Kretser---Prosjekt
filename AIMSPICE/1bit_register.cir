@@ -1,0 +1,140 @@
+[aimspice]
+[description]
+3875
+1Bit Register
+
+**************************************************************
+* Including the file containing the NMOS and PMOS transistors
+.include gpdk90nm_tt.cir
+**************************************************************
+
+**************************************************************
+.PARAM W_VAL=100n
+.PARAM L_VAL=300n
+**************************************************************
+
+**************************************************************
+* Subcircuit for a NOT gate 
+.subckt NOT GND VDD A OUT
+XMP1 OUT A VDD VDD PMOS1V W=W_VAL L=L_VAL 
+XMN1 OUT A GND GND NMOS1V W=W_VAL L=L_VAL
+.ends NOT
+**************************************************************
+
+**************************************************************
+* Subcircuit for a NAND gate 
+.subckt NAND GND VDD A B OUT
+XMP1 VDD A OUT VDD PMOS1V W=W_VAL L=L_VAL 
+XMP2 VDD B OUT VDD PMOS1V W=W_VAL L=L_VAL 
+XMN1 OUT A C C NMOS1V W=W_VAL L=L_VAL 
+XMN2 C B GND GND NMOS1V W=W_VAL L=L_VAL 
+.ends NAND
+**************************************************************
+
+**************************************************************
+* Subcircuit for an AND gate 
+.subckt AND GND VDD A B OUT
+XAND1 GND VDD A B C NAND
+XNOT1 GND VDD C OUT NOT
+.ends AND
+**************************************************************
+
+**************************************************************
+* Subcircuit for a TRANSMISSION gate 
+.subckt TRANS GND VDD IN EN_N EN_P OUT
+XMN1 IN EN_N OUT GND NMOS1V W=W_VAL L=L_VAL
+XMP1 IN EN_P OUT VDD PMOS1V W=W_VAL L=L_VAL 
+.ends TRANS
+**************************************************************
+
+**************************************************************
+* Subcircuit for a MUX for set and reset
+.subckt MUX GND VDD S R DI Q DO
+XNOT1 GND VDD S 1 NOT
+XTRANS1 GND VDD DI S 1 2 TRANS
+XTRANS2 GND VDD Q 1 S 2 TRANS
+XNOT2 GND VDD R 3 NOT
+XAND GND VDD 2 3 DO AND
+.ends 
+**************************************************************
+
+**************************************************************
+*Subcircuit for a D FLIP FLOP using TRANSMITION gates 
+.subckt FLOP GND VDD CLK D Q 
+XNOT1 GND VDD D 1 NOT
+XNOT_CLK GND VDD CLK NOTCLK NOT
+XTRANS1 GND VDD 1 NOTCLK CLK 2 TRANS
+XNOT2 GND VDD 2 3 NOT
+XNOT3 GND VDD 3 4 NOT 
+XTRANS2 GND VDD 4 CLK NOTCLK 2 TRANS
+XTRANS3 GND VDD 3 CLK NOTCLK 5 TRANS
+XNOT4 GND VDD 5 6 NOT
+XNOT5 GND VDD 6 7 NOT
+XTRANS4 GND VDD 7 NOTCLK CLK 5 TRANS
+XNOT6 GND VDD 6 Q NOT
+.ends
+**************************************************************
+
+**************************************************************
+* Subcircuit for 1bit register with set and reset
+.subckt REGISTER GND VDD CLK S R D Q 
+XMUX1 GND VDD S R D Q 1 MUX
+XFLOP GND VDD CLK 1 Q FLOP
+.ends
+**************************************************************
+
+
+**************************************************************
+.PARAM RISE_TIME=0.5n 
+.PARAM FALL_TIME=0.5n 
+.PARAM CLK_PERIOD=20n 
+.PARAM CLK_HIGH=10n 
+.PARAM V_DD=0.85
+.PARAM C_VDD=0.85
+
+
+*Setting VDD = 0.85, the D, CLK, S and R as different square waves
+VDD 1 0 V_DD
+*VCLK CLK 0 0
+*VD D 0 0
+*VS S 0 0
+*VR R 0 0
+VD D 0 PULSE(0 C_VDD 25n RISE_TIME FALL_TIME 20ns 40ns)
+VCLK CLK 0 PULSE(0 C_VDD 0 RISE_TIME FALL_TIME CLK_HIGH CLK_PERIOD)
+VS S 0 PULSE(0 C_VDD 25n RISE_TIME FALL_TIME 60n 120n)
+VR R 0 PULSE(0 C_VDD 145n RISE_TIME FALL_TIME 50n 100n)
+**************************************************************
+
+**************************************************************
+*Defining the register
+XREG 0 1 CLK S R D Q REGISTER
+**************************************************************
+
+**************************************************************
+*Plotting Q, D, CLK, S and R for the register
+.plot v(Q)
+.plot v(D)
+.plot v(CLK)
+.plot v(S) 
+.plot v(R)
+.plot i(1)
+**************************************************************
+[options]
+2
+Gmin 1.0E-39
+Temp 0
+[dc]
+1
+VA
+0
+1
+0.001
+[tran]
+0.1n
+300n
+X
+X
+0
+[ana]
+4 0
+[end]
