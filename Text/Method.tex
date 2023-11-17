@@ -3,31 +3,31 @@
 
 \subsection{FSM design}
 
-The FSM was designed according to the project description and the design procedure given in section \ref{subsec:fsm_theory}. Both a Mealy and a Moore FSM design has been considered. The Mealy state machine resulted in 4 states needed and the Moore machine resulted in 8 states needed, requiring an additional state register and more combinatorial logic. The final design was subsequently chosen to be a Mealy FSM. The state diagram derived from the text description is shown in figure~\ref{fig:fsm_diagram}. To be able to hold four different states, one pause state and three different run states, the FSM needs a 2-bit register, with at least a reset function. 
+The FSM was designed according to the project description and the design procedure given in section \ref{subsec:fsm_theory}. Both a Mealy and a Moore FSM design has been considered. The Mealy state machine resulted in 4 states needed and the Moore machine resulted in 8 states needed, requiring an additional state register and more combinatorial logic. The final design was subsequently chosen to be a Mealy FSM, to minimize the amount of transistors. The state diagram derived from the text description is shown in figure~\ref{fig:fsm_diagram}. To be able to hold four different states, one pause state and three different run states, the FSM needs a 2-bit register, with at least a reset function. 
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{Figures/FSM-diagram.png}
-    \caption{FSM Diagram}
+    \caption{FSM state diagram}
     \label{fig:fsm_diagram}
 \end{figure}
 
 Three input signals are given by the project description~\cite{project_description}, Reset, CLK and Run. The CLK-signal
 will only be used to time the sequential logic in the FSM and passed on to the MAC unit without
-further modification. The reset signal $I_1$ is only used to reset to the pause-state ''00'' and passed on to the MAC unit as $CTRL_1$ without further modification. The combinatorial part of the FSM and the resulting state table~(\ref{tab:state_table}) is therefore only dependent on the current state ($C_1$ and $C_0$) and the Run input signal $R_0$. The logic outputs the next state ($N_1$ and $N_0$) and the Run control signal $CTRL_0$.
+further modification. The CLK signal is therefore not considered an input-signal here in the sense that is not used in the next-state or output-logic in the FSM. The reset signal $I_1$ is only used to reset the state register to the pause-state ''00'' and passed on to the MAC unit as $CTRL_1$ without further modification. The combinatorial part of the FSM is here only dependent on the current state ($C_1$ and $C_0$) and the Run input signal $I_0$. The outputs of the FSM are the next state signals $N_1$ and $N_0$, and the Reset and Run control signals $CTRL_1$ and $CTRL_0$. From the state diagram, we can write the state table~\ref{tab:state_table}. Note that $CTRL_1$ only is dependent on $I_1$ and that this does not require combinatorial logic.
 
 \begin{table}[H]
 \caption{State table for the FSM}
 \label{tab:state_table}
 \centering
-\begin{tabular}{|l|l|l|l|l|l|}
+\begin{tabular}{|l|l|l|l|l|l||l|l|}
 \hline
 \rowcolor[HTML]{C0C0C0} 
-$C_1$ & $C_0$ & $I_0$ & $N_1$ & $N_0$ & $CTRL_0$ \\
+$C_1$ & $C_0$ & $I_0$ & $N_1$ & $N_0$ & $CTRL_0$ & $I_1$ & $CTRL_1$\\
 \hline
-0  & 0  & 0  & 0   & 0   & 0 \\ 
+0  & 0  & 0  & 0   & 0   & 0 & 1 & 1\\ 
 \hline
-0  & 0  & 1  & 0   & 1   & 1 \\ 
+0  & 0  & 1  & 0   & 1   & 1 & 0 & 0\\ 
 \hline
 0  & 1  & 0  & 0   & 1   & 0 \\ 
 \hline
@@ -75,8 +75,7 @@ From the boolean equations, we can draw up the logic diagram shown in figure~\re
 \noindent
 The register used in this circuit is of the same design as the register described in section~\ref{subsubsec:accumulator}.
 
-
-\subsection{Circuit design}
+\subsection{MAC design}
 \label{subsec:circuitDesign}
 
 In this section we will look on how to implement the different subsystems of the MAC unit. The designs are shown at a logic gate level as that is used for both the AIMSpice and Verilog implementation. 
@@ -165,26 +164,14 @@ The AND gate is made by connecting a NAND and NOT in series, as shown in figure 
 
 
 \subsubsection{Finite State Machine}
-\label{subsec:fsm_}
+\label{subsec:fsm_verilog}
 
-Three input signals are given by the project description~\cite{project_description}, Reset, CLK and Run. The CLK-signal will only be used to time the sequential logic in the FSM and passed on to the MAC unit without further modification.
+The FSM is implemented and its functionality is verified using the hardware desctriptive language verilog. To simplify the implementation, the register is written as a separate module in listing x. The code for implementing the FSM in verilog is given in listing~\ref{verilog_fsm} in the appendix.
 
-The resulting FSM will therefore recieve a 2-bit input, Reset($I_1$) and Run($I_0$). For the control signals between the FSM and the MAC unit, we have chosen a 2-bit signal consisting of Control-Reset($O_1$) and Control-Run($O_0$). 
+To test the functionality, a separate testbench-module is made in verilog. The FSM is run through a series of different possible inputs. The output timing diagram is subsequently analyzed to verify that the FSM has the correct output based on the input.
 
-A Moore FSM is chosen as the preffered FSM model. In general, a Moore FSM is power-efficient in terms of static power consumption compared to a Mealy FSM. This is because Moore machines typically have outputs that are associated only with states, and they remain stable for the entire duration of a state. As a result, there are fewer transitions and less activity in the output logic, leading to lower static power consumption.
 
-Following the detailed description of the FSM's functionality in section 2.2.1 in the project description~\cite{project_description}, and the design procediure given in~\ref{subsec:fsm_theory}, the resulting FSM requires seven different states 0-6. Thus, the FSM needs a 3-bit register. A general topology is shown in figure~\ref{fig:fsm_overordnet}
 
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.6\textwidth]{Figures/FSM_overordnet.drawio.png}
-    \caption{FSM general topology diagram}
-    \label{fig:fsm_overordnet}
-\end{figure}
-
-The current state is from here described by the three signals $C_2$, $C_1$ and $C_0$. The next state is describrd by the three signals $N_2$, $N_1$ and $N_0$.
-
-Figure~\ref{fig:fsm_diagram} and table~\ref{tab:truthtable} show a detailed overview of the wanted functionality of the FSM, describing the relation between inputs, outputs, current state and next state. Transitions for each current state and input is described by arrows, and output is described within each state ($C_2 C_1 C_0$/$O_1 O_0$)
 
 In this section you should explain what you have done, and how you have done it. The explanations should have enough detail to make a reproduction possible (i.e. it should be possible to do exactly what you have done, and receive the same results, only by doing what you write in this section).
 
