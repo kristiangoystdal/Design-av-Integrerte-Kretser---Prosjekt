@@ -1,4 +1,5 @@
 \appendix
+
 \section{AIMSpice Code}
 \label{appendix:aimspice}
 
@@ -119,144 +120,10 @@ XREG 0 1 CLK S R D Q REGISTER
 \end{lstlisting}
 
 
-\section{Verilog Code}
+
+
+\section{Verilog Code (NEW)}
 \label{appendix:Verilog-code}
-
-\begin{lstlisting}[style=verilogStyle, caption=D Flip-Flop in Verilog, label=verilog_dflipflop]
-module D_Flip_Flop ( input D_flip , output Q_flip , input clk_flip );
-	
-	wire clk_bar_flip; 
-	not(clk_bar_flip, clk_flip);
-	not(w1_flip, D_flip);	  
-	wire w2_flip;
-	cmos(w2_flip, w1_flip, clk_bar_flip, clk_flip);	
-	wire w3_flip;
-	not(w3_flip, w2_flip); 
-	wire w4_flip;
-	not(w4_flip, w3_flip);
-	cmos(w2_flip, w4_flip, clk_flip, clk_bar_flip);	 
-	wire w5_flip;
-	cmos(w5_flip, w3_flip, clk_flip, clk_bar_flip);
-	wire w6_flip, w7_flip;
-	not(w6_flip, w5_flip);
-	not(w7_flip, w6_flip);
-	cmos(w5_flip, w7_flip, clk_bar_flip, clk_flip);	 
-	not(Q_flip, w6_flip);
-
-endmodule
-\end{lstlisting}
-
-\begin{lstlisting}[style=verilogStyle, caption=Set/Reset-Circuit in Verilog, label=verilog_regmux]
-module Reg_mux (
-    input S_mux,
-    input R_mux,
-    input D_I_mux,
-    input Q_mux,
-    output D_O_mux
-);			  
-wire Y_mux;	
-assign sbar = ~S_mux;
-assign rbar = ~R_mux;  
-
-cmos(Y_mux,D_I_mux, S_mux, sbar);
-cmos(Y_mux,Q_mux,sbar,S_mux);
-and(D_O_mux, rbar, Y_mux);
-
-endmodule  
-\end{lstlisting}
-
-\begin{lstlisting}[style=verilogStyle, caption=1-bit Register in Verilog, label=verilog_1bitregister]
-`include "Reg_mux.v"
-`include "D_Flip_Flop.v"
-
-module onebit_register (input D, input S, input R, input CLK, output Q);
-
-  wire D_O_mux; // Output from the multiplexer 
-
-  Reg_mux mux_instance (
-    .S_mux(S),
-    .R_mux(R),
-    .D_I_mux(D), 
-    .Q_mux(Q), // Connect the Q output of the flip-flop to the input of the multiplexer  
-    .D_O_mux(D_O_mux)
-  );
-
-  D_Flip_Flop flip_flop_instance (
-    .D_flip(D_O_mux), // Connect the input of the flip-flop to the multiplexer's output
-    .Q_flip(Q),
-    .clk_flip(CLK)
-  );  
-  
-  not(D, Q);
-
-endmodule
-\end{lstlisting}
-
-\begin{lstlisting}[style=verilogStyle, caption=8-bit Register in Verilog, label=verilog_8bitregister]
-`include "onebit_register.v"
-module eightbit_register ( input s_eight , input r_eight ,input clk_eight, input [7:0] d_eight ,output [7:0] q_eight );
-	
-	wire [7:0] q_onebit[7:0];
-	
-	onebit_register onebit_instance0 (
-	    .S(s_eight),
-	    .R(r_eight),
-		.CLK(clk_eight),
-	    .D(d_eight[0]), // Connect the corresponding bit of d_eight to onebit_register
-	    .Q(q_eight[0])
-	); 
-	onebit_register onebit_instance1 (
-	    .S(s_eight),
-	    .R(r_eight),
-		.CLK(clk_eight),
-	    .D(d_eight[1]), // Connect the corresponding bit of d_eight to onebit_register
-	    .Q(q_eight[1])
-	);
-	onebit_register onebit_instance2 (
-	    .S(s_eight),
-	    .R(r_eight),
-		.CLK(clk_eight),
-	    .D(d_eight[2]), // Connect the corresponding bit of d_eight to onebit_register
-	    .Q(q_eight[2])
-	);		   
-	onebit_register onebit_instance3 (
-	    .S(s_eight),
-	    .R(r_eight),
-		.CLK(clk_eight),
-	    .D(d_eight[3]), // Connect the corresponding bit of d_eight to onebit_register
-	    .Q(q_eight[3])
-	);
-	onebit_register onebit_instance4 (
-	    .S(s_eight),
-	    .R(r_eight),
-		.CLK(clk_eight),
-	    .D(d_eight[4]), // Connect the corresponding bit of d_eight to onebit_register
-	    .Q(q_eight[4])
-	);
-	onebit_register onebit_instance5 (
-	    .S(s_eight),
-	    .R(r_eight),
-		.CLK(clk_eight),
-	    .D(d_eight[5]), // Connect the corresponding bit of d_eight to onebit_register
-	    .Q(q_eight[5])
-	);
-	onebit_register onebit_instance6 (
-	    .S(s_eight),
-	    .R(r_eight),
-		.CLK(clk_eight),
-	    .D(d_eight[6]), // Connect the corresponding bit of d_eight to onebit_register
-	    .Q(q_eight[6])
-	);
-	onebit_register onebit_instance7 (
-	    .S(s_eight),
-	    .R(r_eight),
-		.CLK(clk_eight),
-	    .D(d_eight[7]), // Connect the corresponding bit of d_eight to onebit_register
-	    .Q(q_eight[7])
-	);
-
-endmodule
-\end{lstlisting}
 
 \begin{lstlisting}[style=verilogStyle, caption=Half Adder in Verilog, label=verilog_halfadder]
 module Half_Adder ( A_0 ,B_0 ,S_0 ,C_0 );
@@ -275,6 +142,7 @@ xor(S_0, A_0, B_0);
 
 endmodule
 \end{lstlisting}
+
 
 \begin{lstlisting}[style=verilogStyle, caption=Full Adder in Verilog, label=verilog_fulladder]
 module Full_Adder ( C_I ,S_O ,A_I ,C_O ,B_I );
@@ -300,9 +168,10 @@ or(C_O, w2, w3);
 endmodule
 \end{lstlisting}
 
-\begin{lstlisting}[style=verilogStyle, caption=8-bit Adder in Verilog, label=verilog_8bitadder]
-`include "Half_Adder.v"
-`include "Full_Adder.v"
+
+\begin{lstlisting}[style=verilogStyle, caption=8-bit adder in Verilog, label=verilog_eightbitadder]
+`include "../MAC/Half_Adder.v"
+`include "../MAC/Full_Adder.v"
 
 module eightbit_adder (
     input [7:0] A,
@@ -379,7 +248,179 @@ Full_Adder FA_7 (
 endmodule
 \end{lstlisting}
 
-\begin{lstlisting}[style=verilogStyle, caption=FSM in Verilog, label=verilog_fsm]
+
+\begin{lstlisting}[style=verilogStyle, caption=D Flip-Flop in Verilog, label=verilog_dflipflop]
+module D_Flip_Flop ( input D_flip , output Q_flip , input clk_flip );
+	
+	wire clk_bar_flip; 
+	not(clk_bar_flip, clk_flip);
+	not(w1_flip, D_flip);	  
+	wire w2_flip;
+	cmos(w2_flip, w1_flip, clk_bar_flip, clk_flip);	
+	wire w3_flip;
+	not(w3_flip, w2_flip); 
+	wire w4_flip;
+	not(w4_flip, w3_flip);
+	cmos(w2_flip, w4_flip, clk_flip, clk_bar_flip);	 
+	wire w5_flip;
+	cmos(w5_flip, w3_flip, clk_flip, clk_bar_flip);
+	wire w6_flip, w7_flip;
+	not(w6_flip, w5_flip);
+	not(w7_flip, w6_flip);
+	cmos(w5_flip, w7_flip, clk_bar_flip, clk_flip);	 
+	not(Q_flip, w6_flip);
+
+endmodule
+\end{lstlisting}
+
+
+\begin{lstlisting}[style=verilogStyle, caption=Register control circuit in Verilog, label=verilog_regmux]
+module Reg_mux (
+    input S_mux,
+    input R_mux,
+    input D_I_mux,
+    input Q_mux,
+    output D_O_mux
+);			  
+wire Y_mux, sbar, rbar;	
+not(sbar,S_mux);
+not(rbar,R_mux); 
+
+cmos(Y_mux,D_I_mux, S_mux, sbar);
+cmos(Y_mux,Q_mux,sbar,S_mux);
+and(D_O_mux, rbar, Y_mux);
+
+endmodule
+\end{lstlisting}
+
+
+\begin{lstlisting}[style=verilogStyle, caption=One-bit register in Verilog, label=verilog_onebitregister]
+`include "../MAC/Reg_mux.v"
+`include "../MAC/D_Flip_Flop.v"
+
+module onebit_register (input D, input S, input R, input CLK, output Q);
+
+  wire D_O_mux; // Output from the control circuit
+
+  Reg_mux mux_instance (
+    .S_mux(S),
+    .R_mux(R),
+    .D_I_mux(D), 
+    .Q_mux(Q), // Connect the Q output of the flip-flop to the input of the multiplexer  
+    .D_O_mux(D_O_mux)
+  );
+
+  D_Flip_Flop flip_flop_instance (
+    .D_flip(D_O_mux), // Connect the input of the flip-flop to the multiplexer's output
+    .Q_flip(Q),
+    .clk_flip(CLK)
+  );
+
+endmodule
+\end{lstlisting}
+
+
+\begin{lstlisting}[style=verilogStyle, caption=8-bit register, label=verilog_eightbitregister]
+`include "../MAC/onebit_register.v"
+
+module eightbit_register (input s_eight , input r_eight ,input clk_eight, 
+							input [7:0] d_eight ,output [7:0] q_eight );
+	
+	onebit_register onebit_instance0 (
+	    .S(s_eight),
+	    .R(r_eight),
+		.CLK(clk_eight),
+	    .D(d_eight[0]), // Connect the corresponding bit of d_eight to onebit_register
+	    .Q(q_eight[0])
+	); 
+	onebit_register onebit_instance1 (
+	    .S(s_eight),
+	    .R(r_eight),
+		.CLK(clk_eight),
+	    .D(d_eight[1]), // Connect the corresponding bit of d_eight to onebit_register
+	    .Q(q_eight[1])
+	);
+	onebit_register onebit_instance2 (
+	    .S(s_eight),
+	    .R(r_eight),
+		.CLK(clk_eight),
+	    .D(d_eight[2]), // Connect the corresponding bit of d_eight to onebit_register
+	    .Q(q_eight[2])
+	);		   
+	onebit_register onebit_instance3 (
+	    .S(s_eight),
+	    .R(r_eight),
+		.CLK(clk_eight),
+	    .D(d_eight[3]), // Connect the corresponding bit of d_eight to onebit_register
+	    .Q(q_eight[3])
+	);
+	onebit_register onebit_instance4 (
+	    .S(s_eight),
+	    .R(r_eight),
+		.CLK(clk_eight),
+	    .D(d_eight[4]), // Connect the corresponding bit of d_eight to onebit_register
+	    .Q(q_eight[4])
+	);
+	onebit_register onebit_instance5 (
+	    .S(s_eight),
+	    .R(r_eight),
+		.CLK(clk_eight),
+	    .D(d_eight[5]), // Connect the corresponding bit of d_eight to onebit_register
+	    .Q(q_eight[5])
+	);
+	onebit_register onebit_instance6 (
+	    .S(s_eight),
+	    .R(r_eight),
+		.CLK(clk_eight),
+	    .D(d_eight[6]), // Connect the corresponding bit of d_eight to onebit_register
+	    .Q(q_eight[6])
+	);
+	onebit_register onebit_instance7 (
+	    .S(s_eight),
+	    .R(r_eight),
+		.CLK(clk_eight),
+	    .D(d_eight[7]), // Connect the corresponding bit of d_eight to onebit_register
+	    .Q(q_eight[7])
+	);
+
+endmodule
+\end{lstlisting}
+
+
+\begin{lstlisting}[style=verilogStyle, caption=MAC in Verilog, label=verilog_MAC]
+`include "../MAC/twobit_multiplier.v"
+`include "../MAC/eightbit_adder.v"
+`include "../MAC/eightbit_register.v"
+
+module MAC(
+    input [1:0] A, 
+    input [1:0] B, 
+    input CLK, 
+    input [1:0] CTRL, 
+    output [7:0] Y
+    );
+
+    wire [1:0] A, B, CTRL;
+    wire CLK;
+    wire [7:0] Y;
+    wire [3:0] PROD;
+    wire [7:0] SUM;
+
+
+    twobit_multiplier multiplier_instance(.A(A), .B(B), .O(PROD));
+    eightbit_adder adder_instance(.A({4'b0000, PROD}), .B(Y), .S(SUM));
+    eightbit_register register_instance(
+        .s_eight(CTRL[0]), 
+        .r_eight(CTRL[1]), 
+        .clk_eight(CLK),
+        .d_eight(SUM),
+        .q_eight(Y));
+    
+endmodule
+\end{lstlisting}
+
+
+\begin{lstlisting}[style=verilogStyle, caption=FSM in Verilog, label=verilog_FSM]
 `include "../Mealy FSM/onebit_register.v"
 
 module Mealy_FSM(
@@ -390,7 +431,7 @@ module Mealy_FSM(
     output ResetOUT
     );
 
-    //Define wires
+    //Define wires (A and B are only used internally)
 
     wire RunIN, ResetIN, CLK, RunOUT, ResetOUT, Set, C1, C0, N1, N0, A, B;
 
@@ -407,7 +448,7 @@ module Mealy_FSM(
 
     assign ResetOUT = ResetIN;
 
-    //Define logic gates and MUX
+    //Define logic gates
 
     xor(N0, C0, RunIN);
     and(A, C0, RunIN);
@@ -418,31 +459,42 @@ module Mealy_FSM(
 endmodule
 \end{lstlisting}
 
-\begin{lstlisting}[style=verilogStyle, caption=2-bit Multiplier in Verilog, label=verilog_multiplier]
-module twobit_multiplier ( A ,B ,O );
 
-input [1:0] A ;
-wire [1:0] A ;
-input [1:0] B ;
-wire [1:0] B ;
-output [3:0] O ;
-wire [3:0] O ;
+\begin{lstlisting}[style=verilogStyle, caption=Full MAC circuit in Verilog, label=verilog_fullmac]
+`include "../Mealy FSM/Mealy_FSM.v"
+`include "../MAC/MAC.v"
 
-wire C, D, E;
+module MAC_FULL(
+    input [1:0] I, 
+    input [1:0] A, 
+    input [1:0] B, 
+    input CLK, 
+    output [7:0] Y
+    );
 
-and(C,A[1],B[1]);
-and(D,A[1],B[0]);
-and(E,A[0],B[1]);
-and(O[0],A[0],B[0]);
-and(O[3],D,E);
-xor(O[2],C,O[3]);
-xor(O[1],D,E);
+    wire CLK;
+    wire [1:0] I, CTRL, A, B;
+    wire [7:0] Y;
+
+    Mealy_FSM fsm_instance(
+        .RunIN(I[0]), 
+        .ResetIN(I[1]), 
+        .CLK(CLK), 
+        .RunOUT(CTRL[0]), 
+        .ResetOUT(CTRL[1])
+    );
+        
+    MAC mac_instance(
+        .A(A),
+        .B(B),
+        .CLK(CLK),
+        .CTRL(CTRL),
+        .Y(Y)
+    );
 
 endmodule
 \end{lstlisting}
 
-\begin{lstlisting}[style=verilogStyle, caption=, label=]
-\end{lstlisting}
 
 \section{Optional (rename based on what you put here)}
 Sometimes one might end up running a lot of simulations, and then find out that not all of them were relevant enough to present in the actual report. Additional figures and results can then be included here (with a brief explanation so that the reader knows what they are looking at). This section of the appendix is optional, and might not be relevant for your group. 
@@ -473,7 +525,7 @@ Anything added here will not affect the grade directly, but might contribute to 
         \centering
         \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/TT_70.png}
         \caption{Plot of register for TT corner}
-        \label{fig:TT0}
+        \label{fig:TT70}
     \end{minipage}%
 \end{figure}
 
@@ -482,13 +534,13 @@ Anything added here will not affect the grade directly, but might contribute to 
         \centering
         \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/FS_0.png}
         \caption{Plot of register for FS corner}
-        \label{fig:TT0}
+        \label{fig:FS0}
     \end{minipage}%
     \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/FS_27.png}
         \caption{Plot of register for FS corner}
-        \label{fig:TT27}
+        \label{fig:FS27}
     \end{minipage}
 \end{figure}
 \begin{figure}[H]
@@ -497,7 +549,7 @@ Anything added here will not affect the grade directly, but might contribute to 
         \centering
         \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/FS_70.png}
         \caption{Plot of register for FS corner}
-        \label{fig:TT0}
+        \label{figFS70}
     \end{minipage}%
 \end{figure}
 
@@ -506,13 +558,13 @@ Anything added here will not affect the grade directly, but might contribute to 
         \centering
         \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/SF_0.png}
         \caption{Plot of register for SF corner}
-        \label{fig:TT0}
+        \label{fig:SF0}
     \end{minipage}%
     \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/SF_27.png}
         \caption{Plot of register for SF corner}
-        \label{fig:TT27}
+        \label{fig:SF27}
     \end{minipage}
 \end{figure}
 \begin{figure}[H]
@@ -521,7 +573,7 @@ Anything added here will not affect the grade directly, but might contribute to 
         \centering
         \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/SF_70.png}
         \caption{Plot of register for SF corner}
-        \label{fig:TT0}
+        \label{fig:SF70}
     \end{minipage}%
 \end{figure}
 
@@ -530,13 +582,13 @@ Anything added here will not affect the grade directly, but might contribute to 
         \centering
         \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/SS_0.png}
         \caption{Plot of register for SS corner}
-        \label{fig:TT0}
+        \label{fig:SS0}
     \end{minipage}%
     \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/SS_27.png}
         \caption{Plot of register for SS corner}
-        \label{fig:TT27}
+        \label{fig:SS27}
     \end{minipage}
 \end{figure}
 \begin{figure}[H]
@@ -545,7 +597,7 @@ Anything added here will not affect the grade directly, but might contribute to 
         \centering
         \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/SS_70.png}
         \caption{Plot of register for SS corner}
-        \label{fig:TT0}
+        \label{fig:SS70}
     \end{minipage}%
 \end{figure}
 
@@ -554,13 +606,13 @@ Anything added here will not affect the grade directly, but might contribute to 
         \centering
         \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/FF_0.png}
         \caption{Plot of register for FF corner}
-        \label{fig:TT0}
+        \label{fig:FF0}
     \end{minipage}%
     \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/FF_27.png}
         \caption{Plot of register for FF corner}
-        \label{fig:TT27}
+        \label{fig:FF27}
     \end{minipage}
 \end{figure}
 \begin{figure}[H]
@@ -569,6 +621,6 @@ Anything added here will not affect the grade directly, but might contribute to 
         \centering
         \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/FF_70.png}
         \caption{Plot of register for FF corner}
-        \label{fig:TT0}
+        \label{fig:FF70}
     \end{minipage}%
 \end{figure}

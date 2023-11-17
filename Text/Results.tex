@@ -47,43 +47,31 @@ When looking at the different corners and temperatures, the difference of the fu
 
 \subsubsection{Static Power Consumption}
 
-We have therefore chosen a value for $V_{DD} = 0.85V$, as a lower $V_{DD}$ gives a lower power consumption. By using the function operating point in AimSpice, a current in the $V_{DD}$ node can be found.
+As explained in section \ref{subsec:low_power}, a low voltage on $V_{DD}$ is optimal. We have therefore chosen a value for $V_{DD} = 0.85V$, as a lower $V_{DD}$ gives a lower power consumption. By using the function operating point in AimSpice, the leakage current in the $V_{DD}$ node can be found.
 
-Table \ref{tab:leakage} shows the different leakage current for the different corners with all three temperatures. To calculate the static power consumption, we use the formula \ref{eq:power} for all the values and get table \ref{tab:power}.
+Table \ref{tab:leakage} shows the different leakage current for the TT and FF corners with all three temperatures. To calculate the static power consumption, we use the formula \ref{eq:power} for all the values and get table \ref{tab:power}.
 
 \begin{table}[H]
 \centering
 \caption{Leakage Current}
 \label{tab:leakage}
-\resizebox{\columnwidth}{!}{%
-\begin{tabular}{llllll}
-\cline{2-6}
-\multicolumn{1}{l|}{} &
-  \multicolumn{1}{l|}{TT} &
-  \multicolumn{1}{l|}{SF} &
-  \multicolumn{1}{l|}{FS} &
-  \multicolumn{1}{l|}{SS} &
-  \multicolumn{1}{l|}{FF} \\ \hline
-\multicolumn{1}{|l|}{0 $^\circ$C} &
-  \multicolumn{1}{l|}{10.764 nA} &
-  \multicolumn{1}{l|}{7.576 nA} &
-  \multicolumn{1}{l|}{27.658 nA} &
-  \multicolumn{1}{l|}{5.667 nA} &
-  \multicolumn{1}{l|}{31.842 nA} \\ \hline
-\multicolumn{1}{|l|}{27 $^\circ$C} &
-  \multicolumn{1}{l|}{23.828 nA} &
-  \multicolumn{1}{l|}{83.146 $\mu$A} &
-  \multicolumn{1}{l|}{58.765 nA} &
-  \multicolumn{1}{l|}{13.360 nA} &
-  \multicolumn{1}{l|}{67.994 nA} \\ \hline
-\multicolumn{1}{|l|}{70 $^\circ$C} &
-  \multicolumn{1}{l|}{64.986 nA} &
-  \multicolumn{1}{l|}{64.437 nA} &
-  \multicolumn{1}{l|}{151.939 nA} &
-  \multicolumn{1}{l|}{33.104 nA} &
-  \multicolumn{1}{l|}{176.953 nA} \\ \hline
- &  &  &  &  & 
-\end{tabular}%
+\resizebox{0.4\columnwidth}{!}{%
+    \begin{tabular}{lll}
+    \cline{2-3}
+    \multicolumn{1}{l|}{} &
+      \multicolumn{1}{l|}{TT} &
+      \multicolumn{1}{l|}{FF} \\ \hline
+    \multicolumn{1}{|l|}{0 $^\circ$C} &
+      \multicolumn{1}{l|}{1.0931 nA} &
+      \multicolumn{1}{l|}{3.1854 nA} \\ \hline
+    \multicolumn{1}{|l|}{27 $^\circ$C} &
+      \multicolumn{1}{l|}{3.0325 nA} &
+      \multicolumn{1}{l|}{8.5711 nA} \\ \hline
+    \multicolumn{1}{|l|}{70 $^\circ$C} &
+      \multicolumn{1}{l|}{6.9843 nA} &
+      \multicolumn{1}{l|}{13.513 nA} \\ \hline
+     &  &  
+    \end{tabular}%
 }
 \end{table}
 
@@ -91,48 +79,31 @@ Table \ref{tab:leakage} shows the different leakage current for the different co
 \centering
 \caption{Static Power Consumption}
 \label{tab:power}
-\resizebox{\columnwidth}{!}{%
-\begin{tabular}{llllll}
-\cline{2-6}
+\resizebox{0.4\columnwidth}{!}{%
+\begin{tabular}{lll}
+\cline{2-3}
 \multicolumn{1}{l|}{} &
   \multicolumn{1}{l|}{TT} &
-  \multicolumn{1}{l|}{SF} &
-  \multicolumn{1}{l|}{FS} &
-  \multicolumn{1}{l|}{SS} &
   \multicolumn{1}{l|}{FF} \\ \hline
 \multicolumn{1}{|l|}{0 $^\circ$C} &
-  \multicolumn{1}{l|}{9.1494 nW} &
-  \multicolumn{1}{l|}{6.4396 nW} &
-  \multicolumn{1}{l|}{23.509 nW} &
-  \multicolumn{1}{l|}{4.8170 nW} &
-  \multicolumn{1}{l|}{27.066 nW} \\ \hline
+  \multicolumn{1}{l|}{0.92914 nW} &
+  \multicolumn{1}{l|}{2.7076 nW} \\ \hline
 \multicolumn{1}{|l|}{27 $^\circ$C} &
-  \multicolumn{1}{l|}{20.254 nW} &
-  \multicolumn{1}{l|}{70.674 $\mu$W} &
-  \multicolumn{1}{l|}{49.950 nW} &
-  \multicolumn{1}{l|}{11,356 nW} &
-  \multicolumn{1}{l|}{57.795 nW} \\ \hline
+  \multicolumn{1}{l|}{2.5776 nW} &
+  \multicolumn{1}{l|}{7.2854 nW} \\ \hline
 \multicolumn{1}{|l|}{70 $^\circ$C} &
-  \multicolumn{1}{l|}{55.238 nW} &
-  \multicolumn{1}{l|}{64.772 nW} &
-  \multicolumn{1}{l|}{129.15 nW} &
-  \multicolumn{1}{l|}{28.138 nW} &
-  \multicolumn{1}{l|}{159.41 nW} \\ \hline
- &  &  &  &  & 
-\end{tabular}%
+  \multicolumn{1}{l|}{5.9367 nW} &
+  \multicolumn{1}{l|}{11.486 nW} \\ \hline
+ &  &  
+\end{tabular}
 }
 \end{table}
 
-Since the intrinsic concentration, , is a strong function of temperature (it approximately doubles for every
-temperature increase of 11 °C for silicon), the leakage current is also a strong function of temperature. The leakage
-current roughly doubles for every 11 °C rise in temperature; thus, at higher temperatures it is much larger than at
-room temperature.
-
 \subsection{Verilog}
 
-In this subsection results of Verilog-simulation will be presented. All Verilog-code is given in appendix~\ref{appendix:Verilog-code}.
+In this subsection results of Verilog-simulation will be presented. All Verilog-code is given in \autoref{appendix:Verilog-code}.
 
-Figure~\ref{fig:fsm_simulation} shows the FSM simulated for randomized inputs $I_1$ and $I_0$.
+\autoref{fig:fsm_simulation} shows the FSM simulated for randomized inputs $I_1$ and $I_0$.
 
 \begin{figure}[H]
     \centering
@@ -143,9 +114,9 @@ Figure~\ref{fig:fsm_simulation} shows the FSM simulated for randomized inputs $I
 
 From the figure we see that the memory transitions to the expected states based on the inputs. The FSM begins in state ''Run-1'' and transitions to state ''Reset'' as the reset input $I_1$ is set high. The next state is ''Run-1'', then ''Run-2''. The Run-bit $I_0$ is then set low, resulting in a two-period pause in state ''Pause-2''. Further the FSM transitions to ''Run-3'', ''Pause'' and ''Run-1''.
 
-This simulation was run and verified to follow the wanted behaviour as given by table~\ref{tab:truthtable}.
+This simulation was run and verified to follow the wanted behaviour as given by table x.
 
-Figure~\ref{fig:eightbitadder_sim} shows a simulation of the 8-bit adder with random 8-bit inputs A and B. Note that all values in the timing diagram are hexadecimal and that any overflow-bits are handled outside our system. The code used for this simulation is given in listing~\ref{verilog_8bitadder}.
+\autoref{fig:eightbitadder_sim} shows a simulation of the 8-bit adder with random 8-bit inputs A and B. Note that all values in the timing diagram are hexadecimal and that any overflow-bits are handled outside our system. The code used for this simulation is given in \autoref{verilog_eightbitadder}.
 
 \begin{figure}[H]
     \centering
@@ -154,7 +125,7 @@ Figure~\ref{fig:eightbitadder_sim} shows a simulation of the 8-bit adder with ra
     \label{fig:eightbitadder_sim}
 \end{figure}
 
-Figure~\ref{fig:dflipflop_sim} shows a simulation of a single D Flip-Flop realized in Verilog.
+\autoref{fig:dflipflop_sim} shows a simulation of a single D Flip-Flop realized in Verilog.
 
 \begin{figure}[H]
     \centering
@@ -163,7 +134,7 @@ Figure~\ref{fig:dflipflop_sim} shows a simulation of a single D Flip-Flop realiz
     \label{fig:dflipflop_sim}
 \end{figure}
 
-Figure \ref{fig:8bitregister_sim} shows a simulation of a 8-bit register realized in Verilog.
+\autoref{fig:8bitregister_sim} shows a simulation of a 8-bit register realized in Verilog.
 
 \begin{figure}[H]
     \centering
@@ -172,7 +143,7 @@ Figure \ref{fig:8bitregister_sim} shows a simulation of a 8-bit register realize
     \label{fig:8bitregister_sim}
 \end{figure}
 
-Figure~\ref{fig:multiplier_sim} shows a simulation of the 2-bit multiplier realized in Verilog. Inputs A and B are stimulated with arbitrary two bit values to observe the possible outputs. The multiplier has a 4-bit output as the largest possible output result, 9, needs four bits to be represented in binary.
+\autoref{fig:multiplier_sim} shows a simulation of the 2-bit multiplier realized in Verilog. Inputs A and B are stimulated with arbitrary two bit values to observe the possible outputs. The multiplier has a 4-bit output as the largest possible output result, 9, needs four bits to be represented in binary.
 
 \begin{figure}[H]
     \centering
