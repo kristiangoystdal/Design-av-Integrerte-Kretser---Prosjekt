@@ -1,7 +1,7 @@
 [aimspice]
 [description]
-3624
-Power Consumption
+4061
+1Bit Register
 
 **************************************************************
 * Including the file containing the NMOS and PMOS transistors
@@ -105,11 +105,10 @@ XFLOP GND VDD CLK 1 Q FLOP
 
 *Setting VDD = 0.85, the D, CLK, S and R as different square waves
 VDD 1 0 V_DD
-VCLK CLK 0 0
-VD D 0 0
-VS S 0 0
-VR R 0 0
-
+VD D 0 PULSE(0 C_VDD 25n RISE_TIME FALL_TIME 20ns 40ns)
+VCLK CLK 0 PULSE(0 C_VDD 0 RISE_TIME FALL_TIME CLK_HIGH CLK_PERIOD)
+VS S 0 PULSE(0 C_VDD 25n RISE_TIME FALL_TIME 60n 120n)
+VR R 0 PULSE(0 C_VDD 145n RISE_TIME FALL_TIME 50n 100n)
 **************************************************************
 
 **************************************************************
@@ -117,8 +116,30 @@ VR R 0 0
 XREG 0 1 CLK S R D Q REGISTER
 **************************************************************
 
-
+**************************************************************
+*Plotting Q, D, CLK, S and R for the register
+.plot v(Q)
+.plot v(D)
+.plot v(CLK)
+.plot v(S) 
+.plot v(R)
+.plot i(1)
+**************************************************************
 [options]
 1
-Temp 70
+Gmin 1.0E-39
+[dc]
+1
+VA
+0
+1
+0.001
+[tran]
+0.1n
+300n
+X
+X
+0
+[ana]
+4 0
 [end]
