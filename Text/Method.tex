@@ -3,7 +3,7 @@
 
 \subsection{FSM design}
 
-The FSM was designed according to the project description and the design procedure given in section \ref{subsec:fsm_theory}. Both a Mealy and a Moore FSM design has been considered. The Mealy state machine resulted in 4 states needed and the Moore machine resulted in 8 states needed, requiring an additional state register and more combinatorial logic. The final design was subsequently chosen to be a Mealy FSM, to minimize the amount of transistors. The state diagram derived from the text description is shown in figure~\ref{fig:fsm_diagram}. To be able to hold four different states, one pause state and three different run states, the FSM needs a 2-bit register, with at least a reset function. 
+The FSM was designed according to the project description and the design procedure given in \autoref{subsec:fsm_theory}. Both a Mealy and a Moore FSM design has been considered. The Mealy state machine resulted in 4 states needed and the Moore machine resulted in 8 states needed, requiring an additional state register and more combinatorial logic. The final design was subsequently chosen to be a Mealy FSM, to minimize the amount of transistors. The state diagram derived from the text description is shown in \autoref{fig:fsm_diagram}. To be able to hold four different states, one pause state and three different run states, the FSM needs a 2-bit register, with at least a reset function. 
 
 \begin{figure}[H]
     \centering
@@ -14,7 +14,7 @@ The FSM was designed according to the project description and the design procedu
 
 Three input signals are given by the project description~\cite{project_description}, Reset, CLK and Run. The CLK-signal
 will only be used to time the sequential logic in the FSM and passed on to the MAC unit without
-further modification. The CLK signal is therefore not considered an input-signal here in the sense that is not used in the next-state or output-logic in the FSM. The reset signal $I_1$ is only used to reset the state register to the pause-state ''00'' and passed on to the MAC unit as $CTRL_1$ without further modification. The combinatorial part of the FSM is here only dependent on the current state ($C_1$ and $C_0$) and the Run input signal $I_0$. The outputs of the FSM are the next state signals $N_1$ and $N_0$, and the Reset and Run control signals $CTRL_1$ and $CTRL_0$. From the state diagram, we can write the state table~\ref{tab:state_table}. Note that $CTRL_1$ only is dependent on $I_1$ and that this does not require combinatorial logic.
+further modification. The CLK signal is therefore not considered an input-signal here in the sense that is not used in the next-state or output-logic in the FSM (\autoref{fig:general_fsm}). The reset input signal $I_1$ is only used to reset the state register to the pause-state ''00'' and passed on to the MAC unit as $CTRL_1$ without further modification. The combinatorial part of the FSM is here only dependent on the current state ($C_1$ and $C_0$) and the Run input signal $I_0$. The outputs of the FSM are the next state signals $N_1$ and $N_0$, and the Reset and Run control signals $CTRL_1$ and $CTRL_0$. From the state diagram, we can write up the state table, \autoref{tab:state_table}. Note that $CTRL_1$ only is dependent on $I_1$ and that this does not require combinatorial logic.
 
 \begin{table}[H]
 \caption{State table for the FSM}
@@ -30,23 +30,23 @@ $C_1$ & $C_0$ & $I_0$ & $N_1$ & $N_0$ & $CTRL_0$ & $I_1$ & $CTRL_1$\\
 0  & 0  & 1  & 0   & 1   & 1 & 0 & 0\\ 
 \hline
 0  & 1  & 0  & 0   & 1   & 0 \\ 
-\hline
+\cline{1-6}
 0  & 1  & 1  & 1   & 0   & 1 \\ 
-\hline
+\cline{1-6}
 1  & 0  & 0  & 1   & 0   & 0 \\ 
-\hline
+\cline{1-6}
 1  & 0  & 1  & 1   & 1   & 1 \\ 
-\hline
+\cline{1-6}
 1  & 1  & 0  & 1   & 1   & 0 \\ 
-\hline
+\cline{1-6}
 1  & 1  & 1  & 0   & 0   & 0 \\ 
-\hline
+\cline{1-6}
 
 \end{tabular}
 \end{table}
 
 \noindent
-The logic expression for the outputs of the combinatorial logic can be written down and simplified to equation \ref{eq:comb_eq_1}, \ref{eq:comb_eq_2} and \ref{eq:comb_eq_3}.
+The logic expression for each of the outputs of the combinatorial logic can be written down and simplified to \autoref{eq:comb_eq_1}, \ref{eq:comb_eq_2}, \ref{eq:comb_eq_3} and \ref{eq:comb_eq_4}.
 
 \begin{equation}
 \label{eq:comb_eq_1}
@@ -63,7 +63,12 @@ The logic expression for the outputs of the combinatorial logic can be written d
     N_1 = C_1 \oplus (C_0 \cdot I_0)
 \end{equation}
 
-From the boolean equations, we can draw up the logic diagram shown in figure~\ref{fig:fsm_logic_diagram}.
+\begin{equation}
+\label{eq:comb_eq_4}
+    CTRL_1 = I_1
+\end{equation}
+
+From the boolean equations, we can draw up the logic diagram shown in \autoref{fig:fsm_logic_diagram}.
 
 \begin{figure}[H]
     \centering
@@ -73,7 +78,7 @@ From the boolean equations, we can draw up the logic diagram shown in figure~\re
 \end{figure}
 
 \noindent
-The register used in this circuit is of the same design as the register described in section~\ref{subsubsec:accumulator}.
+The register used in this circuit is of the same design as the register described in \autoref{subsubsec:accumulator}.
 
 \subsection{MAC design}
 \label{subsec:circuitDesign}
@@ -82,7 +87,7 @@ In this section we will look on how to implement the different subsystems of the
 
 \subsubsection{Multiplier} 
 
-A 2-bit multiplier could be designed like shown in figure \ref{fig:multiplier}.
+A 2-bit multiplier could be designed like shown in \autoref{fig:multiplier}.
 
 \begin{figure}[H]
     \centering
@@ -92,7 +97,7 @@ A 2-bit multiplier could be designed like shown in figure \ref{fig:multiplier}.
 \end{figure}
 
 \subsubsection{Adder}
-The circuit for the half and full adder is shown in figure \ref{fig:halfadder} and \ref{fig:fulladder}.
+The circuit for the half and full adder is shown in \autoref{fig:halfadder} and \ref{fig:fulladder}.
 
 \begin{figure}[H]
 \begin{minipage}{0.4\textwidth}
@@ -112,7 +117,7 @@ The circuit for the half and full adder is shown in figure \ref{fig:halfadder} a
 
 \subsubsection{Accumulator}
 \label{subsubsec:accumulator}
-The accumulator is an 8-bit register with some control signals, that is received from the Final State Machine (FSM). As shown in figure \ref{fig:8bitregister}, the accumulator consists of a D-Flip-Flop and a control circuit. These are implemented as shown in figure \ref{fig:dflipflop} and \ref{fig:setreset} respectfully.
+The accumulator is an 8-bit register with some control signals, that is received from the Final State Machine (FSM). As shown in \autoref{fig:8bitregister}, the accumulator consists of a D-Flip-Flop and a control circuit. These are implemented as shown in \autoref{fig:dflipflop} and \ref{fig:setreset} respectively.
 
 \begin{figure}[H]
     \centering
@@ -130,10 +135,10 @@ The accumulator is an 8-bit register with some control signals, that is received
 
 
 
-\subsection{AimSpice}
-In the AimSpice related part of the assignment, a 1 bit register will be implemented using the designs shown in section \ref{subsec:circuitDesign}. 
+\subsection{AIMSpice}
+In the AIMSpice related part of the assignment, a 1 bit register will be implemented using the designs shown in \autoref{subsec:circuitDesign}. 
 
-To implement the register in AimSpice, different logic gates are made using transistors. The different logic gates used in the 1-bit register are NOT-, AND- and transmission gates. This is shown in figure \ref{fig:dflipflop} and \ref{fig:setreset}.
+To implement the register in AIMSpice, different logic gates are made using transistors. The different logic gates used in the 1-bit register are NOT-, AND- and transmission gates. This is shown in \autoref{fig:dflipflop} and \ref{fig:setreset}.
 
 \begin{figure}[H]
 \begin{minipage}{0.5\textwidth}
@@ -150,7 +155,7 @@ To implement the register in AimSpice, different logic gates are made using tran
 \end{minipage}
 \end{figure}
 
-The AND gate is made by connecting a NAND and NOT in series, as shown in figure \ref{fig:AND}.
+The AND gate is made by connecting a NAND and NOT in series, as shown in \autoref{fig:AND}.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.4\linewidth]{Figures/And gate.png}
@@ -162,11 +167,10 @@ The AND gate is made by connecting a NAND and NOT in series, as shown in figure 
 
 \subsection{Verilog}
 
-
 \subsubsection{Finite State Machine}
 \label{subsec:fsm_verilog}
 
-The FSM is implemented and its functionality is verified using the hardware desctriptive language verilog. To simplify the implementation, the register is written as a separate module in listing x. The code for implementing the FSM in verilog is given in listing~\ref{verilog_fsm} in the appendix.
+The FSM is implemented and its functionality is verified using the hardware desctriptive language verilog. To simplify the implementation, the register is written as a separate module, shown in the appendix \autoref{verilog_onebitregister}. The code for implementing the FSM in verilog is given in \autoref{verilog_FSM} in the appendix.
 
 To test the functionality, a separate testbench-module is made in verilog. The FSM is run through a series of different possible inputs. The output timing diagram is subsequently analyzed to verify that the FSM has the correct output based on the input.
 
