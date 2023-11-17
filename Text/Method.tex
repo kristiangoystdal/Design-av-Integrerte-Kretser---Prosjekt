@@ -190,15 +190,64 @@ The AND gate is made by connecting a NAND and NOT in series, as shown in \autore
 
 \subsection{Verilog}
 
-\subsubsection{Finite State Machine}
+\subsubsection{FSM in Verilog}
 \label{subsec:fsm_verilog}
 
-The FSM is implemented and its functionality is verified using the hardware desctriptive language verilog. The code for implementing the FSM in verilog is given in \autoref{verilog_FSM} in the appendix. To simplify the implementation, the register is written as a separate module, shown in the appendix \autoref{verilog_onebitregister}.
+The FSM is implemented and its functionality is verified using the hardware desctriptive language verilog. An excerpt of the logic part is given below in \autoref{fig:verilog_FSM_excerpt}. The complete code for implementing the FSM in verilog is given in \autoref{verilog_FSM} in the appendix.
+
+
+\begin{figure}[H]
+\centering
+\caption{Exerpt of the FSM implemented in Verilog.}
+\label{fig:verilog_FSM_excerpt}
+\begin{minipage}{0.33\textwidth}
+\begin{lstlisting}[style=verilogStyle]
+xor(N[0], C[0], RunIN);
+and(A, C[0], RunIN);
+xor(N[1], A, C[1]);
+nand(B, C[0], C[1]);
+and(RunOUT, B, RunIN);
+\end{lstlisting}
+\end{minipage}
+\end{figure}
+
+
+To simplify the implementation, the register is written as a separate module, shown in the appendix \autoref{verilog_onebitregister}.
 
 To test the functionality, a separate testbench-module is made in verilog. The FSM is run through a series of different possible inputs. The output timing diagram is subsequently analyzed to verify that the FSM has the correct output based on the input.
 
+\subsubsection{MAC in Verilog}
+\label{subsubsec:MAC_in_verilog}
+
+As the MAC is composed of three subcircuits, these are implemented and tested with Verilog testbenches separately. The 2-bit multiplier and the 8-bit adder is set up to loop through all possible combinations of inputs and checked if the output matches what is expected. \autoref{fig:verilog_adderTB_excerpt} shows how to loop through the inputs on the adder. A and B are 8-bit signals which can represent unsigned integers 0 to 255. A similar approach can be used for 
+
+\begin{figure}[H]
+\centering
+\caption{Loop to check all combinations for the adder.}
+\label{fig:verilog_adderTB_excerpt}
+\begin{minipage}{0.8\textwidth}
+\begin{lstlisting}[style=verilogStyle]
+for(Acount = 0 ; Acount < 256 ; Acount++) begin
+    for(Bcount = 0 ; Bcount < 256 ; Bcount++) begin
+        A = Acount;
+        B = Bcount;
+        #1;
+        if((A+B) == S) begin
+            $display(A,"+",B,"=",S);
+        end else begin
+            $display("Error: ", A, "+", B, "=",S);
+            errors++;
+        end
+    end
+end
+\end{lstlisting}
+\end{minipage}
+\end{figure}
 
 
+
+
+\subsubsection{What to include in this section}
 
 In this section you should explain what you have done, and how you have done it. The explanations should have enough detail to make a reproduction possible (i.e. it should be possible to do exactly what you have done, and receive the same results, only by doing what you write in this section).
 

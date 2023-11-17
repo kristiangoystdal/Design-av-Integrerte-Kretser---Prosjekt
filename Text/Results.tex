@@ -5,7 +5,7 @@
 
 The register could have different effect and operations due to the corner of the transistor and the temperature. There are five corners the transistors could be; TT(typical-typical), SS(slow-slow), FF(fast-fast), SF(slow-fast) and FS(fast-slow).  For all of the corners they have been tested for three temperatures, 0$^\circ C$, 27$^\circ C$ and 70$^\circ C$. All the different plots for the different cases are shown in the appendix \ref{appendix:aimspicePlots}. 
 
-To validate the functionality of the register, one can examine the plot of the TT and FF corner at 27$^\circ C$. 
+To validate the functionality of the register, one can examine the plot of the TT corner at 27$^\circ C$. 
 
 \begin{figure}[H]
     \centering
@@ -14,15 +14,25 @@ To validate the functionality of the register, one can examine the plot of the T
     \label{fig:result_TT27}
 \end{figure}
 
-As shown in figure \ref{fig:result_TT27} and figure \ref{fig:result_FF27}, the different combinations of the inputs signals. If set is high, Q only updates to the D-value when the CLK changes from low to high. And if the reset is high, the value Q is overruled to low, even if set and D is high.
+As shown in \autoref{fig:result_TT27}, the different combinations of the inputs signals gives a Q-value based on \autoref{tab:registerFunc}. If the Set-value is high, Q only updates to the D-value when the CLK changes from low to high. And if the Reset-value is high, the value Q is overruled to low, even if Set and D is high.
 
-When looking at the different corners and temperatures, the difference of the functionality is quite similar. One can see in this case with the TT and FF corners at 27$^\circ C$, that the register is just a tiny fraction more stable with a FF corner rather than a TT corner.
+When looking at the different corners and temperatures, the difference of the functionality is quite similar. One can see in the case, \autoref{fig:TT_diffTemps}, with the TT corner at the different temperatures, that the register is just a tiny fraction more stable with a at higher temperatures.
+
+For the case where we look at the different corners at the same temperature, \autoref{fig:27_diffCorners}, it is shown that the TT, FF and SF corners have the most ripples while the SS and FS corner have the least ripple.
 
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/FF_27.png}
-    \caption{Plot of register for FF corner}
-    \label{fig:result_FF27}
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/Corner.png}
+        \caption{\parbox{0.5\textwidth}{Plot of TT corner at different temperatures.}}
+        \label{fig:TT_diffTemps}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/Temperatur.png}
+        \caption{\parbox{0.4\textwidth}{Plot of the different corners at 27 $^\circ$C}}
+        \label{fig:27_diffCorners}
+    \end{minipage}
 \end{figure}
 
 \subsubsection{Static Power Consumption}
