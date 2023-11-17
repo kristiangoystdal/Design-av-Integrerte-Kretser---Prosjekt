@@ -1,6 +1,29 @@
 \section{Method}
 \label{sec:method}
 
+\subsection{AIMSpice}
+\label{subsec:aimspicemethod}
+
+To test the 1-bit register made by in AIMSpice, we have to set some square waves for the clock signal, the data input, and the set and reset signals.
+
+As shown in appendix \ref{appendix:aimspice}, line 95-98, we use the PULSE function in AIMSpice to create square waves for the different inputs. These inputs will together determine what the output Q is set to.
+
+The register should have the functionality as shown in the table \ref{tab:registerFunc}. Where the value of Q gets set to D if set is low and it keeps its previous value if set is high. If reset is high, the value Q is set to low. 
+
+\begin{table}[H]
+\label{tab:registerFunc}
+\centering
+\caption{Functionality of 1bit-register}
+\begin{tabular}{|l|l|l|}
+\cline{1-3}
+R & S & Q  \\ \cline{1-3}
+0 & 0 & Q  \\ \cline{1-3}
+0 & 1 & D  \\ \cline{1-3}
+1 & 0 & 0  \\ \cline{1-3}
+1 & 1 & 0  \\ \cline{1-3}
+\end{tabular}
+\end{table}
+
 \subsection{FSM design}
 
 The FSM was designed according to the project description and the design procedure given in \autoref{subsec:fsm_theory}. Both a Mealy and a Moore FSM design has been considered. The Mealy state machine resulted in 4 states needed and the Moore machine resulted in 8 states needed, requiring an additional state register and more combinatorial logic. The final design was subsequently chosen to be a Mealy FSM, to minimize the amount of transistors. The state diagram derived from the text description is shown in \autoref{fig:fsm_diagram}. To be able to hold four different states, one pause state and three different run states, the FSM needs a 2-bit register, with at least a reset function. 
@@ -170,7 +193,7 @@ The AND gate is made by connecting a NAND and NOT in series, as shown in \autore
 \subsubsection{Finite State Machine}
 \label{subsec:fsm_verilog}
 
-The FSM is implemented and its functionality is verified using the hardware desctriptive language verilog. To simplify the implementation, the register is written as a separate module, shown in the appendix \autoref{verilog_onebitregister}. The code for implementing the FSM in verilog is given in \autoref{verilog_FSM} in the appendix.
+The FSM is implemented and its functionality is verified using the hardware desctriptive language verilog. The code for implementing the FSM in verilog is given in \autoref{verilog_FSM} in the appendix. To simplify the implementation, the register is written as a separate module, shown in the appendix \autoref{verilog_onebitregister}.
 
 To test the functionality, a separate testbench-module is made in verilog. The FSM is run through a series of different possible inputs. The output timing diagram is subsequently analyzed to verify that the FSM has the correct output based on the input.
 

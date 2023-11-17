@@ -170,8 +170,8 @@ endmodule
 
 
 \begin{lstlisting}[style=verilogStyle, caption=8-bit adder in Verilog, label=verilog_eightbitadder]
-`include "../MAC/Half_Adder.v"
-`include "../MAC/Full_Adder.v"
+`include "Half_Adder.v"
+`include "Full_Adder.v"
 
 module eightbit_adder (
     input [7:0] A,
@@ -295,8 +295,8 @@ endmodule
 
 
 \begin{lstlisting}[style=verilogStyle, caption=One-bit register in Verilog, label=verilog_onebitregister]
-`include "../MAC/Reg_mux.v"
-`include "../MAC/D_Flip_Flop.v"
+`include "Reg_mux.v"
+`include "D_Flip_Flop.v"
 
 module onebit_register (input D, input S, input R, input CLK, output Q);
 
@@ -321,7 +321,7 @@ endmodule
 
 
 \begin{lstlisting}[style=verilogStyle, caption=8-bit register, label=verilog_eightbitregister]
-`include "../MAC/onebit_register.v"
+`include "onebit_register.v"
 
 module eightbit_register (input s_eight , input r_eight ,input clk_eight, 
 							input [7:0] d_eight ,output [7:0] q_eight );
@@ -388,9 +388,9 @@ endmodule
 
 
 \begin{lstlisting}[style=verilogStyle, caption=MAC in Verilog, label=verilog_MAC]
-`include "../MAC/twobit_multiplier.v"
-`include "../MAC/eightbit_adder.v"
-`include "../MAC/eightbit_register.v"
+`include "twobit_multiplier.v"
+`include "eightbit_adder.v"
+`include "eightbit_register.v"
 
 module MAC(
     input [1:0] A, 
@@ -421,7 +421,7 @@ endmodule
 
 
 \begin{lstlisting}[style=verilogStyle, caption=FSM in Verilog, label=verilog_FSM]
-`include "../Mealy FSM/onebit_register.v"
+`include "onebit_register.v"
 
 module Mealy_FSM(
     input RunIN, 
@@ -431,9 +431,10 @@ module Mealy_FSM(
     output ResetOUT
     );
 
-    //Define wires (A and B are only used internally)
+    //Define wires
 
     wire RunIN, ResetIN, CLK, RunOUT, ResetOUT, Set, C1, C0, N1, N0, A, B;
+    wire [1:0] C, N;
 
     //The FSM should always take in the next state
 
@@ -441,19 +442,19 @@ module Mealy_FSM(
 
     //Define the registers
 
-    onebit_register Reg0(.D(N0), .S(Set), .R(ResetIN), .CLK(CLK), .Q(C0));
-    onebit_register Reg1(.D(N1), .S(Set), .R(ResetIN), .CLK(CLK), .Q(C1));
+    onebit_register Reg0(.D(N[0]), .S(Set), .R(ResetIN), .CLK(CLK), .Q(C[0]));
+    onebit_register Reg1(.D(N[1]), .S(Set), .R(ResetIN), .CLK(CLK), .Q(C[1]));
 
     //Throughput the reset-signal
 
     assign ResetOUT = ResetIN;
 
-    //Define logic gates
+    //Define logic gates and MUX
 
-    xor(N0, C0, RunIN);
-    and(A, C0, RunIN);
-    xor(N1, A, C1);
-    nand(B, C0, C1);
+    xor(N[0], C[0], RunIN);
+    and(A, C[0], RunIN);
+    xor(N[1], A, C[1]);
+    nand(B, C[0], C[1]);
     and(RunOUT, B, RunIN);
 
 endmodule
@@ -461,8 +462,8 @@ endmodule
 
 
 \begin{lstlisting}[style=verilogStyle, caption=Full MAC circuit in Verilog, label=verilog_fullmac]
-`include "../Mealy FSM/Mealy_FSM.v"
-`include "../MAC/MAC.v"
+`include "Mealy_FSM.v"
+`include "MAC.v"
 
 module MAC_FULL(
     input [1:0] I, 
