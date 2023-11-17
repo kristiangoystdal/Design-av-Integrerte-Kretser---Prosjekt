@@ -219,7 +219,7 @@ To test the functionality, a separate testbench-module is made in verilog. The F
 \subsubsection{MAC in Verilog}
 \label{subsubsec:MAC_in_verilog}
 
-As the MAC is composed of three subcircuits, these are implemented and tested with Verilog testbenches separately. The 2-bit multiplier and the 8-bit adder is set up to loop through all possible combinations of inputs and checked if the output matches what is expected. \autoref{fig:verilog_adderTB_excerpt} shows how to loop through the inputs on the adder. A and B are 8-bit signals which can represent unsigned integers 0 to 255. A similar approach can be used for 
+As the MAC is composed of three subcircuits, these are implemented and tested with Verilog testbenches separately. The 2-bit multiplier and the 8-bit adder is set up to loop through all possible combinations of inputs and checked if the output matches what is expected. \autoref{fig:verilog_adderTB_excerpt} shows how to loop through the inputs on the adder.
 
 \begin{figure}[H]
 \centering
@@ -244,7 +244,7 @@ end
 \end{minipage}
 \end{figure}
 
-
+A and B are 8-bit signals which can represent unsigned integers 0 to 255. A similar approach can be used for the multiplier and the register. For the register testbench given in \autoref{}
 
 
 \subsubsection{What to include in this section}
