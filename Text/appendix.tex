@@ -380,107 +380,40 @@ endmodule
 \end{lstlisting}
 
 \begin{lstlisting}[style=verilogStyle, caption=FSM in Verilog, label=verilog_fsm]
-`include "D_Flip_Flop.v"
+`include "../Mealy FSM/onebit_register.v"
 
-module FSM ( I ,CLK ,O );
+module Mealy_FSM(
+    input RunIN, 
+    input ResetIN, 
+    input CLK, 
+    output RunOUT, 
+    output ResetOUT
+    );
 
-//Initiate inputs+outputs
+    //Define wires
 
-input [1:0] I ;
-wire [1:0] I ;
-input CLK ;
-wire CLK ;
-output [1:0] O ;
-wire [1:0] O ;
+    wire RunIN, ResetIN, CLK, RunOUT, ResetOUT, Set, C1, C0, N1, N0, A, B;
 
+    //The FSM should always take in the next state
 
-//Initiate all internal wires
+    assign Set = 1;
 
-wire C[2:0];		//Current state		   
-wire N[2:0];		//Next state   
+    //Define the registers
 
-wire C2not;
-wire C1not;
-wire C0not;
-wire I1not;
-wire I0not;
-wire C0orC1;   
-wire C1xorC0;
-wire A;
-wire B;
-wire T;
-wire D;
-wire E;
-wire F;
-wire G;
-wire H;
-wire J;
-wire K;	
-wire S;	   //Set bit for testing
-wire X;
-wire Y;
-wire Z;
+    onebit_register Reg0(.D(N0), .S(Set), .R(ResetIN), .CLK(CLK), .Q(C0));
+    onebit_register Reg1(.D(N1), .S(Set), .R(ResetIN), .CLK(CLK), .Q(C1));
 
-	//Initiate the 3-bit register
+    //Throughput the reset-signal
 
-	D_Flip_Flop flip_flop_instance_0 (
-	.D_flip(N[0]),
-	.Q_flip(C[0]),
-	.clk_flip(CLK)
-	);	  
-	
-	D_Flip_Flop flip_flop_instance_1 (
-	.D_flip(N[1]),
-	.Q_flip(C[1]),
-	.clk_flip(CLK)
-	);	
-	
-	D_Flip_Flop flip_flop_instance_2 (
-	.D_flip(N[2]),
-	.Q_flip(C[2]),
-	.clk_flip(CLK)
-	);	
-	
-	//Initiate the output logic
-	
-	and(O[1],C[1],C[2]);
-	and(O[0],C0orC1,C2not);
-	or(C0orC1, C[0], C[1]);
-	
-	
-	//Initiate the Next state logic
-	
-	//NOT-gates
-	not(C2not, C[2]);
-	not(C1not, C[1]);
-	not(C0not, C[0]);
-	not(I1not, I[1]);
-	not(I0not, I[0]);
-	
-	//other gates
+    assign ResetOUT = ResetIN;
 
-	and(N[2], X, S);	//To initiate the register for simulation we make the next state N[2:0]=000 if S=0
-	
-	or(X, I[1], A, B);
-	and(A, C[2], C1not, I0not);
-	and(B, I0not, C2not, C1xorC0);
-	xor(C1xorC0, C[1], C[0]);
+    //Define logic gates and MUX
 
-	and(N[1], Y, S);	
-	
-	or(Y, I[1], T, D);
-	and(T, C[2], C1not, I[0]);
-	and(D, I[0], C2not, C1xorC0);
-	
-	and(N[0], Z, S);
-	
-	or(Z, K, J);	 
-	or(K, G, H);
-	or(J, E, F);	
-	and(E, C2not, C0not, I1not, I[0]);
-	and(F, C[2], C1not, C[0], I1not);
-	and(G, C[1], C0not, I1not, I[0]);
-	and(H, C2not, C[1], C0not, I1not);
+    xor(N0, C0, RunIN);
+    and(A, C0, RunIN);
+    xor(N1, A, C1);
+    nand(B, C0, C1);
+    and(RunOUT, B, RunIN);
 
 endmodule
 \end{lstlisting}

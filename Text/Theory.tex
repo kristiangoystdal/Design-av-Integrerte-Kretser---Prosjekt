@@ -107,8 +107,9 @@ The accumulator is an 8-bit register with some control signals, set (S) and rese
 \subsection{Static Power Consumption}
 \label{subsec:low_power}
 
-One can consider many aspects of a circuit design to affect the static power consumption. As the transistor technology is given by the spesification table (\ref{tab:specifications})
+One can consider many aspects of a circuit design to affect the static power consumption. Static power consumption in a circuit is primarily associated with leakage currents in transistors. The characteristics defined by a specific transistor technology as well as its width and length can influence the size of the leakage currents. As the transistor technology is given by the spesifications (\ref{tab:specifications}), we may consider changing the width and length within the specifications to optimize for low leakage currents.
 
+In an ideal scenario, one might approximate to say that the leakage current increases linearly with the number of transistors, assuming each transistor contributes an equal amount to leakage current. However, in reality, the relationship is more complex. This simplification is useful nevertheless and is used when considering design choices in this project.
 
 When  the static power consumption for the TT and FF corner, we look at a state where the CLK is not running and the inputs, D, S and R, are set to low. The static power consumption is calculated by taking the current in the $V_{DD}$ node and multiplying it with the $V_{DD}$, as shown in equation \ref{eq:power}.
 
