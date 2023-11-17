@@ -1,6 +1,10 @@
 import csv
 import os
 
+# Example usage:
+txt_path = "txt_Files"
+output_path = "AIMSPICE/csv_Files"
+
 
 def txt_to_csv(input_txt, output_csv, delimiter="\t"):
     with open(input_txt, "r") as txtfile, open(output_csv, "w", newline="") as csvfile:
@@ -28,7 +32,4 @@ def convert_folder_txt_to_csv(
         txt_to_csv(input_file_path, output_file_path, delimiter)
 
 
-# Example usage:
-txt_path = "txt_Files"
-output_path = "csv_Files"
 convert_folder_txt_to_csv()
