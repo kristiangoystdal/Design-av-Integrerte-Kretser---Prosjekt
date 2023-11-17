@@ -128,6 +128,7 @@ plt.xlim(3.5 * clk_period, 4.5 * clk_period)
 plt.legend()
 plt.savefig("Corner")
 # plt.show()
+plt.clf()
 
 for i in range(1, len(filenames), 3):
     plot(filenames[i], picNames[i], titles[i])
