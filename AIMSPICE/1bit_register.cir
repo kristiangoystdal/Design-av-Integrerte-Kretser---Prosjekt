@@ -95,10 +95,6 @@ XFLOP GND VDD CLK 1 Q FLOP
 
 *Setting VDD = 0.85, the D, CLK, S and R as different square waves
 VDD 1 0 V_DD
-*VCLK CLK 0 0
-*VD D 0 0
-*VS S 0 0
-*VR R 0 0
 VD D 0 PULSE(0 C_VDD 25n RISE_TIME FALL_TIME 20ns 40ns)
 VCLK CLK 0 PULSE(0 C_VDD 0 RISE_TIME FALL_TIME CLK_HIGH CLK_PERIOD)
 VS S 0 PULSE(0 C_VDD 25n RISE_TIME FALL_TIME 60n 120n)
@@ -117,7 +113,6 @@ XREG 0 1 CLK S R D Q REGISTER
 .plot v(CLK)
 .plot v(S) 
 .plot v(R)
-.plot i(1)
 **************************************************************
 [options]
 2
