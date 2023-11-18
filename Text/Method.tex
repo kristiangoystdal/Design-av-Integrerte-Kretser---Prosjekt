@@ -1,14 +1,114 @@
 \section{Method}
 \label{sec:method}
 
-In this section we explain how be implement the two systems, using AIMSpice and Verilog, to achieve the functionality we want. 
+In this section we explain how be implement and test the two systems, using AIMSpice to create and test a 1-bit register, and Verilog to create the full circuit. 
+
+\subsection{MAC design}
+\label{subsec:circuitDesign}
+
+In this section we will look on how to implement the different subsystems of the MAC unit. The designs are shown at a logic gate level as that is used for both the AIMSpice and Verilog implementation. 
+
+\subsubsection{Multiplier} 
+
+A 2-bit multiplier could be designed like shown in \autoref{fig:multiplier}, which takes in A and B as two 2-bits inputs and outputs a 4-bit signal O. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{Figures/multiplier.png}
+    \caption{Possible design of multiplier}
+    \label{fig:multiplier}
+\end{figure}
+
+\subsubsection{Adder}
+The circuit for the half and full adder is shown in \autoref{fig:halfadder} and \ref{fig:fulladder}.
+
+\begin{figure}[H]
+\begin{minipage}{0.4\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Figures/halfadder.png}
+    \caption{Half adder}
+    \label{fig:halfadder}
+\end{minipage}
+\begin{minipage}{0.6\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Figures/fulladder.png}
+    \caption{Full adder}
+    \label{fig:fulladder}
+\end{minipage}
+\end{figure}
+
+
+\subsubsection{Accumulator}
+\label{subsubsec:accumulator}
+The accumulator is an 8-bit register with some control signals, that is received from the FSM. As shown in \autoref{fig:8bitregister}, the accumulator consists of a D-Flip-Flop and a control circuit. These are implemented as shown in \autoref{fig:dflipflop} and \ref{fig:setreset} respectively.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Figures/D_Flip_Flop.png}
+    \caption{D-flip flop}
+    \label{fig:dflipflop}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{Figures/setReset.png}
+    \caption{Circuit for controlling register}
+    \label{fig:setreset}
+\end{figure}
+
+
 
 \subsection{AIMSpice}
 \label{subsec:aimspicemethod}
+In the AIMSpice related part of the assignment, a 1 bit register will be implemented using the designs shown in \autoref{subsec:circuitDesign}. 
 
+To implement the register in AIMSpice, different logic gates are made using transistors. The different logic gates used in the 1-bit register are NOT-, AND- and transmission gates. This is shown in \autoref{fig:NOT} and \ref{fig:NAND}. To achieve a low static power consumption transistor stacking is used. This will make the leakage current lower than if  
+
+\begin{figure}[H]
+\centering
+\begin{minipage}{0.4\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{Figures/Not gate.png}
+    \caption{\parbox{0.5\textwidth}{NOT-gate using MOSFET and transistor stacking}}
+    \label{fig:NOT}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+    \centering
+    \includegraphics[width=0.9\linewidth]{Figures/Nand Gate.png}
+    \caption{\parbox{0.5\textwidth}{NAND-gate using MOSFET and transistor stacking}}
+    \label{fig:NAND}
+\end{minipage}
+\end{figure}
+
+The AND gate is made by connecting a NAND and NOT in series, as shown in \autoref{fig:AND}.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{Figures/And gate.png}
+    \caption{AND gate}
+    \label{fig:AND}
+\end{figure}
+
+\subsubsection{Static CMOS}
+
+
+\subsubsection{AIMSpice testing}
 To test the 1-bit register made by in AIMSpice, we have to set some square waves for the clock signal, the data input, and the set and reset signals.
 
 As shown in \autoref{appendix:aimspice}, line 95-98, we use the PULSE function in AIMSpice to create square waves for the different inputs. These inputs will together determine what the output Q is set to.
+
+\begin{figure}[H]
+\centering
+\label{fig:aimspice_pulses}
+\begin{minipage}{\textwidth}
+\begin{lstlisting}[style=aimspiceStyle]
+VD D 0 PULSE(0 C_VDD 25n RISE_TIME FALL_TIME 20ns 40ns)
+VCLK CLK 0 PULSE(0 C_VDD 0 RISE_TIME FALL_TIME CLK_HIGH CLK_PERIOD)
+VS S 0 PULSE(0 C_VDD 25n RISE_TIME FALL_TIME 60n 120n)
+VR R 0 PULSE(0 C_VDD 145n RISE_TIME FALL_TIME 50n 100n)
+\end{lstlisting}
+\end{minipage}
+\caption{AIMSpice code for creating square waves for the input signals, with all combinations present}
+\end{figure}
 
 The register should have the functionality as shown in the \autoref{tab:registerFunc}. Where the value of Q gets set to D if set is low and it keeps its previous value if set is high. If reset is high, the value Q is set to low. 
 
@@ -105,91 +205,6 @@ From the boolean equations, we can draw up the logic diagram shown in \autoref{f
 \noindent
 The register used in this circuit is of the same design as the register described in \autoref{subsubsec:accumulator}.
 
-\subsection{MAC design}
-\label{subsec:circuitDesign}
-
-In this section we will look on how to implement the different subsystems of the MAC unit. The designs are shown at a logic gate level as that is used for both the AIMSpice and Verilog implementation. 
-
-\subsubsection{Multiplier} 
-
-A 2-bit multiplier could be designed like shown in \autoref{fig:multiplier}, which takes in A and B as two 2-bits inputs and outputs a 4-bit signal O. 
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{Figures/multiplier.png}
-    \caption{Possible design of multiplier}
-    \label{fig:multiplier}
-\end{figure}
-
-\subsubsection{Adder}
-The circuit for the half and full adder is shown in \autoref{fig:halfadder} and \ref{fig:fulladder}.
-
-\begin{figure}[H]
-\begin{minipage}{0.4\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{Figures/halfadder.png}
-    \caption{Half adder}
-    \label{fig:halfadder}
-\end{minipage}
-\begin{minipage}{0.6\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{Figures/fulladder.png}
-    \caption{Full adder}
-    \label{fig:fulladder}
-\end{minipage}
-\end{figure}
-
-
-\subsubsection{Accumulator}
-\label{subsubsec:accumulator}
-The accumulator is an 8-bit register with some control signals, that is received from the Final State Machine (FSM). As shown in \autoref{fig:8bitregister}, the accumulator consists of a D-Flip-Flop and a control circuit. These are implemented as shown in \autoref{fig:dflipflop} and \ref{fig:setreset} respectively.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\textwidth]{Figures/D_Flip_Flop.png}
-    \caption{D-flip flop}
-    \label{fig:dflipflop}
-\end{figure}
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.4\textwidth]{Figures/setReset.png}
-    \caption{Circuit for controlling register}
-    \label{fig:setreset}
-\end{figure}
-
-
-
-\subsection{AIMSpice}
-In the AIMSpice related part of the assignment, a 1 bit register will be implemented using the designs shown in \autoref{subsec:circuitDesign}. 
-
-To implement the register in AIMSpice, different logic gates are made using transistors. The different logic gates used in the 1-bit register are NOT-, AND- and transmission gates. This is shown in \autoref{fig:dflipflop} and \ref{fig:setreset}.
-
-\begin{figure}[H]
-\centering
-\begin{minipage}{0.4\textwidth}
-    \centering
-    \includegraphics[width=\linewidth]{Figures/Not gate.png}
-    \caption{\parbox{0.5\textwidth}{NOT-gate using MOSFET and transistor stacking}}
-    \label{fig:NOT}
-\end{minipage}
-\begin{minipage}{0.4\textwidth}
-    \centering
-    \includegraphics[width=0.9\linewidth]{Figures/Nand Gate.png}
-    \caption{\parbox{0.5\textwidth}{NAND-gate using MOSFET and transistor stacking}}
-    \label{fig:NAND}
-\end{minipage}
-\end{figure}
-
-The AND gate is made by connecting a NAND and NOT in series, as shown in \autoref{fig:AND}.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.4\linewidth]{Figures/And gate.png}
-    \caption{AND gate}
-    \label{fig:AND}
-\end{figure}
-
-\subsubsection{Static CMOS}
 
 \subsection{Verilog}
 
