@@ -1,7 +1,14 @@
 \section{Discussion}
 \label{sec: Discussion}
 
-**Insert discussion here**
+
+\subsection{AIMSpice}
+
+As shown in \autoref{fig:result_TT27}, the different combinations of the inputs signals gives a Q-value based on \autoref{tab:registerFunc}. If the Set-value is high, Q only updates to the D-value when the CLK changes from low to high. And if the Reset-value is high, the value Q is overruled to low, even if Set and D is high. 
+
+When looking at the different corners and temperatures, the difference of the functionality is quite similar. One can see in the case, \autoref{fig:TT_diffTemps}, with the TT corner at the different temperatures, that the register is just a tiny fraction more stable with a at higher temperatures.
+
+For the case where we look at the different corners at the same temperature, \autoref{fig:27_diffCorners}, it is shown that the TT, FF and SF corners have the most ripples while the SS and FS corner have the least ripple.
 
 % Discuss your results. You presented your results in the last section, so you do not need to repeat everything here. Just focus on the most interesting results and discuss these.
 
