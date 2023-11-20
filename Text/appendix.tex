@@ -669,7 +669,42 @@ endmodule
 \end{lstlisting}
 
 
+\begin{lstlisting}[style=verilogStyle, caption=MAC Testbench in Verilog, label=verilog_MACTB]
+module TB;
+    integer randomSeed = 10;
+    reg [1:0] CTRL, A, B;
+    reg CLK;
+    wire [7:0] Y;
 
+    MAC uut(.*);
+
+    always #5 CLK = ~CLK;
+    always #10 A = $random(randomSeed) % 4;
+    always #10 B = $random % 4;
+
+    initial begin
+      $dumpfile("TB_dumpfile.vcd");
+      $dumpvars(0, TB);
+
+        CLK = 0;
+        CTRL = 3;
+        A = $random % 4;
+        B = $random % 4;
+        #10;
+        CTRL = 1;
+        #50;
+        CTRL = 0;
+        #20;
+        CTRL = 3;
+        #10;
+        CTRL = 1;
+        #150;
+        $finish;
+    end
+
+
+endmodule
+\end{lstlisting}
 
 
 \begin{lstlisting}[style=verilogStyle, caption=FSM Testbench in Verilog, label=verilog_FSMTB]
