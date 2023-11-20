@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-11-20T13:50:31.781Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="0dljgtU08uCntj5WmT9Z" version="22.1.3" type="github">
+<mxfile host="app.diagrams.net" modified="2023-11-20T14:21:20.917Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36" etag="SCXgnW-GgNxSJY0i7XWR" version="22.1.3" type="github">
   <diagram name="Page-1" id="_UM0i6C4peb4IL8pWmH5">
-    <mxGraphModel dx="397" dy="616" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="985" dy="811" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -1675,8 +1675,8 @@
         <mxCell id="iAVYWerwNga1-fqzqN3I-435" value="!CLK" style="text;html=1;align=center;verticalAlign=top;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;horizontal=1;fontStyle=0;labelBorderColor=none;" parent="1" vertex="1">
           <mxGeometry x="1980" y="630" width="50" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="iAVYWerwNga1-fqzqN3I-436" value="!CLK" style="text;html=1;align=center;verticalAlign=top;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;horizontal=1;fontStyle=0;labelBorderColor=none;" parent="1" vertex="1">
-          <mxGeometry x="2100" y="770" width="50" height="30" as="geometry" />
+        <mxCell id="iAVYWerwNga1-fqzqN3I-436" value="CLK" style="text;html=1;align=center;verticalAlign=top;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;horizontal=1;fontStyle=0;labelBorderColor=none;" parent="1" vertex="1">
+          <mxGeometry x="2105" y="770" width="41" height="26" as="geometry" />
         </mxCell>
         <mxCell id="iAVYWerwNga1-fqzqN3I-437" value="CLK" style="text;html=1;align=center;verticalAlign=top;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;horizontal=1;fontStyle=0;labelBorderColor=none;" parent="1" vertex="1">
           <mxGeometry x="1640" y="630" width="50" height="30" as="geometry" />
@@ -1687,8 +1687,8 @@
         <mxCell id="iAVYWerwNga1-fqzqN3I-439" value="CLK" style="text;html=1;align=center;verticalAlign=bottom;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;horizontal=1;fontStyle=0;labelBorderColor=none;" parent="1" vertex="1">
           <mxGeometry x="1980" y="440" width="50" height="30" as="geometry" />
         </mxCell>
-        <mxCell id="iAVYWerwNga1-fqzqN3I-440" value="CLK" style="text;html=1;align=center;verticalAlign=bottom;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;horizontal=1;fontStyle=0;labelBorderColor=none;" parent="1" vertex="1">
-          <mxGeometry x="2100" y="580" width="50" height="30" as="geometry" />
+        <mxCell id="iAVYWerwNga1-fqzqN3I-440" value="!CLK" style="text;html=1;align=center;verticalAlign=bottom;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;horizontal=1;fontStyle=0;labelBorderColor=none;" parent="1" vertex="1">
+          <mxGeometry x="2103" y="584" width="45" height="26" as="geometry" />
         </mxCell>
         <mxCell id="XkicySLFO15Dte9fFzA2-1" value="" style="verticalLabelPosition=bottom;shadow=0;dashed=0;align=center;html=1;verticalAlign=top;shape=mxgraph.electrical.transistors.nmos;pointerEvents=1;rotation=90;" parent="1" vertex="1">
           <mxGeometry x="1615.48" y="900" width="60" height="100" as="geometry" />
