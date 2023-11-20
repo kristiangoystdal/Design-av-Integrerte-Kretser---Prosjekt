@@ -3,18 +3,20 @@
 
 \subsection{AIMSpice}
 
-The register could have different effect and operations due to the corner of the transistor and the temperature. There are five corners the transistors could be; TT(typical-typical), SS(slow-slow), FF(fast-fast), SF(slow-fast) and FS(fast-slow).  For all of the corners they have been tested for three temperatures, 0$^\circ C$, 27$^\circ C$ and 70$^\circ C$. All the different plots for the different cases are shown in the appendix \ref{appendix:aimspicePlots}. 
+The register could have different effect and operations due to the corner of the transistor and the temperature. There are five corners the transistors could be; TT(typical-typical), SS(slow-slow), FF(fast-fast), SF(slow-fast) and FS(fast-slow).  For all of the corners they have been tested for three temperatures, 0$^\circ C$, 27$^\circ C$ and 70$^\circ C$. All the different plots for the different cases are shown in the \autoref{appendix:aimspicePlots}. 
 
 To validate the functionality of the register, one can examine the plot of the TT corner at 27$^\circ C$. 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/TT_27.png}
+    \includegraphics[width=0.9\textwidth]{Figures/Aimspice_Plots/TT_27.png}
     \caption{Plot of register for TT corner}
     \label{fig:result_TT27}
 \end{figure}
 
 As shown in \autoref{fig:result_TT27}, the different combinations of the inputs signals gives a Q-value based on \autoref{tab:registerFunc}. If the Set-value is high, Q only updates to the D-value when the CLK changes from low to high. And if the Reset-value is high, the value Q is overruled to low, even if Set and D is high.
+
+We have also looked at the stability of the register, when changing from low to high, and how they different corners or temperatures affect it. 
 
 When looking at the different corners and temperatures, the difference of the functionality is quite similar. One can see in the case, \autoref{fig:TT_diffTemps}, with the TT corner at the different temperatures, that the register is just a tiny fraction more stable with a at higher temperatures.
 

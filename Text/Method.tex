@@ -60,7 +60,14 @@ The accumulator is an 8-bit register with some control signals, that is received
 
 \subsection{AIMSpice}
 \label{subsec:aimspicemethod}
-In the AIMSpice related part of the assignment, a 1 bit register will be implemented using the designs shown in \autoref{subsec:circuitDesign}. 
+In the AIMSpice related part of the assignment, a 1 bit register, \autoref{fig:1-bit_reg}, will be implemented using the designs shown in \autoref{fig:dflipflop} and \ref{fig:setreset}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{Figures/1-bit register.png}
+    \caption{1-bit register, with inputs Data, Reset and Set}
+    \label{fig:1-bit_reg}
+\end{figure}
 
 To implement the register in AIMSpice, different logic gates are made using transistors. The different logic gates used in the 1-bit register are NOT-, AND- and transmission gates. This is shown in \autoref{fig:NOT} and \ref{fig:NAND}. To achieve a low static power consumption transistor stacking is used. This will make the leakage current lower than if  
 
@@ -90,6 +97,7 @@ The AND gate is made by connecting a NAND and NOT in series, as shown in \autore
 
 
 \subsubsection{AIMSpice testing}
+\label{subsubsec:aimspice_testing}
 To test the 1-bit register made by in AIMSpice, we have to set some square waves for the clock signal, the data input, and the set and reset signals.
 
 As shown in \autoref{fig:aimspice_pulses}, we use the PULSE function in AIMSpice to create square waves for the different inputs. These inputs will together determine what the output Q is set to.
@@ -105,7 +113,7 @@ VS S 0 PULSE(0 C_VDD 25n RISE_TIME FALL_TIME 60n 120n)
 VR R 0 PULSE(0 C_VDD 145n RISE_TIME FALL_TIME 50n 100n)
 \end{lstlisting}
 \end{minipage}
-\caption{AIMSpice code for creating square waves for the input signals, with all combinations present}
+\caption{AIMSpice code for creating square waves for the input signals, with all combinations of the inputs present.}
 \end{figure}
 
 The register should have the functionality as shown in the \autoref{tab:registerFunc}. Where the value of Q gets set to D if set is low and it keeps its previous value if set is high. If reset is high, the value Q is set to low. 
@@ -202,20 +210,22 @@ From the boolean equations, we can draw up the logic diagram shown in \autoref{f
 \end{figure}
 
 \noindent
-The register used in this circuit is of the same design as the register described in \autoref{subsubsec:accumulator}.
+The registers used in this circuit is of the same design as the register described in \autoref{subsubsec:accumulator}.
 
 
 \subsection{Verilog}
 
+In this section we create the subsystems and testbenches for them using the hardware descriptive language Verilog. A testbench for the full circuit is also created in this section.
+
 \subsubsection{FSM in Verilog}
 \label{subsec:fsm_verilog}
 
-The FSM is implemented and its functionality is verified using the hardware desctriptive language verilog. An excerpt of the logic part is given below in \autoref{fig:verilog_FSM_excerpt}. The complete code for implementing the FSM in verilog is given in \autoref{verilog_FSM} in the appendix.
+The FSM is implemented and its functionality is verified using Verilog. An excerpt of the logic part is given below in \autoref{fig:verilog_FSM_excerpt}. The complete code for implementing the FSM in Verilog is given in \autoref{verilog_FSM} in the appendix.
 
 
 \begin{figure}[H]
 \centering
-\caption{Exerpt of the FSM implemented in Verilog.}
+\caption{Excerpt of the FSM implemented in Verilog.}
 \label{fig:verilog_FSM_excerpt}
 \begin{minipage}{0.33\textwidth}
 \begin{lstlisting}[style=verilogStyle]
@@ -236,7 +246,9 @@ To test the functionality, a separate testbench-module is made in verilog. The F
 \subsubsection{MAC in Verilog}
 \label{subsubsec:MAC_in_verilog}
 
-As the MAC is composed of three subcircuits, these are implemented and tested with Verilog testbenches separately. The 2-bit multiplier and the 8-bit adder is set up to loop through all possible combinations of inputs and checked if the output matches what is expected. \autoref{fig:verilog_adderTB_excerpt} shows how to loop through the inputs on the adder.
+As the MAC is composed of three subcircuits, these are implemented, using the designs in \autoref{subsec:circuitDesign}, and tested with Verilog testbenches separately. All the code for the implementation of the subsystems are found in \autoref{appendix:Verilog-code}. 
+
+The 2-bit multiplier and the 8-bit adder is set up to loop through all possible combinations of inputs and checked if the output matches what is expected. \autoref{fig:verilog_adderTB_excerpt} shows how to loop through the inputs on the adder.
 
 \begin{figure}[H]
 \centering
@@ -261,7 +273,9 @@ end
 \end{minipage}
 \end{figure}
 
-A and B are 8-bit input signals to the adder which can represent unsigned integers 0 to 255. Note the small delay needed for the signals to propagate the circuit. A similar approach can be used to verify the functionality of the multiplier and the register. For the register testbench, given in \autoref{verilog_registerTB}, one also has to account for the delay needed for the clock to have one rising edge before next input is tested. A simple testbench was is also made for the MAC put together without the FSM. All testbenches can be found in \autoref{sec:verilog_testbenches}.
+A and B are 8-bit input signals to the adder which can represent unsigned integers 0 to 255. Note the small delay needed for the signals to propagate the circuit. A similar approach can be used to verify the functionality of the multiplier and the register. 
+
+For the register testbench, given in \autoref{verilog_registerTB}, one also has to account for the delay needed for the clock to have one rising edge before next input is tested. A simple testbench was is also made for the MAC put together without the FSM. All testbenches can be found in \autoref{sec:verilog_testbenches}.
 
 \subsubsection{Full MAC in Verilog}
 \label{subsubsec_FullFSM_verilog}
