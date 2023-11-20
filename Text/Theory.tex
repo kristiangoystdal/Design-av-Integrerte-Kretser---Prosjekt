@@ -113,7 +113,7 @@ One can consider many aspects of a circuit design to affect the static power con
 \subsubsection{Leakage current}
 
 In a transistor, there is three leakage currents that exists: subthreshold, gate, and
-junction leakage current. Out of these the subthreshold leakage currents is in most cases the largest current. \cite{Analog_integrated} The equation for subthreshold leakage current is given by \autoref{eq:subthresholdcurrent}. 
+junction leakage current. Out of these the subthreshold leakage currents is in most cases the largest current. \cite[p.42]{Analog_integrated} The equation for subthreshold leakage current is given by \autoref{eq:subthresholdcurrent}. 
 
 \begin{equation}
     \label{eq:subthresholdcurrent}
@@ -127,7 +127,16 @@ Since $V_{eff} < 0$ in subthreshold region the leakage current will have a propo
 In an ideal scenario, one might approximate to say that the leakage current increases linearly with the number of transistors, assuming each transistor contributes an equal amount to leakage current. However, in reality, the relationship is more complex. This simplification is useful nevertheless and is used when considering design choices in this project.
 
 \subsubsection{Transistor Stacking}
+Another way to decrease the leakage current is to use transistor stacking. When stacking transistors, like shown in \autoref{fig:transistor_stacking}, the voltage drop, $V_{DS}$, over each transistor is lower than if there was only one transistor. A lower $V_{DS}$ means a lower DIBL-effect, which in turn means a lower leakage current.
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{Figures/Transistor Stacking.png}
+    \caption{Transistor stacking}
+    \label{fig:transistor_stacking}
+\end{figure}
+
+\cite{transistor_stacking}
 
 
 \subsubsection{Calculation of Static Power Consumption}
