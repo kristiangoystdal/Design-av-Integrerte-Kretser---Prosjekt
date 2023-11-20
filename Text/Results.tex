@@ -14,6 +14,8 @@ To validate the functionality of the register, one can examine the plot of the T
     \label{fig:result_TT27}
 \end{figure}
 
+As shown in \autoref{fig:result_TT27}, the different combinations of the inputs signals gives the expected Q-value based on \autoref{tab:registerFunc}. If the Set-value is high, Q only updates to the D-value when the CLK changes from low to high. And if the Reset-value is high, the value Q is overruled to low, even if Set and D is high. This is also the case for the other temperatures and corners in \autoref{appendix:register_plots}.
+
 We have also looked at the stability of the register, when changing from low to high, and how they different corners or temperatures affect it. \autoref{fig:TT_diffTemps} and \autoref{fig:27_diffCorners} shows the stability for the same corner with different temperatures and different corners at same temperature respectively. The other plots for the different corners and temperatures can be found in \autoref{appendix:register_stability}.
 
 \begin{figure}[H]
@@ -181,9 +183,9 @@ values for CTRL are shown in binary notation, and values for A, B, PROD in decim
     \label{fig:mac_simulation}
 \end{figure}
 
-The figure shows the 8-bit register initially being reset to 0, before being put in 
+The figure shows the 8-bit register initially being reset to 0, before receiving the run control signal ''01''. For each rising CLK edge with this control signal, the product PROD is added to the previous value of Y. The control signal ''00'' pauses the accumulation and makes the register holds the current value. The control signal 11 resets the register again to 0. 
 
-
+\subsubsection{Full MAC Results}
 
 
 
