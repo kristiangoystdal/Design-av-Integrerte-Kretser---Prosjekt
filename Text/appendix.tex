@@ -120,8 +120,6 @@ XREG 0 1 CLK S R D Q REGISTER
 \end{lstlisting}
 
 
-
-
 \section{Verilog Code}
 \label{appendix:Verilog-code}
 
@@ -750,15 +748,12 @@ module TB;
 endmodule
 \end{lstlisting}
 
-
-\section{Optional (rename based on what you put here)}
-Sometimes one might end up running a lot of simulations, and then find out that not all of them were relevant enough to present in the actual report. Additional figures and results can then be included here (with a brief explanation so that the reader knows what they are looking at). This section of the appendix is optional, and might not be relevant for your group. 
-
-Anything added here will not affect the grade directly, but might contribute to the overall impression of the work you have done (which is part of what we grade). Your grade will NOT be affected negatively if only the AIMSpice and Verilog code is in the appendix.
-
 \newpage
-\section{AimSpice Plots}
+\section{AIMSpice Plots}
 \label{appendix:aimspicePlots}
+
+\subsection{Register Timing Plots}
+\label{appendix:register_plots}
 
 \begin{figure}[H]
     \begin{minipage}{0.5\textwidth}
@@ -877,5 +872,71 @@ Anything added here will not affect the grade directly, but might contribute to 
         \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/FF_70.png}
         \caption{Plot of register for FF corner}
         \label{fig:FF70}
+    \end{minipage}%
+\end{figure}
+
+
+\subsection{Register stability plots}
+\label{appendix:register_stability}
+
+\begin{figure}[H]
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/Temperatur0.png}
+        \caption{\parbox{0.6\textwidth}{Plot of register stability for 0$^\circ$C for different corners.}}
+        \label{fig:Temp0}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/Temperatur27.png}
+        \caption{\parbox{0.6\textwidth}{Plot of register stability for 27$^\circ$C for different corners.}}
+        \label{fig:Temp27}
+    \end{minipage}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/Temperatur70.png}
+        \caption{\parbox{0.6\textwidth}{Plot of register stability for 70$^\circ$C for different corners.}}
+        \label{fig:Temp70}
+    \end{minipage}%
+\end{figure}
+
+\begin{figure}[H]
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/CornerSF.png}
+        \caption{\parbox{0.6\textwidth}{Plot of register stability for different temperatures with SF corner.}}
+        \label{fig:cornerSF}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/CornerFS.png}
+        \caption{\parbox{0.6\textwidth}{Plot of register stability for different temperatures with FS corner.}}
+        \label{fig:cornerFS}
+    \end{minipage}
+\end{figure}
+\begin{figure}[H]
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/CornerFF.png}
+        \caption{\parbox{0.6\textwidth}{Plot of register stability for different temperatures with FF corner.}}
+        \label{fig:cornerFF}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/CornerSS.png}
+        \caption{\parbox{0.6\textwidth}{Plot of register stability for different temperatures with SS corner.}}
+        \label{fig:cornerSS}
+    \end{minipage}
+\end{figure}
+\begin{figure}[H]
+    \centering
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/CornerTT.png}
+        \caption{\parbox{0.6\textwidth}{Plot of register stability for different temperatures with TT corner.}}
+        \label{fig:cornerTT}
     \end{minipage}%
 \end{figure}
