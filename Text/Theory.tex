@@ -127,17 +127,22 @@ Since $V_{eff} < 0$ in subthreshold region the leakage current will have a propo
 In an ideal scenario, one might approximate to say that the leakage current increases linearly with the number of transistors, assuming each transistor contributes an equal amount to leakage current. However, in reality, the relationship is more complex. This simplification is useful nevertheless and is used when considering design choices in this project.
 
 \subsubsection{Transistor Stacking}
-Another way to decrease the leakage current is to use transistor stacking. When stacking transistors, like shown in \autoref{fig:transistor_stacking}, the voltage drop, $V_{DS}$, over each transistor is lower than if there was only one transistor. A lower $V_{DS}$ means a lower DIBL-effect, which in turn means a lower leakage current.
+Another way to decrease the leakage current is to use transistor stacking. When stacking transistors, like shown in \autoref{fig:transistor_stacking}, the voltage drop, $V_{DS}$, is split over both transistor. This makes the drain-source voltage for each transistors is lower than if there was only one transistor. A lower drain-source  means a lower DIBL-effect, which in turn can result in a lower leakage current. This is explained in more detail in chapter 13.5.1 in \cite{transistor_stacking}.
 
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=0.4\textwidth]{Figures/Transistor Stacking.png}
-    \caption{Transistor stacking}
-    \label{fig:transistor_stacking}
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Figures/Transistor Stacking.png}
+        \caption{\parbox{0.5\textwidth}{Transistor stacking with two transistors.}}
+        \label{fig:transistor_stacking}
+    \end{minipage}%
+    \begin{minipage}{0.5\textwidth}
+        \centering
+        \includegraphics[width=\textwidth]{Figures/Leakage_current_ratios.png}
+        \caption{\parbox{0.5\textwidth}{Leakage current with different number of transistor in stack \cite[p.13-7]{transistor_stacking}}}
+        \label{fig:leakage_current_ratio}
+    \end{minipage}
 \end{figure}
-
-\cite{transistor_stacking}
-
 
 \subsubsection{Calculation of Static Power Consumption}
 When calculating the static power consumption for this circuit, we look at a state where the CLK is not running and the inputs, D, S and R, are set to low. The static power consumption is calculated by taking the leakage current in the $V_{DD}$ node and multiplying it with the $V_{DD}$, as shown in \autoref{eq:power}.
