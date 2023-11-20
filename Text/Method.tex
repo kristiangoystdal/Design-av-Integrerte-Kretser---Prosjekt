@@ -88,18 +88,16 @@ The AND gate is made by connecting a NAND and NOT in series, as shown in \autore
     \label{fig:AND}
 \end{figure}
 
-\subsubsection{Static CMOS}
-
 
 \subsubsection{AIMSpice testing}
 To test the 1-bit register made by in AIMSpice, we have to set some square waves for the clock signal, the data input, and the set and reset signals.
 
-As shown in \autoref{appendix:aimspice}, line 95-98, we use the PULSE function in AIMSpice to create square waves for the different inputs. These inputs will together determine what the output Q is set to.
+As shown in \autoref{fig:aimspice_pulses}, we use the PULSE function in AIMSpice to create square waves for the different inputs. These inputs will together determine what the output Q is set to.
 
 \begin{figure}[H]
 \centering
 \label{fig:aimspice_pulses}
-\begin{minipage}{\textwidth}
+\begin{minipage}{0.9\textwidth}
 \begin{lstlisting}[style=aimspiceStyle]
 VD D 0 PULSE(0 C_VDD 25n RISE_TIME FALL_TIME 20ns 40ns)
 VCLK CLK 0 PULSE(0 C_VDD 0 RISE_TIME FALL_TIME CLK_HIGH CLK_PERIOD)
@@ -118,6 +116,7 @@ The register should have the functionality as shown in the \autoref{tab:register
 \caption{Functionality of 1bit-register}
 \begin{tabular}{|l|l|l|}
 \cline{1-3}
+\rowcolor[HTML]{C0C0C0} 
 R & S & Q  \\ \cline{1-3}
 0 & 0 & Q  \\ \cline{1-3}
 0 & 1 & D  \\ \cline{1-3}
@@ -262,14 +261,13 @@ end
 \end{minipage}
 \end{figure}
 
-A and B are 8-bit signals which can represent unsigned integers 0 to 255. Note the small delay needed for the signals to propagate the circuit. A similar approach can be used for the multiplier and the register. For the register testbench given in \autoref{}, one also has to account for the delay needed for the clock to have one rising edge before next input is tested.
+A and B are 8-bit input signals to the adder which can represent unsigned integers 0 to 255. Note the small delay needed for the signals to propagate the circuit. A similar approach can be used to verify the functionality of the multiplier and the register. For the register testbench, given in \autoref{verilog_registerTB}, one also has to account for the delay needed for the clock to have one rising edge before next input is tested. A simple testbench was is also made for the MAC put together without the FSM. All testbenches can be found in \autoref{sec:verilog_testbenches}.
 
-\subsubsection{What to include in this section}
+\subsubsection{Full MAC in Verilog}
+\label{subsubsec_FullFSM_verilog}
 
-In this section you should explain what you have done, and how you have done it. The explanations should have enough detail to make a reproduction possible (i.e. it should be possible to do exactly what you have done, and receive the same results, only by doing what you write in this section).
+Finally, to test the entire MAC put together the modules are put together as a complete circuit in \autoref{verilog_fullmac}. A testbench is created to empirically test different combinations of inputs. As all combinations of current and previous inputs cannot easily be tested, like for the adder and multiplier isolated, the complete circuit is put through a series of randomized inputs A and B using the system function ''\$random''. The test can be repeated for different inputs by changing the variable ''randomSeed'' to a different integer.
 
-
-It might be relevant to refer back to a part of theory, as explained in \autoref{subsec:theory_aSubsection}, to explain the design choices you made.
 
 \subsection{Must include}
 The method section MUST INCLUDE:

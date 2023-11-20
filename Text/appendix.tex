@@ -122,7 +122,7 @@ XREG 0 1 CLK S R D Q REGISTER
 
 
 
-\section{Verilog Code (NEW)}
+\section{Verilog Code}
 \label{appendix:Verilog-code}
 
 \begin{lstlisting}[style=verilogStyle, caption=Half Adder in Verilog, label=verilog_halfadder]
@@ -492,6 +492,260 @@ module MAC_FULL(
         .CTRL(CTRL),
         .Y(Y)
     );
+
+endmodule
+\end{lstlisting}
+
+\section{Verilog Testbenches}
+\label{sec:verilog_testbenches}
+
+\begin{lstlisting}[style=verilogStyle, caption=Multiplier Testbench in Verilog, label=verilog_multiplierTB]
+`timescale 1 ns / 1 ps
+`include "twobit_multiplier.v"
+
+module Multiplier_Testbench();
+    reg [1:0] A, B;
+    wire [3:0] O;
+    integer errors;
+    integer Acount, Bcount;
+
+    twobit_multiplier mul_instance (.A(A), .B(B), .O(O));
+    initial begin
+        $dumpfile("Multiplier_Testbench.vcd");
+        $dumpvars(0, Multiplier_Testbench);
+        errors = 0;
+
+        for(Acount = 0 ; Acount < 4 ; Acount++) begin
+            for(Bcount = 0 ; Bcount < 4 ; Bcount++) begin
+                A = Acount;
+                B = Bcount;
+                #1;
+                if((A*B) != O) begin
+                    $display("Error: ",A,"*",B,"=",O);
+                    errors++;
+                end else begin
+                    $display(A,"*",B,"=",O);
+                end
+            end
+        end
+        if(errors==0)begin
+            $display("No errors found");
+        end else begin
+            $display(errors," errors found. Reevaluate design.");
+        end
+        $finish;
+    end
+
+endmodule
+\end{lstlisting}
+
+
+\begin{lstlisting}[style=verilogStyle, caption=Adder Testbench in Verilog, label=verilog_adderTB]
+`timescale 1 ns / 1 ps
+`include "eightbit_adder.v"
+
+module Adder_Testbench();
+    reg [7:0] A, B;
+    wire [7:0] S;
+    integer errors;
+    integer Acount, Bcount;
+
+    eightbit_adder adder_instance(.A(A), .B(B), .S(S));
+
+    initial begin
+        $dumpfile("Adder_Testbench.vcd");
+        $dumpvars(0, Adder_Testbench);
+        errors = 0;
+        for(Acount = 0 ; Acount < 256 ; Acount++) begin
+            for(Bcount = 0 ; Bcount < 256 ; Bcount++) begin
+                A = Acount;
+                B = Bcount;
+                #1;
+                if((A+B) == S) begin
+                    $display(A,"+",B,"=",S);
+                end else begin
+                    $display("Error: ", A, "+", B, "=",S);
+                    errors++;
+                end
+            end
+        end
+        if(errors==0)begin
+            $display("Congratulations! No errors found.");
+        end else begin
+            $display("WARNING! ",errors," errors found. Reevaluate circuit.");
+        end
+        $finish;
+    end
+endmodule
+\end{lstlisting}
+
+
+\begin{lstlisting}[style=verilogStyle, caption=Register Testbench in Verilog, label=verilog_registerTB]
+`timescale 1 ns / 1 ps
+`include "eightbit_register.v"
+
+module Register_Testbench();
+    parameter CLK_PERIOD = 10;
+    reg s_eight,r_eight,clk_eight;
+    reg [7:0] d_eight;
+    wire [7:0] q_eight;
+    integer errors;
+    integer temp;
+
+    eightbit_register register_instance(
+        .s_eight(s_eight), 
+        .r_eight(r_eight),
+        .clk_eight(clk_eight),
+        .d_eight(d_eight),
+        .q_eight(q_eight)
+    );
+
+    always #((CLK_PERIOD / 2)) clk_eight = ~clk_eight;
+
+    initial begin
+        $dumpfile("Register_Testbench.vcd");
+        $dumpvars(0, Register_Testbench);
+        errors = 0;
+        clk_eight = 0;
+
+        //Setting a value in the register and checking output
+        s_eight = 1;
+        r_eight = 0;
+        d_eight = 123;
+        #CLK_PERIOD;
+
+        //Testing controlsignals 00 for all inputs d
+        s_eight = 0;
+        r_eight = 0;
+        for(temp = 0 ; temp < 256 ; temp++) begin
+            d_eight = temp;
+            #CLK_PERIOD;
+            if(q_eight != 123) begin
+                $display("Error: Value overwritten when S=0");
+                errors++;
+            end
+        end
+
+        //Testing controllsignals 01 and 11 for all inputs d
+        s_eight = 0;
+        r_eight = 1;
+        for(temp = 0 ; temp < 256 ; temp++) begin
+            d_eight = temp;
+            #CLK_PERIOD;
+            if(q_eight != 0) begin
+                $display("Error: Output not zero when R=1");
+                errors++;
+            end
+        end
+
+        s_eight = 1;
+        r_eight = 1;
+        for(temp = 0 ; temp < 256 ; temp++) begin
+            d_eight = temp;
+            #CLK_PERIOD;
+            if(q_eight != 0) begin
+                $display("Error: Output not zero when R=1");
+                errors++;
+            end
+        end
+
+        //Testing all inputs d with control signals 10
+        s_eight = 1;
+        r_eight = 0;
+        for(temp = 0 ; temp < 256 ; temp++) begin
+            d_eight = temp;
+            #CLK_PERIOD;
+            if(q_eight != d_eight) begin
+                $display("Error: Value not set when S=1");
+                errors++;
+            end
+        end
+        if(errors==0) begin
+            $display("Congratulations! No errors found.");
+        end else begin
+            $display("WARNING! ",errors, " errors found. Reevaluate circuit.");
+        end
+        $finish;
+    end
+endmodule
+\end{lstlisting}
+
+
+\begin{lstlisting}[style=verilogStyle, caption=FSM Testbench in Verilog, label=verilog_FSMTB]
+`timescale 1 ns / 1 ps
+`include "Mealy_FSM.v"
+
+module Testbench;
+
+    reg CLK;
+    reg [1:0] I;
+    wire [1:0] O;
+
+    always #5 CLK = ~CLK;
+
+    Mealy_FSM uut(
+        .RunIN(I[0]), 
+        .ResetIN(I[1]), 
+        .CLK(CLK), 
+        .RunOUT(O[0]), 
+        .ResetOUT(O[1]));
+
+    initial begin
+
+        $dumpfile("TB_dumpfile.vcd");
+        $dumpvars(0, Testbench);
+
+        CLK = 0;
+        I = 3;
+        #10;
+        I = 1;
+        #50;
+        for(integer temp = 0 ; temp < 5 ; temp++)begin
+            I = $random % 4;
+            #40;
+        end
+        $finish;
+    end
+
+endmodule
+\end{lstlisting}
+
+\begin{lstlisting}[style=verilogStyle, caption=Full MAC Testbench in Verilog, label=verilog_FULLMAC_TB]
+`timescale 1 ns / 1 ps
+`include "MAC_FULL.v"
+
+module TB;
+
+    integer randomSeed = 5;
+    reg [1:0] I, A, B;
+    reg CLK;
+    wire [7:0] Y;
+
+    MAC_FULL uut(.*);
+
+    always #5 CLK = ~CLK;
+    always #10 A = $random(randomSeed) % 4;
+    always #10 B = $random % 4;
+
+    initial begin
+        $dumpfile("TB_dumpfile.vcd");
+        $dumpvars(0, TB);
+
+        CLK = 0;
+        I = 3;
+        A = $random % 4;
+        B = $random % 4;
+        #10;
+        I = 1;
+        #100;
+        I=0;
+        #60;
+        I = 3;
+        #10;
+        I = 1;
+        #150;
+        $finish;
+    end
 
 endmodule
 \end{lstlisting}
