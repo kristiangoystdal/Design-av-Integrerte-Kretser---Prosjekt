@@ -20,7 +20,17 @@ A 2-bit multiplier could be designed like shown in \autoref{fig:multiplier}, whi
 \end{figure}
 
 \subsubsection{Adder}
-The circuit for the half and full adder is shown in \autoref{fig:halfadder} and \ref{fig:fulladder}.
+
+The design of an 8-bit adder is shown in \autoref{fig:adder-blokk}. The figure shows two 8-bit numbers A and B, and their sum S with a carry $C_O$. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=\textwidth]{Figures/8bitadder.png}
+    \caption{8-bit adder}
+    \label{fig:adder-blokk}
+\end{figure}
+
+The circuit for the half and full adder is shown in \autoref{fig:halfadder} and \ref{fig:fulladder}. 
 
 \begin{figure}[H]
 \begin{minipage}{0.4\textwidth}
@@ -40,7 +50,16 @@ The circuit for the half and full adder is shown in \autoref{fig:halfadder} and 
 
 \subsubsection{Accumulator}
 \label{subsubsec:accumulator}
-The accumulator is an 8-bit register with some control signals, that is received from the FSM. As shown in \autoref{fig:8bitregister}, the accumulator consists of a D-Flip-Flop and a control circuit. These are implemented as shown in \autoref{fig:dflipflop} and \ref{fig:setreset} respectively.
+The accumulator is an 8-bit register with some control signals, that is received from the FSM. 
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Figures/8bitRegister.png}
+    \caption{8 bit register}
+    \label{fig:8bitregister}
+\end{figure}
+
+As shown in \autoref{fig:8bitregister}, the accumulator consists of a D-Flip-Flop and a control circuit. These are implemented as shown in \autoref{fig:dflipflop} and \ref{fig:setreset} respectively.
 
 \begin{figure}[H]
     \centering
