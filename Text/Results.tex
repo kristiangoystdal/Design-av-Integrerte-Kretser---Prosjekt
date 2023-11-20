@@ -107,14 +107,14 @@ The diagram shows the state register being reset on the first rising edge of the
 \subsubsection{MAC Results}
 \label{subsubsec:mac_results}
 
-The output provided by the multiplier testbench is 
+The output provided by the multiplier testbench is shown in \autoref{fig:output_multiplier}.
 
 \begin{figure}[H]
 \centering
-\caption{Loop to check all combinations for the adder.}
-\label{fig:verilog_adderTB_excerpt}
+\caption{Output from the Multiplier Testbench.}
+\label{fig:output_multiplier}
 \begin{minipage}{0.8\textwidth}
-\begin{lstlisting}[style=verilogStyle]
+\begin{lstlisting}[style=outputstyle]
 [Running] Multiplier_Testbench.v
 VCD info: dumpfile Multiplier_Testbench.vcd opened for output.
 0*0= 0
@@ -127,9 +127,26 @@ Multiplier_Testbench.v:34: $finish called at 16000 (1ps)
 \end{minipage}
 \end{figure}
 
+\noindent
+The output provided by the adder testbench is shown in \autoref{}
 
-
-
+\begin{figure}[H]
+\centering
+\caption{Output from the Adder Testbench.}
+\label{fig:output_adder}
+\begin{minipage}{0.8\textwidth}
+\begin{lstlisting}[style=outputstyle]
+[Running] Multiplier_Testbench.v
+VCD info: dumpfile Multiplier_Testbench.vcd opened for output.
+0*0= 0
+[...]
+3*3= 9
+No errors found
+Multiplier_Testbench.v:34: $finish called at 16000 (1ps)
+[Done] exit with code=0 in 0.522 seconds
+\end{lstlisting}
+\end{minipage}
+\end{figure}
 
 
 From the figure we see that the memory transitions to the expected states based on the inputs. The FSM begins in state ''Run-1'' and transitions to state ''Reset'' as the reset input $I_1$ is set high. The next state is ''Run-1'', then ''Run-2''. The Run-bit $I_0$ is then set low, resulting in a two-period pause in state ''Pause-2''. Further the FSM transitions to ''Run-3'', ''Pause'' and ''Run-1''.
