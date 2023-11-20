@@ -293,12 +293,12 @@ end
 
 A and B are 8-bit input signals to the adder which can represent unsigned integers 0 to 255. Note the small delay needed for the signals to propagate the circuit. A similar approach can be used to verify the functionality of the multiplier and the register. 
 
-For the register testbench, given in \autoref{verilog_registerTB}, one also has to account for the delay needed for the clock to have one rising edge before next input is tested. A simple testbench was is also made for the MAC put together without the FSM. All testbenches can be found in \autoref{sec:verilog_testbenches}.
+For the register testbench, given in \autoref{verilog_registerTB}, one also has to account for the delay needed for the clock to have one rising edge before next input is tested. A testbench was also made for the MAC put together without the FSM. The procedure used for this testbench is the same as described in \autoref{subsubsec_FullMAC_verilog}. All testbenches can be found in \autoref{sec:verilog_testbenches}.
 
 \subsubsection{Full MAC in Verilog}
-\label{subsubsec_FullFSM_verilog}
+\label{subsubsec_FullMAC_verilog}
 
-Finally, to test the entire MAC put together the modules are put together as a complete circuit in \autoref{verilog_fullmac}. A testbench is created to empirically test different combinations of inputs. As all combinations of current and previous inputs cannot easily be tested, like for the adder and multiplier isolated, the complete circuit is put through a series of randomized inputs A and B using the system function ''\$random''. The test can be repeated for different inputs by changing the variable ''randomSeed'' to a different integer.
+Finally, to test the entire MAC put together the modules are put together as a complete circuit, shown in \autoref{verilog_fullmac}. A testbench is created to empirically test different combinations of inputs. As all combinations of current and previous inputs cannot easily be tested, like for the adder and multiplier isolated, the complete circuit is put through a series of randomized inputs A and B using the system function ''\$random''. The test can be repeated for different inputs by changing the variable ''randomSeed'' to a different integer.
 
 
 \subsection{Must include}

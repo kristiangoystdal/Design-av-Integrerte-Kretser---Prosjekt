@@ -86,7 +86,19 @@ The multiplier takes in A and B, two 2 bits inputs, and multiplies them. Since t
 As shown in \autoref{fig:mac-blokk}, the adder has to take the sum of a 4-bit number (A) and a 8-bit number (B). Since the multiplier only outputs a 4-bit number, the four most significant bits of A will always be zero. 
 
 \subsubsection{Accumulator}
-The accumulator is an 8-bit register with some control signals, set (S) and reset (R). These control signals are received from the FSM. The registers are D-flip flops, which only change the stored value at the rising edge of the clock signal. These are used to achieve specification 8 in \autoref{tab:specifications}. 
+The accumulator is an 8-bit register with some control signals, set (S) and reset (R). These control signals are received from the FSM. 
+
+The registers can be made using latches. Latches store the value, but is not rising edge triggered. To create a rising edge triggered register, two latches can be connected in series with one master and one slave latch. The master and slave work on opposite clock inputs, and therefore create a edge triggered register. 
+
+\begin{figure}
+    \centering
+    \includegraphics{}
+    \caption{Caption}
+    \label{fig:enter-label}
+\end{figure}
+
+
+The registers are D-flip flops, which only change the stored value at the rising edge of the clock signal. These are used to achieve specification 8 in \autoref{tab:specifications}. 
 
 
 % The theory section should contain background theory relevant for the reader in order to understand the rest of your report. Assume that the reader is yourselves at the start of the semester (before you had learnt anything from this course) and include theory accordingly. Keep in mind that this section should only include theory relevant to the project and the report, it is not meant as a place to show off everything you have ever learnt. 
