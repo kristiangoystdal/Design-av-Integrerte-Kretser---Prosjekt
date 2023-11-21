@@ -1,12 +1,33 @@
 \section{Discussion}
 \label{sec: Discussion}
 
+\subsection{Design improvements}
+
+Some thoughts following the project have emerged about design choices that could have been made differently. One consideration is that the 8-bit adder's four most significant bits strictly speaking does not need to be full adders as one of the inputs for these bits always will be zero. A change that would simplify the FSM is using the run input signal as the set-bit on the state register. This would simplify the next-state logic as it only would need to increment the current state when run=1.
 
 \subsection{AIMSpice}
 
 When looking at the different corners and temperatures, the difference of the functionality is quite similar. One can see in the case, \autoref{fig:TT_diffTemps}, with the TT corner at the different temperatures, that the register is just a tiny fraction more stable with a at higher temperatures.
 
 For the case where we look at the different corners at the same temperature, \autoref{fig:27_diffCorners}, it is shown that the TT, FF and SF corners have the most ripples while the SS and FS corner have the least ripple.
+
+As shown in \autoref{fig:result_TT27}, one can see that there is a small dip in the Q-signal. This is due to the Set signal changing from high to low. We don't know why this happens, but we can assume that it's because of the change in the control circuit when the output changes from 
+
+\subsection{Verilog}
+
+The Verilog simulations show that the design works as intended according to \autoref{tab:specifications}.
+An interesting observation regarding the FSM is the fact that even though the FSMs state only updates on the positive edge of the clock, the control signal is free to change at other times, depending on the FSMs input. This is because the FSM is a Mealy machine. Nonetheless, this behaviour does not affect the function of the MAC receiving the control signal as it only operates on the positive edge.
+
+Another observation is that \textit{when} the control signal changes on a rising edge, what operation the MAC performs is dependent on what value the control signal held \textit{before} it changed. It is clear by the result that it is not always obvious by looking at the output Y what is going on inside the circuit. E.g. pausing the MAC would do the same as having A or B equal to 0. For this reason it is a good idea to observe the control signal while verifying the functionality of the entire circuit. 
+
+The adder is, as expected, limited by its number of bits in how large numbers it is able to represent. Resultingly, when the actual sum of the numbers is larger than 255, the most significant bit will overflow and the output is becomes the sum decremented by 256.
+
+
+
+
+
+
+
 
 % Discuss your results. You presented your results in the last section, so you do not need to repeat everything here. Just focus on the most interesting results and discuss these.
 
