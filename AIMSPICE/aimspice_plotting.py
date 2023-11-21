@@ -71,7 +71,8 @@ def plot(name, pictureName, title):
     y_max = max(v_q)
     plt.fill_between(x, y_min, y_max, color="gray", alpha=0.3, label="Shaded Area")
 
-    plt.savefig(pictureName)
+    # plt.savefig(pictureName)
+    plt.show()
     plt.clf()
 
 
