@@ -1,9 +1,9 @@
 \section{Introduction}
 \label{sec:introduction}
 
-The Multiply-Accumulate (MAC) unit plays a crucial role in digital signal processing and various computational tasks, especially in artificial intelligence. In this project, we aim to design an efficient and reliable MAC unit using the gpdk 90nm technology. This technology ensures compatibility with real-world electronic circuits. Our goal is not only to meet given specifications but also to gain a deeper understanding of digital circuitry principles. 
+The Multiply-Accumulate (MAC) unit plays a crucial role in digital signal processing and various computational tasks, especially in artificial intelligence. In this project, we aim to design a power efficient and functioning MAC unit using the gpdk 90nm technology. This technology ensures compatibility with real-world electronic circuits. Our goal is not only to meet given specifications but also to gain a deeper understanding of digital circuitry principles. 
 
-The design of the MAC unit has to comply to certain specifications, given in detail in the project description\cite{project_description}. A short summary of the given specifications is shown in \autoref{tab:specifications}.
+The design of the MAC unit has to comply to certain specifications, given in detail in the project description\cite{project_description}. A summary of the given specifications is shown in \autoref{tab:specifications}.
 
 \begin{table}[H]
 \caption{Given specifications for the MAC unit.}
@@ -23,9 +23,9 @@ The design of the MAC unit has to comply to certain specifications, given in det
  8 & \makecell[l]{The accumulated value must be stored in a 8-bit register in the MAC unit,\\ and be updated at each positive edge of the clock.} \\ \hline
  9 & The MAC unit should output the accumulated 8-bit value. \\ \hline
  10 & Gate lengths must be $\le$ 300 nm. \\ \hline
- 10 & Gate widths must be $\le$ 1500 nm. \\ \hline
- 11 & The upper limit for any supply voltage is 1.0 V. \\ \hline
- 11 & No logic gate can have a fan-in of more than 4. \\ \hline
+ 11 & Gate widths must be $\le$ 1500 nm. \\ \hline
+ 12 & The upper limit for any supply voltage is 1.0 V. \\ \hline
+ 13 & No logic gate can have a fan-in of more than 4. \\ \hline
 \end{tabular}
 \end{table}
 

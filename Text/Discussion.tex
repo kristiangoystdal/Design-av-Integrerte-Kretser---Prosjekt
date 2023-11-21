@@ -3,24 +3,32 @@
 
 \subsection{Design improvements}
 
-Some thoughts following the project have emerged about design choices that could have been made differently. One consideration is that the 8-bit adder's four most significant bits strictly speaking does not need to be full adders as one of the inputs for these bits always will be zero. A change that would simplify the FSM is using the run input signal as the set-bit on the state register. This would simplify the next-state logic as it only would need to increment the current state when run=1.
+Some thoughts following the project have emerged about design choices that could have been made different. One consideration is that the 8-bit adder's four most significant bits strictly speaking does not need to be full adders as one of the inputs for these bits always will be zero. A change that would simplify the FSM is using the run input signal as the set-bit on the state register. This would simplify the next-state logic as it only would need to increment the current state.
+
+Were we to prioritize the dynamic power consumption, one could consider disabling the clock for the MAC part of the circuit. If the circuit is expected to be in the non-operating state for longer periods of time, one could also consider implementing power gating, i.e. disabling $V_{DD}$ for specific parts of the circuit.
 
 \subsection{AIMSpice}
 
-When looking at the different corners and temperatures, the difference of the functionality is quite similar. One can see in the case, \autoref{fig:TT_diffTemps}, with the TT corner at the different temperatures, that the register is just a tiny fraction more stable with a at higher temperatures.
+When looking at the different corners and temperatures, there is some differences in the stability when the Q-value changes state. 
 
-For the case where we look at the different corners at the same temperature, \autoref{fig:27_diffCorners}, it is shown that the TT, FF and SF corners have the most ripples while the SS and FS corner have the least ripple.
+One can see in the case, \autoref{fig:TT_diffTemps}, with the TT corner at the different temperatures, that the register is just a tiny fraction more stable with a at higher temperatures when Q changes from low to high. When Q goes high to low with the TT corner, the lower temperature has little to none ripple, while the higher temperature is more unstable. 
 
-As shown in \autoref{fig:result_TT27}, one can see that there is a small dip in the Q-signal. This is due to the Set signal changing from high to low. We don't know why this happens, but we can assume that it's because of the change in the control circuit when the output changes from 
+For the case where we look at the different corners at the same temperature, \autoref{fig:27_diffCorners}, it is shown that when Q goes from low to high the TT, FF and SF corners have the most ripples while the SS and FS corner have the least ripple. When Q changes from high to low all corners at 27$^\circ$C have quite similar ripple. 
+
+As shown in \autoref{fig:result_TT27}, one can see that there is a small dip in the Q-signal. This is due to the Set signal changing from high to low. We don't know why this happens, but we can assume that it's because of the change of the output in the control circuit from new data (D) to stored data (Q).
+
+When we look at the static power consumption, \autoref{tab:power}, and compare it to \autoref{eq:power}, one can see that the static power consumption will increase with the temperature. This is in line with what is expected. The FF corner also gives a higher static power consumption than the TT corner, which is to be expected due with a lower threshold voltage and therefore higher $V_{eff}$.
 
 \subsection{Verilog}
 
 The Verilog simulations show that the design works as intended according to \autoref{tab:specifications}.
 An interesting observation regarding the FSM is the fact that even though the FSMs state only updates on the positive edge of the clock, the control signal is free to change at other times, depending on the FSMs input. This is because the FSM is a Mealy machine. Nonetheless, this behaviour does not affect the function of the MAC receiving the control signal as it only operates on the positive edge.
 
-Another observation is that \textit{when} the control signal changes on a rising edge, what operation the MAC performs is dependent on what value the control signal held \textit{before} it changed. It is clear by the result that it is not always obvious by looking at the output Y what is going on inside the circuit. E.g. pausing the MAC would do the same as having A or B equal to 0. For this reason it is a good idea to observe the control signal while verifying the functionality of the entire circuit. 
+Another observation is that \textit{when} the control signal changes on a rising edge, what operation the MAC performs is dependent on what value the control signal held \textit{before} it changed. From the timing diagram in \autoref{fig:fullmac_simulation}, we see that it is not always obvious by the output Y what is going on inside the circuit. E.g. pausing the MAC would do the same as having A or B equal to 0. For this reason it is a good idea to observe the control signal while verifying the functionality of the entire circuit. 
 
 The adder is, as expected, limited by its number of bits in how large numbers it is able to represent. Resultingly, when the actual sum of the numbers is larger than 255, the most significant bit will overflow and the output is becomes the sum decremented by 256.
+
+
 
 
 
