@@ -122,17 +122,21 @@ titles = [
     "Corner: TT - Temperature: 70",
 ]
 
-for i in range(9, 12):
-    plot(filenames[i], picNames[i], titles[i])
-plt.xlim(3.5 * clk_period, 4.5 * clk_period)
-plt.legend()
-plt.savefig("CornerSS")
-# plt.show()
-plt.clf()
+cornerNames = ["CornerFF", "CornerFS", "CornerSF", "CornerSS", "CornerTT"]
+for j in range(5):
+    for i in range(3 * j, 3 * (j + 1)):
+        plot(filenames[i], picNames[i], titles[i])
+    plt.xlim(2.5 * clk_period, 4.5 * clk_period)
+    plt.legend()
+    plt.savefig(cornerNames[j])
+    plt.clf()
 
-for i in range(2, len(filenames), 3):
-    plot(filenames[i], picNames[i], titles[i])
-plt.xlim(3.5 * clk_period, 4.5 * clk_period)
-plt.legend()
-plt.savefig("Temperatur70")
-# plt.show()
+tempNames = ["Temperatur0", "Temperatur27", "Temperatur70"]
+for j in range(3):
+    for i in range(j, len(filenames), 3):
+        plot(filenames[i], picNames[i], titles[i])
+    plt.xlim(2.5 * clk_period, 4.5 * clk_period)
+    plt.legend()
+    plt.savefig(tempNames[j])
+    plt.clf()
+    # plt.show()
