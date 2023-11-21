@@ -1,12 +1,12 @@
 \section{Method}
 \label{sec:method}
 
-In this section we explain how be implement and test the two systems, using AIMSpice to create and test a 1-bit register, and Verilog to create the full circuit. 
+In this section we explain how the two subsystems will be implemented and tested, using AIMSpice to create and test a 1-bit register, and Verilog to create the full circuit. 
 
 \subsection{MAC design}
 \label{subsec:circuitDesign}
 
-In this section we will look on how to implement the different subsystems of the MAC unit. The designs are shown at a logic gate level as that is used for both the AIMSpice and Verilog implementation. 
+Here we will look into how to implement the different subsystems of the MAC unit. The designs are shown at a logic gate level as that is used for both the AIMSpice and Verilog implementation. 
 
 \subsubsection{Multiplier} 
 
@@ -15,7 +15,7 @@ A 2-bit multiplier could be designed like shown in \autoref{fig:multiplier}, whi
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{Figures/multiplier.png}
-    \caption{Possible design of multiplier}
+    \caption{Possible design of multiplier.}
     \label{fig:multiplier}
 \end{figure}
 
@@ -26,7 +26,7 @@ The design of an 8-bit adder is shown in \autoref{fig:adder-blokk}. The figure s
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Figures/8bitadder.png}
-    \caption{8-bit adder}
+    \caption{8-bit adder.}
     \label{fig:adder-blokk}
 \end{figure}
 
@@ -36,13 +36,13 @@ The circuit for the half and full adder is shown in \autoref{fig:halfadder} and 
 \begin{minipage}{0.4\textwidth}
     \centering
     \includegraphics[width=\linewidth]{Figures/halfadder.png}
-    \caption{Half adder}
+    \caption{Half adder.}
     \label{fig:halfadder}
 \end{minipage}
 \begin{minipage}{0.6\textwidth}
     \centering
     \includegraphics[width=\linewidth]{Figures/fulladder.png}
-    \caption{Full adder}
+    \caption{Full adder.}
     \label{fig:fulladder}
 \end{minipage}
 \end{figure}
@@ -55,7 +55,7 @@ The accumulator is an 8-bit register with some control signals, that is received
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{Figures/8bitRegister.png}
-    \caption{8-bit register}
+    \caption{8-bit register.}
     \label{fig:8bitregister}
 \end{figure}
 
@@ -64,14 +64,14 @@ As shown in \autoref{fig:8bitregister}, the accumulator consists of a D-Flip-Flo
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Figures/D_Flip_Flop.png}
-    \caption{D-flip flop}
+    \caption{D-flip flop.}
     \label{fig:dflipflop}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.4\textwidth]{Figures/setReset.png}
-    \caption{Circuit for controlling register}
+    \caption{Circuit for controlling register.}
     \label{fig:setreset}
 \end{figure}
 
@@ -82,16 +82,16 @@ The FSM was designed according to the project description and the design procedu
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{Figures/FSM-diagram.png}
-    \caption{FSM state diagram}
+    \caption{FSM state diagram.}
     \label{fig:fsm_diagram}
 \end{figure}
 
-Three input signals are given by the project description~\cite{project_description}, Reset, CLK and Run. The CLK-signal
+Three input signals are given by the specifications in \autoref{tab:specifications}, Reset, CLK and Run. The CLK-signal
 will only be used to time the sequential logic in the FSM and passed on to the MAC unit without
-further modification. The CLK signal is therefore not considered an input-signal here in the sense that is not used in the next-state or output-logic in the FSM (\autoref{fig:general_fsm}). The reset input signal $I_1$ is only used to reset the state register to the pause-state ''00'' and passed on to the MAC unit as $CTRL_1$ without further modification. The combinatorial part of the FSM is here only dependent on the current state ($C_1$ and $C_0$) and the Run input signal $I_0$. The outputs of the FSM are the next state signals $N_1$ and $N_0$, and the Reset and Run control signals $CTRL_1$ and $CTRL_0$. From the state diagram, we can write up the state table, \autoref{tab:state_table}. Note that $CTRL_1$ only is dependent on $I_1$ and that this does not require combinatorial logic.
+further modification. The CLK signal is therefore not considered an input-signal here in the sense that is not used in the next-state or output-logic in the FSM (see \autoref{fig:general_fsm}). The reset input signal $I_1$ is only used to reset the state register to the pause-state ``00'' and passed on to the MAC unit as $CTRL_1$ without further modification. The combinatorial part of the FSM is here only dependent on the current state ($C_1$ and $C_0$) and the Run input signal $I_0$. The outputs of the FSM are the next state signals $N_1$ and $N_0$, and the Reset and Run control signals $CTRL_1$ and $CTRL_0$. From the state diagram, we can write up the state table, \autoref{tab:state_table}. Note that $CTRL_1$ only is dependent on $I_1$ and that this does not require any gates.
 
 \begin{table}[H]
-\caption{State table for the FSM}
+\caption{State table for the FSM.}
 \label{tab:state_table}
 \centering
 \begin{tabular}{|l|l|l|l|l|l||l|l|}
@@ -142,12 +142,12 @@ The logic expression for each of the outputs of the combinatorial logic can be w
     CTRL_1 = I_1
 \end{equation}
 
-From the boolean equations, we can draw up the logic diagram shown in \autoref{fig:fsm_logic_diagram}.
+From the boolean equations, we can draw up the logic diagram, shown in \autoref{fig:fsm_logic_diagram}.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{Figures/logic diagram.png}
-    \caption{FSM logic diagram}
+    \caption{FSM logic diagram.}
     \label{fig:fsm_logic_diagram}
 \end{figure}
 
@@ -162,24 +162,24 @@ In the AIMSpice related part of the assignment, a 1-bit register, \autoref{fig:1
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{Figures/1-bit register.png}
-    \caption{1-bit register, with inputs Data, Reset and Set}
+    \caption{1-bit register, with inputs Data, Reset and Set.}
     \label{fig:1-bit_reg}
 \end{figure}
 
-To implement the register in AIMSpice, different logic gates are made using transistors. The different logic gates used in the 1-bit register are NOT-, AND- and transmission gates. This is shown in \autoref{fig:NOT} and \ref{fig:NAND}. To achieve a low static power consumption transistor stacking is used as that will give a lower leakage power. Through testing of different widths and lengths of the transistors, we found that a width of 100nm and a length of 300nm, gave the lowest leakage current while still having the correct functionality. 
+To implement the register in AIMSpice, different logic gates are made using transistors. The different logic gates used in the 1-bit register are NOT-, AND- and transmission gates. This is shown in \autoref{fig:NOT} and \ref{fig:NAND}. To achieve a low static power consumption transistor stacking is used as that will give a lower leakage current. Through testing of different widths and lengths of the transistors, we found that a width of 100nm and a length of 300nm, gave the lowest leakage current while still having the correct functionality. 
 
 \begin{figure}[H]
 \centering
 \begin{minipage}{0.4\textwidth}
     \centering
     \includegraphics[width=\linewidth]{Figures/Not gate.png}
-    \caption{\parbox{0.5\textwidth}{NOT-gate using MOSFET and transistor stacking}}
+    \caption{\parbox{0.5\textwidth}{NOT-gate using MOSFET and transistor stacking.}}
     \label{fig:NOT}
 \end{minipage}
 \begin{minipage}{0.4\textwidth}
     \centering
     \includegraphics[width=0.9\linewidth]{Figures/Nand Gate.png}
-    \caption{\parbox{0.5\textwidth}{NAND-gate using MOSFET and transistor stacking}}
+    \caption{\parbox{0.5\textwidth}{NAND-gate using MOSFET and transistor stacking.}}
     \label{fig:NAND}
 \end{minipage}
 \end{figure}
@@ -213,7 +213,7 @@ VR R 0 PULSE(0 C_VDD 145n RISE_TIME FALL_TIME 50n 100n)
 \label{fig:aimspice_pulses}
 \end{figure}
 
-The register should have the functionality as shown in the \autoref{tab:registerFunc}. Where the value of Q gets set to D if set is low and it keeps its previous value if set is high. If reset is high, the value Q is set to low. 
+The register should have the functionality as shown in the \autoref{tab:registerFunc}. Where the value of Q gets set to D if set is high and it keeps its previous value if set is low. If reset is high, the value Q is set to low. 
 
 \begin{table}[H]
 \centering
@@ -243,8 +243,6 @@ The FSM is implemented and its functionality is verified using Verilog. An excer
 
 \begin{figure}[H]
 \centering
-\caption{Excerpt of the FSM implemented in Verilog.}
-\label{fig:verilog_FSM_excerpt}
 \begin{minipage}{0.33\textwidth}
 \begin{lstlisting}[style=verilogStyle]
 xor(N[0], C[0], RunIN);
@@ -254,6 +252,8 @@ nand(B, C[0], C[1]);
 and(RunOUT, B, RunIN);
 \end{lstlisting}
 \end{minipage}
+\caption{Excerpt of the FSM implemented in Verilog.}
+\label{fig:verilog_FSM_excerpt}
 \end{figure}
 
 
@@ -270,8 +270,6 @@ The 2-bit multiplier and the 8-bit adder is set up to loop through all possible 
 
 \begin{figure}[H]
 \centering
-\caption{Loop to check all combinations for the adder.}
-\label{fig:verilog_adderTB_excerpt}
 \begin{minipage}{0.8\textwidth}
 \begin{lstlisting}[style=verilogStyle]
 for(Acount = 0 ; Acount < 256 ; Acount++) begin
@@ -289,6 +287,8 @@ for(Acount = 0 ; Acount < 256 ; Acount++) begin
 end
 \end{lstlisting}
 \end{minipage}
+\caption{Loop to check all combinations for the adder.}
+\label{fig:verilog_adderTB_excerpt}
 \end{figure}
 
 A and B are 8-bit input signals to the adder which can represent unsigned integers 0 to 255. Note the small delay needed for the signals to propagate the circuit. A similar approach can be used to verify the functionality of the multiplier and the register. 
@@ -298,13 +298,13 @@ For the register testbench, given in \autoref{verilog_registerTB}, one also has 
 \subsubsection{Full MAC in Verilog}
 \label{subsubsec_FullMAC_verilog}
 
-Finally, to test the entire MAC put together the modules are put together as a complete circuit, shown in \autoref{verilog_fullmac}. A testbench is created to empirically test different combinations of inputs. As all combinations of current and previous inputs cannot easily be tested, like for the adder and multiplier isolated, the complete circuit is put through a series of randomized inputs A and B using the system function ''\$random''. The simulation can be repeated for different inputs by changing the variable ''randomSeed'' to a different integer.
+Finally, to test the entire MAC put together the modules are put together as a complete circuit, shown in \autoref{verilog_fullmac}. A testbench is created to empirically test different combinations of inputs. As all combinations of current and previous inputs cannot easily be tested, like for the adder and multiplier isolated, the complete circuit is put through a series of randomized inputs A and B using the system function ``\$random''. The simulation can be repeated for different inputs by changing the variable ''randomSeed'' to a different integer.
 
-\subsection{Must include}
-The method section MUST INCLUDE:
-\begin{itemize}
-    \item One or more illustrations showing your circuit. As a minimum you must include one figure of the circuit at the logic gate level, and one of what you implemented at transistor level in AIMSpice.
-    \item Figure showing the state diagram for your final state machine (FSM).
-    \item Explanations of design choices you made when creating the circuit.
-    \item Explanations of the simulations you did (not the results, just how they were done).
-\end{itemize}
+% \subsection{Must include}
+% The method section MUST INCLUDE:
+% \begin{itemize}
+%     \item One or more illustrations showing your circuit. As a minimum you must include one figure of the circuit at the logic gate level, and one of what you implemented at transistor level in AIMSpice.
+%     \item Figure showing the state diagram for your final state machine (FSM).
+%     \item Explanations of design choices you made when creating the circuit.
+%     \item Explanations of the simulations you did (not the results, just how they were done).
+% \end{itemize}

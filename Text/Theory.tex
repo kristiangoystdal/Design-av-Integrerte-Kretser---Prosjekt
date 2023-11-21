@@ -41,7 +41,7 @@ Generalized circuit diagrams for Moore and Mealy FSMs are shown in figure~\ref{f
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{Figures/general fsm diagrams.png}
-    \caption{a: Mealy FSM b: Moore FSM (Figure is taken from \cite{CMOS_VLSI_design})}
+    \caption{a: Mealy FSM. b: Moore FSM. (Figure is taken from \cite[p.735]{CMOS_VLSI_design})}
     \label{fig:general_fsm}
 \end{figure}
 
@@ -70,35 +70,35 @@ The MAC unit will, according to the specifications given in \autoref{tab:specifi
     C \leftarrow C + (A \cdot B)
 \end{equation}
 
- This should happen every rising edge of the clock, as specified in specification 8 in \autoref{tab:specifications}. The MAC unit consist of a multiplier, an adder and an accumulator. The layout of the MAC is shown in \autoref{fig:mac-blokk}. 
+ This should happen every rising edge of the clock, as defined by specification 8 in \autoref{tab:specifications}. The MAC unit consist of a multiplier, an adder and an accumulator. The layout of the MAC is shown in \autoref{fig:mac-blokk}. 
 
 \begin{figure}[htpb]
     \centering
     \includegraphics[width=0.3\textwidth]{Figures/mac-blokk.png}
-    \caption{Layout of MAC unit}
+    \caption{Layout of MAC unit.}
     \label{fig:mac-blokk}
 \end{figure}
 
 
 \subsubsection{Multiplier}
-The multiplier takes in A and B, two 2-bit inputs, and multiplies them. Since the inputs A and B are 2-bit input the value of each of them be higher that 3. This means that the highest possible output from the multiplier is 9, so that the output of the multiplier has to be at least 4-bit. 
+The multiplier takes in A and B, two 2-bit inputs, and multiplies them. Since the inputs A and B are 2-bit inputs they are only able to represent values 0-3. This means that the highest possible output from the multiplier is 9, so that the output of the multiplier has to be at least 4-bit. 
 
 \subsubsection{Adder}
 As shown in \autoref{fig:mac-blokk}, the adder has to take the sum of a 4-bit number (A) and a 8-bit number (B). Since the multiplier only outputs a 4-bit number, the four most significant bits of A will always be zero. 
 
 \subsubsection{Accumulator}
-The accumulator is an 8-bit register with some control signals, set (S) and reset (R). These control signals are received from the FSM. 
+The accumulator is an 8-bit register with control signals, set (S) and reset (R). These control signals are received from the FSM. 
 
-The registers can be made using latches. Latches store the value, but is not rising edge triggered. To create a rising edge triggered register, two latches can be connected in series with one master and one slave latch. The master and slave work on opposite clock inputs, and therefore create a edge triggered register. 
+The registers can be made using latches. Latches store the value, but is not rising edge triggered. To create a edge triggered register, two latches can be connected in series with one master and one slave latch. The master and slave work on opposite clock inputs, and therefore create a edge triggered register. 
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{Figures/DFF_Block.png}
-    \caption{Relationship between master and slave latch in a D Flip-Flop}
+    \caption{Relationship between master and slave latch in a D Flip-Flop.}
     \label{fig:enter-label}
 \end{figure}
 
-This type of register are called D flip-flops, which only change the stored value at the edge of the clock signal. These are used to achieve specification 8 in \autoref{tab:specifications}. 
+This type of register are called D flip-flops, which only change the stored value at the edge of the clock signal. These are used to achieve specification 8 in \autoref{tab:specifications}. The latches will in \autoref{sec:method} be designed to become rising edge triggered.
 
 
 % The theory section should contain background theory relevant for the reader in order to understand the rest of your report. Assume that the reader is yourselves at the start of the semester (before you had learnt anything from this course) and include theory accordingly. Keep in mind that this section should only include theory relevant to the project and the report, it is not meant as a place to show off everything you have ever learnt. 
@@ -106,26 +106,26 @@ This type of register are called D flip-flops, which only change the stored valu
 \subsection{Static Power Consumption}
 \label{subsec:low_power}
 
-One can consider many aspects of a circuit design to affect the static power consumption. Static power consumption in a circuit is primarily associated with leakage currents in transistors. The characteristics defined by a specific transistor technology as well as its width and length can influence the size of the leakage currents. As the transistor technology is given by the specifications (\ref{tab:specifications}), we may consider changing the width and length within the specifications to optimize for low leakage currents. 
+One can consider many aspects of a circuit design to affect the static power consumption. Static power consumption in a circuit is primarily associated with leakage currents in transistors. The characteristics defined by a specific transistor technology as well as its width and length can influence the size of the leakage currents. As the transistor technology is given by \autoref{tab:specifications}, we may consider changing the width and length within the specifications to optimize for low leakage currents. 
 
 \subsubsection{Leakage current}
 
-In a transistor, there is three leakage currents that exists: subthreshold, gate, and
-junction leakage current. Out of these the subthreshold leakage currents is in most cases the largest current. \cite[p.42]{Analog_integrated} The equation for subthreshold leakage current is given by \autoref{eq:subthresholdcurrent}. 
+In a transistor, there are three leakage currents that exist: subthreshold, gate, and
+junction leakage currents. Out of these the subthreshold leakage current is in most cases the largest.\cite[p.49]{Analog_integrated} The equation for subthreshold leakage current is given by \autoref{eq:subthresholdcurrent}.\cite[p.42]{Analog_integrated}
 
 \begin{equation}
     \label{eq:subthresholdcurrent}
     I_{D(sub-th)} \approx I_{D0}\left(\frac{W}{L}\right)e^{\left(\frac{qV_{eff}}{nkT}\right)}
 \end{equation}
 
-As we can see in \autoref{eq:subthresholdcurrent}, the width is proportional to the subthreshold leakage current and the length is inverse proportional. Therefore a smaller width and larger length can optimize the leakage current in the circuit.
+As we can see in \autoref{eq:subthresholdcurrent}, the width-to-length ratio is proportional to the subthreshold leakage current. Therefore a smaller width and larger length can optimize the leakage current in the circuit.
 
 Since $V_{eff} < 0$ in subthreshold region the leakage current will have a proportional relationship with the temperature. So when the temperature increases, the leakage current will increase as well. 
 
 In an ideal scenario, one might approximate to say that the leakage current increases linearly with the number of transistors, assuming each transistor contributes an equal amount to leakage current. However, in reality, the relationship is more complex. This simplification is useful nevertheless and is used when considering design choices in this project.
 
 \subsubsection{Transistor Stacking}
-Another way to decrease the leakage current is to use transistor stacking. When stacking transistors, like shown in \autoref{fig:transistor_stacking}, the voltage drop from $V_{DD}$ to $V_{SS}$, is split over both transistor. This makes the $V_{DS}$ for each transistors is lower than if there was only one transistor. A lower $V_{DS}$ means a lower DIBL-effect, which in turn can result in a lower leakage current. This is explained in more detail in chapter 13.5.1 in \cite{transistor_stacking}.
+Another way to decrease the leakage current is to use transistor stacking. When stacking transistors, like shown in \autoref{fig:transistor_stacking}, the voltage drop from $V_{DD}$ to $V_{SS}$, is split over both transistor. This makes the $V_{DS}$ for each transistor lower than if there was only one transistor. A lower $V_{DS}$ means a lower DIBL-effect, which in turn can result in a lower leakage current. This is explained in more detail in chapter 13.5.1 in \cite{transistor_stacking}.
 
 \begin{figure}[H]
     \begin{minipage}{0.5\textwidth}
@@ -137,13 +137,13 @@ Another way to decrease the leakage current is to use transistor stacking. When 
     \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Figures/Leakage_current_ratios.png}
-        \caption{\parbox{0.5\textwidth}{Leakage current with different number of transistor in stack \cite[p.13-7]{transistor_stacking}}}
+        \caption{\parbox{0.5\textwidth}{Leakage current with different number of transistor in stack. \cite[p.13-7]{transistor_stacking}}}
         \label{fig:leakage_current_ratio}
     \end{minipage}
 \end{figure}
 
 \subsubsection{Calculation of Static Power Consumption}
-When calculating the static power consumption for this circuit, we look at a state where the CLK is not running and the inputs, D, S and R, are set to low. The static power consumption is calculated by taking the leakage current in the $V_{DD}$ node and multiplying it with the $V_{DD}$, as shown in \autoref{eq:power}.
+When calculating the static power consumption for the 1-bit register, we look at a state where the CLK is not running and the inputs, D, S and R, are set to low. The static power consumption is calculated by taking the leakage current in the $V_{DD}$ node and multiplying it with the voltage, as shown in \autoref{eq:power}.
 
 \begin{equation}
     \label{eq:power}
@@ -152,7 +152,7 @@ When calculating the static power consumption for this circuit, we look at a sta
 
 \subsection{Static CMOS}\label{subsec:static_cmos}
 
-The logic family used for this project is Static CMOS. This family provides strongly driven logic 1's and 0's, resulting in low static power-consumtion. The Static CMOS logic family is mainly identified by a PMOS pull-up network and a NMOS pull-down network. These networks are put together in such a way that they drive the output in a mutually exclusive way, such that in a steady state there is no direct path between the supply voltage and ground.
+The logic family used for this project is Static CMOS. This family provides strongly driven logic 1's and 0's, resulting in low static power consumption. The Static CMOS logic family is mainly identified by a PMOS pull-up network and a NMOS pull-down network as shown in \autoref{fig:static_CMOS}. These networks are put together in such a way that they drive the output in a mutually exclusive way, such that in a steady state there is no direct path between the supply voltage and ground. 
 
 \begin{figure}[H]
     \centering

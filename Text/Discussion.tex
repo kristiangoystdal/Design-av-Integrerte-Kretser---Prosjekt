@@ -11,9 +11,9 @@ Were we to prioritize the dynamic power consumption, one could consider disablin
 
 When looking at the different corners and temperatures, there is some differences in the stability when the Q-value changes state. 
 
-One can see in the case, \autoref{fig:TT_diffTemps}, with the TT corner at the different temperatures, that the register is just a tiny fraction more stable with a at higher temperatures when Q changes from low to high. When Q goes high to low with the TT corner, the lower temperature has little to none ripple, while the higher temperature is more unstable. 
+One can see in the case, \autoref{fig:TT_diffTemps}, with the TT corner at the different temperatures, that the register is just a tiny fraction more stable with a higher temperatures when Q changes from low to high. When Q goes high to low with the TT corner, the lower temperature has little to none ripple, while the higher temperature is more unstable. 
 
-For the case where we look at the different corners at the same temperature, \autoref{fig:27_diffCorners}, it is shown that when Q goes from low to high the TT, FF and SF corners have the most ripples while the SS and FS corner have the least ripple. When Q changes from high to low all corners at 27$^\circ$C have quite similar ripple. 
+For the case where we look at the different corners at the same temperature, \autoref{fig:27_diffCorners}, it is shown that when Q goes from low to high the TT, FF and SF corners have the most ripples while the SS and FS corner have the least. When Q changes from high to low all corners at 27$^\circ$C seems to have quite similar ripple. 
 
 As shown in \autoref{fig:result_TT27}, one can see that there is a small dip in the Q-signal. This is due to the Set signal changing from high to low. We don't know why this happens, but we can assume that it's because of the change of the output in the control circuit from new data (D) to stored data (Q).
 
