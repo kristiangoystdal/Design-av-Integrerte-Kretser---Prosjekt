@@ -1,9 +1,12 @@
 \section{Conclusion}
 \label{sec:conclution}
 
-We can conclude that both systems, the 1-bit register in AIMSpice and the full MAC unit in Verilog, works as intended. 
+In this project we have designed, tested and implemented a MAC unit with two 2-bit inputs A and B which is controlled by a FSM following a specified behaviour. Trial and error show that a Mealy FSM results in less combinatiorial and sequential logic, compared to a Moore FSM, likely lowering the static power consumption. The functionality of the subcircuits, as well as the assembled circuit, has been verified using testbenches in Verilog. 
 
-Static power consumption is low. 
+AIMSpice simulations show that a 1-bit version of the register used in the circuit, for the process corner TT at 27$^\circ$C, has a static power consumption of $\approx2.6$ nW. Both process corners and operating temperature have a significant impact on static power.
+
+ 
+
 
 % Make some concluding remarks. The length of this section should be somewhere between a paragraph and a page.
 
