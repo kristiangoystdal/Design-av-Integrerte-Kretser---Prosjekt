@@ -4,27 +4,22 @@
 \label{appendix:aimspice}
 
 \begin{lstlisting}[style=aimspiceStyle, caption=1-bit register in AIMSPICE, label=testcode]
-1Bit Register
-
-**************************************************************
 * Including the file containing the NMOS and PMOS transistors
 .include gpdk90nm_tt.cir
-**************************************************************
 
-**************************************************************
-.PARAM W_VAL=1500n
+
+* Parameters for width and length of transistors
+.PARAM W_VAL=100n
 .PARAM L_VAL=300n
-**************************************************************
 
-**************************************************************
+
 * Subcircuit for a NOT gate 
 .subckt NOT GND VDD A OUT
 XMP1 OUT A VDD VDD PMOS1V W=W_VAL L=L_VAL 
 XMN1 OUT A GND GND NMOS1V W=W_VAL L=L_VAL
 .ends NOT
-**************************************************************
 
-**************************************************************
+
 * Subcircuit for a NAND gate 
 .subckt NAND GND VDD A B OUT
 XMP1 VDD A OUT VDD PMOS1V W=W_VAL L=L_VAL 
@@ -32,25 +27,22 @@ XMP2 VDD B OUT VDD PMOS1V W=W_VAL L=L_VAL
 XMN1 OUT A C C NMOS1V W=W_VAL L=L_VAL 
 XMN2 C B GND GND NMOS1V W=W_VAL L=L_VAL 
 .ends NAND
-**************************************************************
 
-**************************************************************
+
 * Subcircuit for an AND gate 
 .subckt AND GND VDD A B OUT
 XAND1 GND VDD A B C NAND
 XNOT1 GND VDD C OUT NOT
 .ends AND
-**************************************************************
 
-**************************************************************
+
 * Subcircuit for a TRANSMISSION gate 
 .subckt TRANS GND VDD IN EN_N EN_P OUT
 XMN1 IN EN_N OUT GND NMOS1V W=W_VAL L=L_VAL
 XMP1 IN EN_P OUT VDD PMOS1V W=W_VAL L=L_VAL 
 .ends TRANS
-**************************************************************
 
-**************************************************************
+
 * Subcircuit for a MUX for set and reset
 .subckt MUX GND VDD S R DI Q DO
 XNOT1 GND VDD S 1 NOT
@@ -59,9 +51,8 @@ XTRANS2 GND VDD Q 1 S 2 TRANS
 XNOT2 GND VDD R 3 NOT
 XAND GND VDD 2 3 DO AND
 .ends 
-**************************************************************
 
-**************************************************************
+
 *Subcircuit for a D FLIP FLOP using TRANSMITION gates 
 .subckt FLOP GND VDD CLK D Q 
 XNOT1 GND VDD D 1 NOT
@@ -76,18 +67,16 @@ XNOT5 GND VDD 6 7 NOT
 XTRANS4 GND VDD 7 NOTCLK CLK 5 TRANS
 XNOT6 GND VDD 6 Q NOT
 .ends
-**************************************************************
 
-**************************************************************
+
 * Subcircuit for 1bit register with set and reset
 .subckt REGISTER GND VDD CLK S R D Q 
 XMUX1 GND VDD S R D Q 1 MUX
 XFLOP GND VDD CLK 1 Q FLOP
 .ends
-**************************************************************
 
 
-**************************************************************
+* Parameters for rise and fall time, clock periods and V_DD
 .PARAM RISE_TIME=0.5n 
 .PARAM FALL_TIME=0.5n 
 .PARAM CLK_PERIOD=20n 
@@ -100,23 +89,21 @@ XFLOP GND VDD CLK 1 Q FLOP
 VDD 1 0 V_DD
 VD D 0 PULSE(0 C_VDD 25n RISE_TIME FALL_TIME 20ns 40ns)
 VCLK CLK 0 PULSE(0 C_VDD 0 RISE_TIME FALL_TIME CLK_HIGH CLK_PERIOD)
-VS S 0 PULSE(0 C_VDD 20n RISE_TIME FALL_TIME 60n 120n)
+VS S 0 PULSE(0 C_VDD 25n RISE_TIME FALL_TIME 60n 120n)
 VR R 0 PULSE(0 C_VDD 145n RISE_TIME FALL_TIME 50n 100n)
-**************************************************************
 
-**************************************************************
+
 *Defining the register
 XREG 0 1 CLK S R D Q REGISTER
-**************************************************************
 
-**************************************************************
+
 *Plotting Q, D, CLK, S and R for the register
 .plot v(Q)
 .plot v(D)
 .plot v(CLK)
 .plot v(S) 
 .plot v(R)
-**************************************************************
+
 \end{lstlisting}
 
 
@@ -126,6 +113,7 @@ XREG 0 1 CLK S R D Q REGISTER
 \begin{lstlisting}[style=verilogStyle, caption=Half Adder in Verilog, label=verilog_halfadder]
 module Half_Adder ( A_0 ,B_0 ,S_0 ,C_0 );
 
+//Define inputs outputs, and wires
 input A_0 ;
 wire A_0 ;
 input B_0 ;
@@ -135,6 +123,7 @@ wire S_0 ;
 output C_0 ;
 wire C_0 ;
 
+//Define logic gates
 and(C_0, A_0, B_0);
 xor(S_0, A_0, B_0);
 
@@ -145,6 +134,7 @@ endmodule
 \begin{lstlisting}[style=verilogStyle, caption=Full Adder in Verilog, label=verilog_fulladder]
 module Full_Adder ( C_I ,S_O ,A_I ,C_O ,B_I );
 
+//Define inputs, outputs and wires
 input C_I ;
 wire C_I ;
 output S_O ;
@@ -155,8 +145,9 @@ output C_O ;
 wire C_O ;
 input B_I ;
 wire B_I ;
-
 wire w1,w2,w3;
+
+//Define logic gates
 xor(w1, A_I, B_I);
 and(w2, A_I, B_I); 
 and(w3, w1, C_I);
@@ -171,15 +162,18 @@ endmodule
 `include "Half_Adder.v"
 `include "Full_Adder.v"
 
+//Define input and outputs in the module portlist
 module eightbit_adder (
     input [7:0] A,
     input [7:0] B,
     output [7:0] S
 );
 
+//Define wires
 wire [7:0] carry;
 wire [7:0] carry_out;
 
+//Instanciate full- and half-adders
 Half_Adder ha_instance_0 (
     .A_0(A[0]),
     .B_0(B[0]),
@@ -249,7 +243,8 @@ endmodule
 
 \begin{lstlisting}[style=verilogStyle, caption=D Flip-Flop in Verilog, label=verilog_dflipflop]
 module D_Flip_Flop ( input D_flip , output Q_flip , input clk_flip );
-	
+
+ //Define wires and logic- and transmission-gates
 	wire clk_bar_flip; 
 	not(clk_bar_flip, clk_flip);
 	not(w1_flip, D_flip);	  
@@ -273,17 +268,21 @@ endmodule
 
 
 \begin{lstlisting}[style=verilogStyle, caption=Register control circuit in Verilog, label=verilog_regmux]
+//Define input and outputs in the module portlist
 module Reg_mux (
     input S_mux,
     input R_mux,
     input D_I_mux,
     input Q_mux,
     output D_O_mux
-);			  
+);
+
+//Define wires
 wire Y_mux, sbar, rbar;	
+
+//Define gates
 not(sbar,S_mux);
 not(rbar,R_mux); 
-
 cmos(Y_mux,D_I_mux, S_mux, sbar);
 cmos(Y_mux,Q_mux,sbar,S_mux);
 and(D_O_mux, rbar, Y_mux);
@@ -304,12 +303,12 @@ module onebit_register (input D, input S, input R, input CLK, output Q);
     .S_mux(S),
     .R_mux(R),
     .D_I_mux(D), 
-    .Q_mux(Q), // Connect the Q output of the flip-flop to the input of the multiplexer  
+    .Q_mux(Q), // Connect the Q output of the flip-flop to the input of the control circuit  
     .D_O_mux(D_O_mux)
   );
 
   D_Flip_Flop flip_flop_instance (
-    .D_flip(D_O_mux), // Connect the input of the flip-flop to the multiplexer's output
+    .D_flip(D_O_mux), // Connect the output of the control circuit to the input of the D flip-flop
     .Q_flip(Q),
     .clk_flip(CLK)
   );
@@ -390,6 +389,7 @@ endmodule
 `include "eightbit_adder.v"
 `include "eightbit_register.v"
 
+//Define input and outputs in the module portlist
 module MAC(
     input [1:0] A, 
     input [1:0] B, 
@@ -398,13 +398,14 @@ module MAC(
     output [7:0] Y
     );
 
+//Define all wires
     wire [1:0] A, B, CTRL;
     wire CLK;
     wire [7:0] Y;
     wire [3:0] PROD;
     wire [7:0] SUM;
 
-
+//Instanciate the subcircuits and connect inputs and outputs to correct wires
     twobit_multiplier multiplier_instance(.A(A), .B(B), .O(PROD));
     eightbit_adder adder_instance(.A({4'b0000, PROD}), .B(Y), .S(SUM));
     eightbit_register register_instance(
@@ -463,6 +464,7 @@ endmodule
 `include "Mealy_FSM.v"
 `include "MAC.v"
 
+//Define input and outputs in the module portlist
 module MAC_FULL(
     input [1:0] I, 
     input [1:0] A, 
@@ -471,10 +473,12 @@ module MAC_FULL(
     output [7:0] Y
     );
 
+//Define wires
     wire CLK;
     wire [1:0] I, CTRL, A, B;
     wire [7:0] Y;
 
+//Instanciate FSM subsystem
     Mealy_FSM fsm_instance(
         .RunIN(I[0]), 
         .ResetIN(I[1]), 
@@ -482,7 +486,8 @@ module MAC_FULL(
         .RunOUT(CTRL[0]), 
         .ResetOUT(CTRL[1])
     );
-        
+
+//Instanciate MAC subsystem
     MAC mac_instance(
         .A(A),
         .B(B),
@@ -501,24 +506,34 @@ endmodule
 `timescale 1 ns / 1 ps
 `include "twobit_multiplier.v"
 
+
 module Multiplier_Testbench();
+
+//Regs for controlling input and wires for reading output
     reg [1:0] A, B;
     wire [3:0] O;
+
+//Some variables to be used later
     integer errors;
     integer Acount, Bcount;
 
+//Instanciate uut
     twobit_multiplier mul_instance (.A(A), .B(B), .O(O));
     initial begin
+
+//File to store the results
         $dumpfile("Multiplier_Testbench.vcd");
         $dumpvars(0, Multiplier_Testbench);
         errors = 0;
 
+//Loop through all possible inputs
         for(Acount = 0 ; Acount < 4 ; Acount++) begin
             for(Bcount = 0 ; Bcount < 4 ; Bcount++) begin
                 A = Acount;
                 B = Bcount;
                 #1;
                 if((A*B) != O) begin
+                //Display the result and count the errors
                     $display("Error: ",A,"*",B,"=",O);
                     errors++;
                 end else begin
@@ -543,23 +558,32 @@ endmodule
 `include "eightbit_adder.v"
 
 module Adder_Testbench();
+
+//Regs for controlling input and wires for reading output
     reg [7:0] A, B;
     wire [7:0] S;
+
+//Define variables for later use
     integer errors;
     integer Acount, Bcount;
 
+//Instanciate uut
     eightbit_adder adder_instance(.A(A), .B(B), .S(S));
 
     initial begin
+    //vdc-file for storing results
         $dumpfile("Adder_Testbench.vcd");
         $dumpvars(0, Adder_Testbench);
         errors = 0;
+
+        //Loop through all possible inputs
         for(Acount = 0 ; Acount < 256 ; Acount++) begin
             for(Bcount = 0 ; Bcount < 256 ; Bcount++) begin
                 A = Acount;
                 B = Bcount;
                 #1;
                 if((A+B) == S) begin
+                //Display the adders output
                     $display(A,"+",B,"=",S);
                 end else begin
                     $display("Error: ", A, "+", B, "=",S);
@@ -567,6 +591,8 @@ module Adder_Testbench();
                 end
             end
         end
+
+        //Display a message describing the results
         if(errors==0)begin
             $display("Congratulations! No errors found.");
         end else begin
@@ -583,13 +609,18 @@ endmodule
 `include "eightbit_register.v"
 
 module Register_Testbench();
+//Registers are sequential and needs a clock
     parameter CLK_PERIOD = 10;
+    //Regs for controlling input and wires for reading output
     reg s_eight,r_eight,clk_eight;
     reg [7:0] d_eight;
     wire [7:0] q_eight;
+
+    //Some variables for later use
     integer errors;
     integer temp;
 
+//Instanciate the uut
     eightbit_register register_instance(
         .s_eight(s_eight), 
         .r_eight(r_eight),
@@ -598,9 +629,11 @@ module Register_Testbench();
         .q_eight(q_eight)
     );
 
+//Define the clock
     always #((CLK_PERIOD / 2)) clk_eight = ~clk_eight;
 
     initial begin
+    //DCD file for storing results
         $dumpfile("Register_Testbench.vcd");
         $dumpvars(0, Register_Testbench);
         errors = 0;
@@ -624,7 +657,7 @@ module Register_Testbench();
             end
         end
 
-        //Testing controllsignals 01 and 11 for all inputs d
+        //Testing controlsignals 10 and 11 for all inputs d
         s_eight = 0;
         r_eight = 1;
         for(temp = 0 ; temp < 256 ; temp++) begin
@@ -658,6 +691,8 @@ module Register_Testbench();
                 errors++;
             end
         end
+
+        //Display a message explaining the results.
         if(errors==0) begin
             $display("Congratulations! No errors found.");
         end else begin
@@ -671,33 +706,45 @@ endmodule
 
 \begin{lstlisting}[style=verilogStyle, caption=MAC Testbench in Verilog, label=verilog_MACTB]
 module TB;
+//Seed for the $random system-function
     integer randomSeed = 10;
+//Regs for controlling input and wires for reading output
     reg [1:0] CTRL, A, B;
     reg CLK;
     wire [7:0] Y;
 
+//Instanciate uut
     MAC uut(.*);
 
+//Invert the clock every 5 ns and change A and B to random numbers every 10 ns
     always #5 CLK = ~CLK;
     always #10 A = $random(randomSeed) % 4;
     always #10 B = $random % 4;
 
     initial begin
+//VCD-file for saving results
       $dumpfile("TB_dumpfile.vcd");
       $dumpvars(0, TB);
-
+      
+//Reset the register
         CLK = 0;
         CTRL = 3;
         A = $random % 4;
         B = $random % 4;
         #10;
+        
+//Run the MAC
         CTRL = 1;
         #50;
+//Pause the MAC
         CTRL = 0;
         #20;
+//Reset the MAC
         CTRL = 3;
         #10;
+//Run the mac
         CTRL = 1;
+//Let it run for some time
         #150;
         $finish;
     end
@@ -713,12 +760,15 @@ endmodule
 
 module Testbench;
 
+//Regs for controlling input and wires for reading output
     reg CLK;
     reg [1:0] I;
     wire [1:0] O;
 
+/Define the clock
     always #5 CLK = ~CLK;
 
+//Instanciate uut
     Mealy_FSM uut(
         .RunIN(I[0]), 
         .ResetIN(I[1]), 
@@ -728,14 +778,19 @@ module Testbench;
 
     initial begin
 
+//VCD-file for storing results
         $dumpfile("TB_dumpfile.vcd");
         $dumpvars(0, Testbench);
-
+        
+//Start CLK and Reset state register
         CLK = 0;
         I = 3;
         #10;
+//Run FSM for some time
         I = 1;
         #50;
+
+//Testing some randomized inputs
         for(integer temp = 0 ; temp < 5 ; temp++)begin
             I = $random % 4;
             #40;
@@ -752,32 +807,43 @@ endmodule
 
 module TB;
 
+//Setting $random-seed
     integer randomSeed = 5;
+
+//Regs for controlling input and wires for reading output
     reg [1:0] I, A, B;
     reg CLK;
     wire [7:0] Y;
 
+//Instanciate uut
     MAC_FULL uut(.*);
 
+//Define clock and inputs A and B to change every 10 ns
     always #5 CLK = ~CLK;
     always #10 A = $random(randomSeed) % 4;
     always #10 B = $random % 4;
 
     initial begin
+//VCD-file for storing results
         $dumpfile("TB_dumpfile.vcd");
         $dumpvars(0, TB);
 
+//Begin by resetting the registers and giving A and B a start-value
         CLK = 0;
         I = 3;
         A = $random % 4;
         B = $random % 4;
         #10;
+//Run the full MAC for some time
         I = 1;
         #100;
+//Test pausing
         I=0;
         #60;
+//Test resetting
         I = 3;
         #10;
+/Run it for some time again
         I = 1;
         #150;
         $finish;
@@ -797,13 +863,13 @@ endmodule
     \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/TT_0.png}
-        \caption{Plot of register for TT corner}
+        \caption{Timing diagram for TT corner}
         \label{fig:TT0}
     \end{minipage}%
     \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/TT_27.png}
-        \caption{Plot of register for TT corner}
+        \caption{Timing diagram for TT corner}
         \label{fig:TT27}
     \end{minipage}
 \end{figure}
@@ -812,7 +878,7 @@ endmodule
     \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/TT_70.png}
-        \caption{Plot of register for TT corner}
+        \caption{Timing diagram for TT corner}
         \label{fig:TT70}
     \end{minipage}%
 \end{figure}
@@ -821,13 +887,13 @@ endmodule
     \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/FS_0.png}
-        \caption{Plot of register for FS corner}
+        \caption{Timing diagram for FS corner}
         \label{fig:FS0}
     \end{minipage}%
     \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/FS_27.png}
-        \caption{Plot of register for FS corner}
+        \caption{Timing diagram for FS corner}
         \label{fig:FS27}
     \end{minipage}
 \end{figure}
@@ -836,7 +902,7 @@ endmodule
     \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/FS_70.png}
-        \caption{Plot of register for FS corner}
+        \caption{Timing diagram for FS corner}
         \label{figFS70}
     \end{minipage}%
 \end{figure}
@@ -845,13 +911,13 @@ endmodule
     \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/SF_0.png}
-        \caption{Plot of register for SF corner}
+        \caption{Timing diagram for SF corner}
         \label{fig:SF0}
     \end{minipage}%
     \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/SF_27.png}
-        \caption{Plot of register for SF corner}
+        \caption{Timing diagram for SF corner}
         \label{fig:SF27}
     \end{minipage}
 \end{figure}
@@ -860,7 +926,7 @@ endmodule
     \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/SF_70.png}
-        \caption{Plot of register for SF corner}
+        \caption{Timing diagram for SF corner}
         \label{fig:SF70}
     \end{minipage}%
 \end{figure}
@@ -869,13 +935,13 @@ endmodule
     \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/SS_0.png}
-        \caption{Plot of register for SS corner}
+        \caption{Timing diagram for SS corner}
         \label{fig:SS0}
     \end{minipage}%
     \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/SS_27.png}
-        \caption{Plot of register for SS corner}
+        \caption{Timing diagram for SS corner}
         \label{fig:SS27}
     \end{minipage}
 \end{figure}
@@ -884,7 +950,7 @@ endmodule
     \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/SS_70.png}
-        \caption{Plot of register for SS corner}
+        \caption{Timing diagram for SS corner}
         \label{fig:SS70}
     \end{minipage}%
 \end{figure}
@@ -893,13 +959,13 @@ endmodule
     \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/FF_0.png}
-        \caption{Plot of register for FF corner}
+        \caption{Timing diagram for FF corner}
         \label{fig:FF0}
     \end{minipage}%
     \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/FF_27.png}
-        \caption{Plot of register for FF corner}
+        \caption{Timing diagram for FF corner}
         \label{fig:FF27}
     \end{minipage}
 \end{figure}
@@ -908,7 +974,7 @@ endmodule
     \begin{minipage}{0.5\textwidth}
         \centering
         \includegraphics[width=\textwidth]{Figures/Aimspice_Plots/FF_70.png}
-        \caption{Plot of register for FF corner}
+        \caption{Timing diagram for FF corner}
         \label{fig:FF70}
     \end{minipage}%
 \end{figure}
