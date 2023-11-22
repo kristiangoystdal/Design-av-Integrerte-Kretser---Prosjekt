@@ -3,7 +3,7 @@
 
 \subsection{AIMSpice}
 
-The register could have different effect and operations due to the corner of the transistor and the temperature. There are five corners the transistors could be; TT(typical-typical), SS(slow-slow), FF(fast-fast), SF(slow-fast) and FS(fast-slow).  For all of the corners they have been tested for three temperatures, 0$^\circ C$, 27$^\circ C$ and 70$^\circ C$. All the different plots for the different cases are shown in \autoref{appendix:register_plots}. 
+The register could have different effect and operations due to the corner of the transistor and the temperature. There are five corners the transistors could be; TT(typical-typical), SS(slow-slow), FF(fast-fast), SF(slow-fast) and FS(fast-slow).  For all of the corners they have been tested for three temperatures, 0 $^\circ$C, 27 $^\circ$C and 70 $^\circ$C. All the different plots for the different cases are shown in \autoref{appendix:register_plots}. 
 
 To validate the functionality of the register, one can examine the plot of the TT corner at 27$^\circ C$. 
 
@@ -35,7 +35,7 @@ The stability of the register, when changing from low to high, is affected by di
 
 \subsubsection{Static Power Consumption}
 
-As mentioned in \autoref{subsubsec:SPC_Calc}, a low voltage on $V_{DD}$ is optimal. We have therefore chosen a value for $V_{DD} = 0.85V$. This value of $V_{DD}$ was chosen as through testing we found that a lower voltage would result in unstable functionality. By using the function operating point in AIMSpice, the leakage current in the $V_{DD}$ node can be found.
+As mentioned in \autoref{subsubsec:SPC_Calc}, a low voltage on $V_{DD}$ is optimal. We have therefore chosen a value for $V_{DD} = 0.85$ V, since that fulfills the specification 12 in \autoref{tab:specifications}. This value of $V_{DD}$ was chosen as through testing we found that a lower voltage would result in unstable functionality. By using the function operating point in AIMSpice, the leakage current in the $V_{DD}$ node can be found.
 
 \autoref{tab:leakage} shows the different leakage currents for the TT and FF corners with all three temperatures. To calculate the static power consumption, we use the \autoref{eq:power} for all the values and get  \autoref{tab:power}.
 
