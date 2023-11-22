@@ -1,6 +1,6 @@
 # Design of Integrated Circuits Project
 
-This repository contains the project files for the Integrated Circuit course at NTNU Trondheim. The Overleaf Files for the report, as well as the AIMSpice and Verilog code for the circuits, can be found here.
+This repository contains the project files for the Integrated Circuit course at NTNU Trondheim. The Overleaf Files for the report, as well as the AIMSpice and Verilog code for the circuits, can be found here. Both AIMSpice and Verilog code should be able to run at its current location using the correct programs.
 
 ## Project Description
 
