@@ -77,7 +77,7 @@ As shown in \autoref{fig:8bitregister}, each bit of the accumulator consists of 
 
 \subsection{FSM design}
 
-The FSM was designed according to the project description and the design procedure given in \autoref{subsec:fsm_theory}. Both a Mealy and a Moore FSM design has been considered. The Mealy state machine resulted in four different states and the Moore machine resulted in eight different states, requiring an additional state register and more combinatorial logic. The final design was subsequently chosen to be a Mealy FSM, to minimize the amount of transistors. The state diagram derived from the text description is shown in \autoref{fig:fsm_diagram}. To be able to hold four different states, one pause state and three different run states, the FSM needs a 2-bit register, with at least a reset function. 
+The FSM was designed according to the project description and the design procedure given in \autoref{subsec:fsm_theory}. Both a Mealy and a Moore FSM design has been considered. The Mealy state machine resulted in four different states and the Moore machine resulted in eight different states, requiring an additional state register and more combinatorial logic. The final design was subsequently chosen to be a Mealy FSM, to minimize the amount of transistors. The state diagram derived from the text description is shown in \autoref{fig:fsm_diagram}. To be able to hold four different states, one pause state and three different run states, the FSM needs a 2-bit register with a reset function. 
 
 \begin{figure}[H]
     \centering
@@ -87,8 +87,8 @@ The FSM was designed according to the project description and the design procedu
 \end{figure}
 
 Three input signals are given by the specifications in \autoref{tab:specifications}, Reset, CLK and Run. The CLK signal
-will only be used to time the sequential logic in the FSM and passed on to the MAC unit without
-further modification. The CLK signal is therefore not considered an input-signal here in the sense that is not used in the next-state or output-logic in the FSM (see \autoref{fig:general_fsm}). The reset input signal $I_1$ is only used to reset the state register to the pause-state ``00'' and passed on to the MAC unit as $CTRL_1$ without further modification. The combinatorial part of the FSM is here only dependent on the current state ($C_1$ and $C_0$) and the Run input signal $I_0$. The outputs of the FSM are the next state signals $N_1$ and $N_0$, and the Reset and Run control signals $CTRL_1$ and $CTRL_0$. From the state diagram, we can write up the state table, \autoref{tab:state_table}. Note that $CTRL_1$ only is dependent on $I_1$ and that this does not require any gates.
+is only used to time the sequential logic in the FSM and passed on to the MAC unit without
+further modification. The CLK signal is therefore not considered an input-signal here in the sense that it is not used in the next-state or output-logic in the FSM (see \autoref{fig:general_fsm}). The reset input signal $I_1$ is only used to reset the state register to the pause-state ``00'' and passed on to the MAC unit as $CTRL_1$ without further modification. The combinatorial part of the FSM is here only dependent on the current state ($C_1$ and $C_0$) and the Run input signal $I_0$. The outputs of the FSM are the next state signals $N_1$ and $N_0$, and the Reset and Run control signals $CTRL_1$ and $CTRL_0$. From the state diagram, we can write up the state table, \autoref{tab:state_table}. Note that $CTRL_1$ only is dependent on $I_1$ and that this does not require any gates.
 
 \begin{table}[H]
 \caption{State table for the FSM.}
