@@ -72,9 +72,5 @@ The implementation and simulation have two parts:
 
 - Clone this repository to get started with the project.
 - Ensure you have the necessary tools (AIMSpice, ActiveHDL) for simulation.
-- Follow the project guidelines and specifications in the provided documentation.
-- Document your design choices, considerations, and simulation results in the final report.
-- Use clear and concise comments in your Verilog code.
-- Keep everything at the logic gates level, except for the testbenches.
 
 Best of luck with your project!
