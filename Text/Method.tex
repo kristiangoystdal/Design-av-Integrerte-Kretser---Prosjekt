@@ -59,12 +59,12 @@ The accumulator is an 8-bit register with some control signals, that is received
     \label{fig:8bitregister}
 \end{figure}
 
-As shown in \autoref{fig:8bitregister}, the accumulator consists of a D-Flip-Flop and a control circuit. These are implemented as shown in \autoref{fig:dflipflop} and \ref{fig:setreset} respectively.
+As shown in \autoref{fig:8bitregister}, the accumulator consists of a D flip-flop and a control circuit. These are implemented as shown in \autoref{fig:dflipflop} \cite[p.18]{digital_design} and \ref{fig:setreset} respectively. This implementation of a D flip-flop gives a rising edge triggered D flip-flop. If the CLK signals were reversed at all transmission gates, the D flip-flop will become falling edge triggered.  
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Figures/D_Flip_Flop.png}
-    \caption{D-flip flop.}
+    \caption{D flip-flop.}
     \label{fig:dflipflop}
 \end{figure}
 
@@ -86,7 +86,7 @@ The FSM was designed according to the project description and the design procedu
     \label{fig:fsm_diagram}
 \end{figure}
 
-Three input signals are given by the specifications in \autoref{tab:specifications}, Reset, CLK and Run. The CLK-signal
+Three input signals are given by the specifications in \autoref{tab:specifications}, Reset, CLK and Run. The CLK signal
 will only be used to time the sequential logic in the FSM and passed on to the MAC unit without
 further modification. The CLK signal is therefore not considered an input-signal here in the sense that is not used in the next-state or output-logic in the FSM (see \autoref{fig:general_fsm}). The reset input signal $I_1$ is only used to reset the state register to the pause-state ``00'' and passed on to the MAC unit as $CTRL_1$ without further modification. The combinatorial part of the FSM is here only dependent on the current state ($C_1$ and $C_0$) and the Run input signal $I_0$. The outputs of the FSM are the next state signals $N_1$ and $N_0$, and the Reset and Run control signals $CTRL_1$ and $CTRL_0$. From the state diagram, we can write up the state table, \autoref{tab:state_table}. Note that $CTRL_1$ only is dependent on $I_1$ and that this does not require any gates.
 
@@ -166,7 +166,7 @@ In the AIMSpice related part of the assignment, a 1-bit register, \autoref{fig:1
     \label{fig:1-bit_reg}
 \end{figure}
 
-To implement the register in AIMSpice, different logic gates are made using transistors. The different logic gates used in the 1-bit register are NOT-, AND- and transmission gates. This is shown in \autoref{fig:NOT} and \ref{fig:NAND}. To achieve a low static power consumption transistor stacking is used as that will give a lower leakage current. Through testing of different widths and lengths of the transistors, we found that a width of 100nm and a length of 300nm, gave the lowest leakage current while still having the correct functionality. 
+To implement the register in AIMSpice, different logic gates are made using transistors. The different logic gates used in the 1-bit register are NOT-, AND- and transmission gates. The transistor designs are shown in \autoref{fig:NOT}, \ref{fig:NAND}, \ref{fig:AND} and \ref{fig:TransGate}. To achieve a low static power consumption transistor stacking is used as that will give a lower leakage current. Through testing of different widths and lengths of the transistors, we found that a width of 100nm and a length of 300nm, gave the lowest leakage current while still having the correct functionality. 
 
 \begin{figure}[H]
 \centering
@@ -188,12 +188,19 @@ The AND gate is made by connecting a NAND and NOT in series, as shown in \autore
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.4\linewidth]{Figures/And gate.png}
-    \caption{AND gate}
+    \caption{AND gate.}
     \label{fig:AND}
 \end{figure}
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\linewidth]{Figures/Transmission gate.png}
+    \caption{Transmission gate.}
+    \label{fig:TransGate}
+\end{figure}
 
-\subsubsection{AIMSpice testing}
+
+\subsubsection{AIMSpice verification}
 \label{subsubsec:aimspice_testing}
 To test the 1-bit register made by in AIMSpice, we have to set some square waves for the clock signal, the data input, and the set and reset signals.
 
