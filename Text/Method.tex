@@ -15,7 +15,7 @@ A 2-bit multiplier could be designed like shown in \autoref{fig:multiplier}, whi
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{Figures/multiplier.png}
-    \caption{Possible design of a 2-bit multiplier.}
+    \caption{Possible design of a 2-bit multiplier, with inputs A[1:0] and B[1:0], and output O[3:0].}
     \label{fig:multiplier}
 \end{figure}
 
@@ -26,7 +26,7 @@ The design of an 8-bit adder is shown in \autoref{fig:adder-blokk}. The figure s
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Figures/8bitadder.png}
-    \caption{8-bit adder.}
+    \caption{8-bit adder, with inputs A[7:0] and B[7:0], and outputs S[7:0] and $C_O$.}
     \label{fig:adder-blokk}
 \end{figure}
 
@@ -36,13 +36,13 @@ The circuit for the half and full adder is shown in \autoref{fig:halfadder} and 
 \begin{minipage}{0.4\textwidth}
     \centering
     \includegraphics[width=\linewidth]{Figures/halfadder.png}
-    \caption{Half adder.}
+    \caption{Half adder, with inputs A and B, and outputs S and C.}
     \label{fig:halfadder}
 \end{minipage}
 \begin{minipage}{0.6\textwidth}
     \centering
     \includegraphics[width=\linewidth]{Figures/fulladder.png}
-    \caption{Full adder.}
+    \caption{Full adder, with inputs A, B and C, and outputs S and C.}
     \label{fig:fulladder}
 \end{minipage}
 \end{figure}
@@ -55,7 +55,7 @@ The accumulator is an 8-bit register with some control signals, that is received
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{Figures/8bitRegister.png}
-    \caption{8-bit register.}
+    \caption{8-bit register, with input CLK, S, R and D[7:0], and output Q[7:0].}
     \label{fig:8bitregister}
 \end{figure}
 
@@ -64,14 +64,14 @@ As shown in \autoref{fig:8bitregister}, each bit of the accumulator consists of 
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{Figures/D_Flip_Flop.png}
-    \caption{D flip-flop.}
+    \caption{D flip-flop, with inputs CLK and D, and output Q.}
     \label{fig:dflipflop}
 \end{figure}
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.4\textwidth]{Figures/setReset.png}
-    \caption{Circuit for controlling register.}
+    \caption{Circuit for controlling register, with inputs S, R, D and Q, and output $D_O$.}
     \label{fig:setreset}
 \end{figure}
 
@@ -145,7 +145,7 @@ From the Boolean equations, we can draw up the logic diagram, shown in \autoref{
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.6\textwidth]{Figures/logic diagram.png}
-    \caption{FSM logic diagram.}
+    \caption{FSM logic diagram, with inputs $I_0$, $I_1$, and CLK, and outputs $CTRL_0$ and $CTRL_1$.}
     \label{fig:fsm_logic_diagram}
 \end{figure}
 
