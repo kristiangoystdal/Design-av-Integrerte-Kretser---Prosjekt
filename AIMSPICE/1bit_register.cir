@@ -2,6 +2,7 @@
 [description]
 3875
 1Bit Register
+*test
 
 
 * Including the file containing the NMOS and PMOS transistors
