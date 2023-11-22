@@ -1,12 +1,12 @@
 \section{Method}
 \label{sec:method}
 
-In this section we explain how the two subsystems will be implemented and tested, using AIMSpice to create and test a 1-bit register, and Verilog to create the full circuit. 
+In this section, it is explained how the two subsystems are implemented and tested, using AIMSpice to create and test a 1-bit register, and Verilog to create the full circuit. 
 
 \subsection{MAC design}
 \label{subsec:circuitDesign}
 
-Here we will look into how to implement the different subsystems of the MAC unit. The designs are shown at a logic gate level as that is used for both the AIMSpice and Verilog implementation. 
+This section specifically looks into how to implement the different subsystems of the MAC unit. The designs are shown at a logic gate level as that is used for both the AIMSpice and Verilog implementation. 
 
 \subsubsection{Multiplier} 
 
@@ -15,7 +15,7 @@ A 2-bit multiplier could be designed like shown in \autoref{fig:multiplier}, whi
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{Figures/multiplier.png}
-    \caption{Possible design of multiplier.}
+    \caption{Possible design of a 2-bit multiplier.}
     \label{fig:multiplier}
 \end{figure}
 
@@ -59,7 +59,7 @@ The accumulator is an 8-bit register with some control signals, that is received
     \label{fig:8bitregister}
 \end{figure}
 
-As shown in \autoref{fig:8bitregister}, the accumulator consists of a D flip-flop and a control circuit. These are implemented as shown in \autoref{fig:dflipflop} \cite[p.18]{digital_design} and \ref{fig:setreset} respectively. This implementation of a D flip-flop gives a rising edge triggered D flip-flop. If the CLK signals were reversed at all transmission gates, the D flip-flop will become falling edge triggered.  
+As shown in \autoref{fig:8bitregister}, each bit of the accumulator consists of a D flip-flop and a control circuit. These are implemented as shown in \autoref{fig:dflipflop} \cite[p.18]{digital_design} and \ref{fig:setreset} respectively. This implementation of a D flip-flop gives a rising edge triggered D flip-flop. If the CLK signals were reversed at all transmission gates, the D flip-flop will become falling edge triggered.  
 
 \begin{figure}[H]
     \centering
@@ -77,7 +77,7 @@ As shown in \autoref{fig:8bitregister}, the accumulator consists of a D flip-flo
 
 \subsection{FSM design}
 
-The FSM was designed according to the project description and the design procedure given in \autoref{subsec:fsm_theory}. Both a Mealy and a Moore FSM design has been considered. The Mealy state machine resulted in 4 states needed and the Moore machine resulted in 8 states needed, requiring an additional state register and more combinatorial logic. The final design was subsequently chosen to be a Mealy FSM, to minimize the amount of transistors. The state diagram derived from the text description is shown in \autoref{fig:fsm_diagram}. To be able to hold four different states, one pause state and three different run states, the FSM needs a 2-bit register, with at least a reset function. 
+The FSM was designed according to the project description and the design procedure given in \autoref{subsec:fsm_theory}. Both a Mealy and a Moore FSM design has been considered. The Mealy state machine resulted in four different states and the Moore machine resulted in eight different states, requiring an additional state register and more combinatorial logic. The final design was subsequently chosen to be a Mealy FSM, to minimize the amount of transistors. The state diagram derived from the text description is shown in \autoref{fig:fsm_diagram}. To be able to hold four different states, one pause state and three different run states, the FSM needs a 2-bit register, with at least a reset function. 
 
 \begin{figure}[H]
     \centering

@@ -125,7 +125,7 @@ Since $V_{eff} < 0$ in subthreshold region the leakage current will have a propo
 In an ideal scenario, one might approximate to say that the leakage current increases linearly with the number of transistors, assuming each transistor contributes an equal amount to leakage current. However, in reality, the relationship is more complex. This simplification is useful nevertheless and is used when considering design choices in this project.
 
 \subsubsection{Transistor Stacking}
-Another way to decrease the leakage current is to use transistor stacking. When stacking transistors, like shown in \autoref{fig:transistor_stacking}, the voltage drop from $V_{DD}$ to $V_{SS}$, is split over both transistor. This makes the $V_{DS}$ for each transistor lower than if there was only one transistor. A lower $V_{DS}$ means a lower DIBL-effect, which in turn can result in a lower leakage current. This is explained in more detail in chapter 13.5.1 in \cite{transistor_stacking}.
+Another way to decrease the leakage current is to use transistor stacking. When stacking transistors, like shown in \autoref{fig:transistor_stacking}, the voltage drop from $V_{DD}$ to $V_{SS}$, is split over both transistors. This makes the $V_{DS}$ for each transistor lower than if there was only one transistor. A lower $V_{DS}$ means a lower DIBL-effect, which in turn can result in a lower leakage current. This is explained in more detail in chapter 13.5.1 in \cite{transistor_stacking}.
 
 \begin{figure}[H]
     \begin{minipage}{0.5\textwidth}
@@ -152,7 +152,7 @@ When calculating the static power consumption for the 1-bit register, we look at
 
 \subsection{Static CMOS}\label{subsec:static_cmos}
 
-The logic family used for this project is Static CMOS. This family provides strongly driven logic 1's and 0's, resulting in low static power consumption. The Static CMOS logic family is mainly identified by a PMOS pull-up network and a NMOS pull-down network as shown in \autoref{fig:static_CMOS}. These networks are put together in such a way that they drive the output in a mutually exclusive way, such that in a steady state there is no direct path between the supply voltage and ground. 
+The logic family used for this project is Static CMOS. This family provides strongly driven logic 1's and 0's, resulting in low static power consumption. The Static CMOS logic family is mainly identified by a PMOS pull-up network and a NMOS pull-down network as shown in \autoref{fig:static_CMOS}. These networks are put together in such a way that they drive the output in a mutually exclusive way, meaning that in a steady state there is no direct path between the supply voltage and ground. 
 
 \begin{figure}[H]
     \centering
@@ -165,7 +165,18 @@ The logic family used for this project is Static CMOS. This family provides stro
 \subsection{Process Corners}
 \label{subsec:corners}
 
+Transistors may vary in design and therefore have different characteristics. In CMOS, there are two types of transistors with close to independent characteristics. We define these combinations of variations in the transistors as process corners. The variations are shown in \autoref{fig:cornersPlot}, where the first letter is the characteristics of the NMOS and the second is PMOS. 
 
+\begin{figure}[H]
+    \centering
+    \includegraphics{Figures/CornersTheory.png}
+    \caption{Process corners in a NMOS/PMOS plot \cite[p.245]{digital_design}}
+    \label{fig:cornersPlot}
+\end{figure}
+
+Often the different corners relate to different properties, as a fast PMOS may work under a higher frequency than a slow PMOS. A typical process corner is the nominal process corner and often represent the average characteristics of a transistor, with a balance between speed and power consumption. The fast corner gives a transistor that can handle a higher frequency, but in return has a higher power consumption and often is more susceptible to noise and variations in the environment. As for the slow process corner, it's the opposite of the fast process corner as it prioritizes low power consumption and sacrifices speed.
+
+It's important to take the different corners into consideration when designing a integrated circuit, as these design corners may be included in the circuit during the manufacture process. 
 
 
 % When you in later sections apply any of the theory you can refer back to this section. To make it easier for the reader to understand which part you are referring back to, it can be a good idea to divide your sections into subsections (e.g. one subsection per topic). This also makes it easier to read.
